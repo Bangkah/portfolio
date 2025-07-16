@@ -7,6 +7,8 @@ import certif3 from "../../Assets/Certificates/sertifikat3.png";
 import certif4 from "../../Assets/Certificates/sertifikat4.png";
 import certif5 from "../../Assets/Certificates/sertifikat5.png";
 import certif6 from "../../Assets/Certificates/sertifikat6.png";
+import certif7 from "../../Assets/Certificates/sertifikat7.png";
+import certif8 from "../../Assets/Certificates/sertifikat8.png";
 
 function Certificates() {
   return (
@@ -32,6 +34,12 @@ function Certificates() {
         </Col>
         <Col md={4} className="project-card">
           <CertificateCard imgPath={certif6} />
+        </Col>
+        <Col md={4} className="project-card">
+          <CertificateCard imgPath={certif7} />
+        </Col>
+        <Col md={4} className="project-card">
+          <CertificateCard imgPath={certif8} />
         </Col>
       </Row>
     </Container>
