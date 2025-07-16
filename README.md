@@ -3,9 +3,7 @@
   <a href="https://bangkah.vercel.app/" target="_blank">bangkah.vercel.app</a>
 </h2>
 
-<div align="center">
-  <img alt="Demo" src="./Images/readme-img1.png" />
-</div>
+
 
 <br/>
 
