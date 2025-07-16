@@ -78,4 +78,4 @@ Beri ⭐ jika kamu suka proyek ini dan merasa terbantu!
 ☕ Belikan Saya Kopi
 
 Jika kamu ingin mendukung saya, kamu bisa traktir kopi melalui Saweria:
-<p align="center"> <a href="https://saweria.co/Bangkah" target="_blank"> <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Saweria" height="60" /> </a> </p> ```
+<p align="center"> <a href="https://saweria.co/mdhyaulatha" target="_blank"> <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Saweria" height="60" /> </a> </p> ```
