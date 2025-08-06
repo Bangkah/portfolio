@@ -10,6 +10,9 @@ import certif6 from "../../Assets/Certificates/sertifikat6.png";
 import certif7 from "../../Assets/Certificates/sertifikat7.png";
 import certif8 from "../../Assets/Certificates/sertifikat8.png";
 import certif9 from "../../Assets/Certificates/sertifikat9.png";
+import certif10 from "../../Assets/Certificates/Completion Certificate _ SkillsBuild_page-0001.jpg";
+import certif11 from "../../Assets/Certificates/Completion Certificate2 _ SkillsBuild_page-0001.jpg";
+import certif12 from "../../Assets/Certificates/google-cloud-arcade-fasilitator-2025-program-overview-deep-dive-certificate_page-0001.jpg";
 
 function Certificates() {
   return (
@@ -44,6 +47,15 @@ function Certificates() {
         </Col>
         <Col md={4} className="project-card">
           <CertificateCard imgPath={certif9} />
+        </Col>
+        <Col md={4} className="project-card">
+          <CertificateCard imgPath={certif10} />
+        </Col>
+        <Col md={4} className="project-card">
+          <CertificateCard imgPath={certif11} />
+        </Col>
+        <Col md={4} className="project-card">
+          <CertificateCard imgPath={certif12} />
         </Col>
       </Row>
     </Container>
