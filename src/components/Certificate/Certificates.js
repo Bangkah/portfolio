@@ -6,34 +6,43 @@ const certificates = [
     file: require("../../Assets/Certificates/Certificate-of-Completion-Introduction-to-Information-Security_page-0001.jpg"),
   },
   {
+    file: require("../../Assets/Certificates/muhammad-dhyaul-atha-certificate-completion-damc_page-0001.jpg"),
+  },  
+  {
+    file: require("../../Assets/Certificates/Muhammad Dhyaul Atha_page-0001.jpg"),
+  },
+  {
+    file: require("../../Assets/Certificates/Salinan E Sertifikat _Muhammad Dhiyaul Atha_page-0001.jpg"),
+  },
+  {
+    file: require("../../Assets/Certificates/IBMDesign20250807-32-9a1ab9_page-0001.jpg"),
+  },
+  {
+    file: require("../../Assets/Certificates/UC-b14f16c0-b39c-4dfb-aa2f-620ed1e43602.jpg"),
+  },
+  {
     file: require("../../Assets/Certificates/Completion Certificate _ SkillsBuild_page-0001.jpg"),
   },
   {
     file: require("../../Assets/Certificates/Completion Certificate2 _ SkillsBuild_page-0001.jpg"),
   },
   {
-    file: require("../../Assets/Certificates/muhammad-dhyaul-atha-certificate-completion-damc_page-0001.jpg"),
-  },
-  {
-    file: require("../../Assets/Certificates/empowering-women-in-tech-breaking-barriers-building-careers-certificate_page-0001.jpg"),
-  },
-  {
-    file: require("../../Assets/Certificates/google-cloud-arcade-fasilitator-2025-program-overview-deep-dive-certificate_page-0001.jpg"),
+    file: require("../../Assets/Certificates/MDL-566_page-0001.jpg"),
   },
   {
     file: require("../../Assets/Certificates/mastering-solid-principles-to-boost-engineering-career-certificate_page-0001.jpg"),
   },
   {
-    file: require("../../Assets/Certificates/Muhammad Dhyaul Atha Sertifikat Webinar IT Cyber Security 25 Juli 2025_page-0001.jpg"),
+    file: require("../../Assets/Certificates/google-cloud-arcade-fasilitator-2025-program-overview-deep-dive-certificate_page-0001.jpg"),
   },
   {
-    file: require("../../Assets/Certificates/Muhammad Dhyaul Atha_page-0001.jpg"),
+    file: require("../../Assets/Certificates/empowering-women-in-tech-breaking-barriers-building-careers-certificate_page-0001.jpg"),
   },
   {
     file: require("../../Assets/Certificates/MUHAMMAD DHYAUL ATHA_SOFTWARE TESTER CERTIFICATE_GROWIA_page-0001.jpg"),
   },
   {
-    file: require("../../Assets/Certificates/Salinan E Sertifikat _Muhammad Dhiyaul Atha_page-0001.jpg"),
+    file: require("../../Assets/Certificates/Muhammad Dhyaul Atha Sertifikat Webinar IT Cyber Security 25 Juli 2025_page-0001.jpg"),
   },
   {
     file: require("../../Assets/Certificates/sertifikat_page-0001.jpg"),
