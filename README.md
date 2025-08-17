@@ -52,16 +52,16 @@ Website ini dibuat menggunakan:
 
 1. Clone repositori:
    
-     git clone https://github.com/Bangkah/Portfolio.git
-     cd Portfolio
+       git clone https://github.com/Bangkah/Portfolio.git
+       cd Portfolio
 
 2. Instalasi dependency:
 
-    npm install
+        npm install
 
 3. Jalankan aplikasi:
 
-    npm start
+        npm start
 
 Buka http://localhost:3000 di browser untuk melihat hasilnya.
 📁 Struktur Proyek
