@@ -51,15 +51,15 @@ Website ini dibuat menggunakan:
 ## 🛠️ Instalasi & Setup
 
 1. Clone repositori:
-   ```bash
-   git clone https://github.com/Bangkah/Portfolio.git
-   cd Portfolio
+   
+     git clone https://github.com/Bangkah/Portfolio.git
+     cd Portfolio
 
-    Instalasi dependency:
+2. Instalasi dependency:
 
-npm install
+    npm install
 
-Jalankan aplikasi:
+3. Jalankan aplikasi:
 
     npm start
 
