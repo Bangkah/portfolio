@@ -37,6 +37,9 @@ const certificates = [
     file: require("../../Assets/Certificates/google-cloud-arcade-fasilitator-2025-program-overview-deep-dive-certificate_page-0001.jpg"),
   },
   {
+    file: require("../../Assets/Certificates/idcamp-alumni-dialogue-6-beyond-automation-timeless-skills-in-the-age-of-ai-certificate_page-0001.jpg"),
+  },
+  {
     file: require("../../Assets/Certificates/empowering-women-in-tech-breaking-barriers-building-careers-certificate_page-0001.jpg"),
   },
   {
