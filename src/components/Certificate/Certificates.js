@@ -11,11 +11,12 @@ const certificates = [
   {
     file: require("../../Assets/Certificates/Muhammad Dhyaul Atha_page-0001.jpg"),
   },
-  {
-    file: require("../../Assets/Certificates/Salinan E Sertifikat _Muhammad Dhiyaul Atha_page-0001.jpg"),
-  },
+   
   {
     file: require("../../Assets/Certificates/IBMDesign20250807-32-9a1ab9_page-0001.jpg"),
+  },
+  {
+    file: require("../../Assets/Certificates/UC-033844b2-044b-4ea3-966d-f97af4ced9dd.jpg"),
   },
   {
     file: require("../../Assets/Certificates/UC-b14f16c0-b39c-4dfb-aa2f-620ed1e43602.jpg"),
@@ -40,6 +41,9 @@ const certificates = [
   },
   {
     file: require("../../Assets/Certificates/MUHAMMAD DHYAUL ATHA_SOFTWARE TESTER CERTIFICATE_GROWIA_page-0001.jpg"),
+  },
+  {
+    file: require("../../Assets/Certificates/Salinan E Sertifikat _Muhammad Dhiyaul Atha_page-0001.jpg"),
   },
   {
     file: require("../../Assets/Certificates/Muhammad Dhyaul Atha Sertifikat Webinar IT Cyber Security 25 Juli 2025_page-0001.jpg"),
