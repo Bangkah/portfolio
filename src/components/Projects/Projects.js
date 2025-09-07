@@ -6,9 +6,12 @@ import Particle from "../Particle";
 // Gambar proyek (pastikan semua gambar tersedia di folder ini)
 import muslimlifeImg from "../../Assets/Projects/muslimlife.png";
 import akademikImg from "../../Assets/Projects/akademik.png";
+import absensiImg from "../../Assets/Projects/absensi.png";
+import islamicblogImg from "../../Assets/Projects/islamicblog.png";
+import mantapaiImg from "../../Assets/Projects/mantapai.png";
+import gudangtugasImg from "../../Assets/Projects/gudangtugas.png";
 import jekyllblogImg from "../../Assets/Projects/jekyllblog.png";
 import portfolioImg from "../../Assets/Projects/portfolio.png";
-import gudangtugasImg from "../../Assets/Projects/gudangtugas.png";
 import topupImg from "../../Assets/Projects/topup.png";
 
 function Projects() {
@@ -23,14 +26,14 @@ function Projects() {
           Berikut adalah beberapa proyek yang telah saya kerjakan:
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          {/* Muslim Life */}
+
+          {/* Website Muslim Life */}
           <Col md={4} className="project-card">
             <ProjectCard
               imgPath={muslimlifeImg}
               isBlog={false}
               title="Website Muslim Life"
-              description="Website Muslim Life berisi fitur-fitur Islami seperti jadwal shalat, Al-Qur'an digital, dan doa harian. Dibuat menggunakan HTML, CSS, dan JavaScript."
-              
+              description="Platform Islami lengkap dengan jadwal shalat, Al-Qur'an digital, dan doa harian. Dibangun dengan HTML, CSS, dan JavaScript untuk pengalaman pengguna yang intuitif."
             />
           </Col>
 
@@ -40,30 +43,37 @@ function Projects() {
               imgPath={akademikImg}
               isBlog={false}
               title="Aplikasi Akademik Kampus"
-              description="Sistem informasi akademik kampus berbasis web untuk manajemen data mahasiswa, dosen, kelas, dan prodi. Dibuat dengan PHP dan MySQL."
-              
+              description="Sistem informasi akademik berbasis web untuk manajemen data mahasiswa, dosen, kelas, dan prodi. Dibuat menggunakan PHP & MySQL untuk efisiensi administrasi kampus."
             />
           </Col>
 
-          {/* Blog Jekyll */}
+          {/* Absensi Karyawan */}
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={jekyllblogImg}
+              imgPath={absensiImg}
               isBlog={false}
-              title="Blog Pribadi dengan Jekyll"
-              description="Blog pribadi statis menggunakan Jekyll dan GitHub Pages. Menyediakan artikel teknologi dan dokumentasi proyek open source."
-              
+              title="Aplikasi Absensi Karyawan"
+              description="Sistem absensi berbasis web dengan fitur QR Code, absensi manual, manajemen izin, dan laporan lengkap. Dibangun menggunakan Laravel 10 untuk perusahaan skala menengah."
             />
           </Col>
 
-          {/* Portofolio */}
+          {/* Blog Islam */}
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={portfolioImg}
+              imgPath={islamicblogImg}
               isBlog={false}
-              title="Website Portofolio"
-              description="Portofolio pribadi yang dibangun menggunakan React.js, Bootstrap, dan di-deploy ke Vercel."
-              
+              title="Aplikasi Blog Islam"
+              description="Platform blogging Islami dengan CRUD konten dan API terintegrasi. Dirancang responsif agar pengguna dapat mengakses artikel dari perangkat apapun."
+            />
+          </Col>
+
+          {/* Mantap AI */}
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={mantapaiImg}
+              isBlog={false}
+              title="Mantap AI"
+              description="Aplikasi web untuk menjalankan AI Assistant berbasis LLM lokal dan Ollama. Backend dibuat dengan Node.js & Express, menyediakan interaksi AI real-time."
             />
           </Col>
 
@@ -73,8 +83,27 @@ function Projects() {
               imgPath={gudangtugasImg}
               isBlog={false}
               title="Gudang Tugas"
-              description="Situs web untuk menyimpan dan berbagi tugas-tugas kuliah. Dibuat dengan PHP dan MySQL."
-              
+              description="Situs web untuk menyimpan dan berbagi tugas kuliah secara terstruktur. Dibangun dengan PHP & MySQL untuk kemudahan pengelolaan dokumen akademik."
+            />
+          </Col>
+
+          {/* Blog Pribadi dengan Jekyll */}
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={jekyllblogImg}
+              isBlog={false}
+              title="Blog Pribadi dengan Jekyll"
+              description="Blog statis dengan Jekyll dan GitHub Pages, menampilkan artikel teknologi dan dokumentasi proyek open source secara terorganisir."
+            />
+          </Col>
+
+          {/* Website Portofolio */}
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={portfolioImg}
+              isBlog={false}
+              title="Website Portofolio"
+              description="Portofolio pribadi interaktif menggunakan React.js & Bootstrap, menampilkan proyek dan kemampuan teknis. Dideploy ke Vercel untuk akses global."
             />
           </Col>
 
@@ -84,10 +113,10 @@ function Projects() {
               imgPath={topupImg}
               isBlog={false}
               title="Top Up Game Online"
-              description="Website layanan top up game seperti Mobile Legends dan Free Fire. Dibuat dengan HTML, CSS, dan JavaScript tanpa backend."
-              
+              description="Website layanan top up game seperti Mobile Legends & Free Fire. Dibuat dengan HTML, CSS, dan JavaScript untuk transaksi digital yang cepat dan mudah."
             />
           </Col>
+
         </Row>
       </Container>
     </Container>
