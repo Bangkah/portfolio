@@ -3,7 +3,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
 
-// Gambar proyek (pastikan semua gambar tersedia di folder ini)
 import muslimlifeImg from "../../Assets/Projects/muslimlife.png";
 import akademikImg from "../../Assets/Projects/akademik.png";
 import absensiImg from "../../Assets/Projects/absensi.png";

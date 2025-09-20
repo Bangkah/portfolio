@@ -16,32 +16,32 @@ function Home2() {
         <Row>
           <Col md={8} className="home-about-description">
             <h1 style={{ fontSize: "2.6em" }}>
-              PERKENALKAN <span className="purple"> DIRI </span> SAYA
+              PERKENALKAN <span className="purple">DIRI</span> SAYA
             </h1>
             <p className="home-about-body">
-              Saya mulai tertarik dengan dunia <b className="purple">programming</b> dan terus belajar hingga sekarang.
+              Saya memiliki ketertarikan yang kuat dalam dunia <b className="purple">programming</b> dan terus mengembangkan kemampuan hingga saat ini.
               <br />
               <br />Saya terbiasa menggunakan bahasa pemrograman seperti
               <i>
-                <b className="purple"> JavaScript, PHP, dan C.</b>
+                <b className="purple"> JavaScript, PHP, C, dan Java.</b>
               </i>
               <br />
               <br />
-              Fokus saya saat ini adalah membangun berbagai
+              Fokus utama saya saat ini adalah membangun berbagai
               <i>
-                <b className="purple"> website modern </b> seperti blog pribadi, sistem absensi, dan portfolio
+                <b className="purple"> aplikasi dan website modern</b>
               </i>
-              dengan menggunakan
+              , termasuk blog pribadi, sistem absensi karyawan, dan portofolio, dengan memanfaatkan
               <i>
-                <b className="purple"> React.js, PHP, dan MySQL.</b>
+                <b className="purple"> Laravel, React.js, dan MySQL.</b>
               </i>
               <br />
               <br />
-              Saya juga menggunakan alat bantu seperti
+              Dalam proses pengembangan, saya juga memanfaatkan berbagai alat bantu profesional seperti
               <i>
-                <b className="purple"> Visual Studio Code, Postman, dan GitHub</b>
+                <b className="purple"> Visual Studio Code, Postman, GitHub, dan Linux/Arch Linux.</b>
               </i>{" "}
-              dalam pengembangan proyek.
+              untuk memastikan proyek berjalan efisien dan terstruktur.
             </p>
           </Col>
           <Col md={4} className="myAvtar">
@@ -52,9 +52,9 @@ function Home2() {
         </Row>
         <Row>
           <Col md={12} className="home-about-social">
-            <h1>TEMUKAN SAYA DI</h1>
+            <h1>TERHUBUNG DENGAN SAYA</h1>
             <p>
-              Jangan ragu untuk <span className="purple">terhubung</span> dengan saya
+              Jangan ragu untuk <span className="purple">menghubungi</span> saya melalui media sosial berikut
             </p>
             <ul className="home-about-social-links">
               <li className="social-icons">

@@ -11,19 +11,19 @@ function AboutCard() {
 
             <br />
             <br />
-            Saya fokus dalam pengembangan website menggunakan <strong className="purple">PHP native</strong> maupun <strong className="purple">framework Laravel</strong>. Saya senang membangun aplikasi web yang bersih, efisien, dan mudah dikembangkan.
+            Saya memiliki fokus utama dalam pengembangan website menggunakan <strong className="purple">PHP native</strong> maupun <strong className="purple">framework Laravel</strong>. Saya senang membangun aplikasi web yang bersih, efisien, responsif, dan mudah dikembangkan.
 
             <br />
             <br />
-            Selain itu, saya aktif mengikuti perkembangan teknologi web, belajar membangun aplikasi fullstack, dan terbuka untuk berbagai kolaborasi seperti:
+            Selain itu, saya aktif mengikuti perkembangan teknologi web, terus meningkatkan kemampuan fullstack, dan terbuka untuk berbagai bentuk kolaborasi, seperti:
             <ul>
               <li>📦 Proyek freelance (UMKM & individu)</li>
-              <li>🌐 Kolaborasi open-source</li>
-              <li>👨‍💻 Tim pengembang aplikasi</li>
+              <li>🌐 Kontribusi open-source</li>
+              <li>👨‍💻 Kolaborasi tim pengembangan aplikasi</li>
             </ul>
 
             <br />
-            🎯 Tujuan saya adalah menjadi seorang <strong className="purple">Full-Stack Web Developer</strong> yang berkualitas, profesional, dan memberikan dampak nyata melalui teknologi.
+            🎯 Tujuan saya adalah menjadi seorang <strong className="purple">Full-Stack Web Developer</strong> yang kompeten, profesional, dan mampu memberikan dampak positif melalui teknologi.
           </p>
         </blockquote>
       </Card.Body>

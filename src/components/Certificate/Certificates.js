@@ -3,15 +3,17 @@ import { Container, Row, Col, Image } from "react-bootstrap";
 
 const certificates = [
   {
+    file: require("../../Assets/Certificates/Muhammad Dhyaul Atha_page-0001.jpg"),
+  },
+   {
+    file: require("../../Assets/Certificates/Code Generations and Optimization - Muhammad Dhiyaul Atha_page-0001.jpg"),
+  },
+  {
     file: require("../../Assets/Certificates/Certificate-of-Completion-Introduction-to-Information-Security_page-0001.jpg"),
   },
   {
     file: require("../../Assets/Certificates/muhammad-dhyaul-atha-certificate-completion-damc_page-0001.jpg"),
   },  
-  {
-    file: require("../../Assets/Certificates/Muhammad Dhyaul Atha_page-0001.jpg"),
-  },
-   
   {
     file: require("../../Assets/Certificates/IBMDesign20250807-32-9a1ab9_page-0001.jpg"),
   },
