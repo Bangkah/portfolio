@@ -14,6 +14,9 @@ const certificates = [
   {
     file: require("../../Assets/Certificates/muhammad-dhyaul-atha-certificate-completion-damc_page-0001.jpg"),
   },  
+    {
+    file: require("../../Assets/Certificates/sertifikat_course_653_3254278_270925161325_page-0001.jpg"),
+  }, 
   {
     file: require("../../Assets/Certificates/IBMDesign20250807-32-9a1ab9_page-0001.jpg"),
   },
