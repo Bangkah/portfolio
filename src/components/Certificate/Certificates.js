@@ -13,8 +13,11 @@ const certificates = [
   },
   {
     file: require("../../Assets/Certificates/muhammad-dhyaul-atha-certificate-completion-damc_page-0001.jpg"),
-  },  
-    {
+  },
+  {
+    file: require("../../Assets/Certificates/prinsip_pemograman_solid.jpg"),
+  },   
+  {
     file: require("../../Assets/Certificates/sertifikat_course_653_3254278_270925161325_page-0001.jpg"),
   }, 
   {
