@@ -3,6 +3,12 @@ import { Container, Row, Col, Image } from "react-bootstrap";
 
 const certificates = [
   {
+    file: require("../../Assets/Certificates/Certificates-Build on BNB Chain - Course 2 _ Solidity for BNB Chain Development-Muhammad Dhiyaul Atha_page-0001.jpg"),
+  },
+  {
+    file: require("../../Assets/Certificates/Certificates-Build On Stacks-Muhammad Dhiyaul Atha_page-0001.jpg"),
+  },
+  {
     file: require("../../Assets/Certificates/Muhammad Dhyaul Atha_page-0001.jpg"),
   },
    {
