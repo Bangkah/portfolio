@@ -9,6 +9,7 @@
     "react-bootstrap": "^2.2.1",
     "react-dom": "^18.2.0",
     "react-github-calendar": "^3.2.2",
+    "react-helmet-async": "^2.0.5",
     "react-icons": "^4.8.0",
     "react-parallax-tilt": "^1.7.42",
     "react-router-dom": "^6.2.2",

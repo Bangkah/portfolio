@@ -1,79 +1,89 @@
 <h2 align="center">
-  Website Portfolio - v2.0<br/>
-  <a href="https://bangkah.vercel.app/" target="_blank">bangkah.vercel.app</a>
+  Website Portfolio – v2.0<br/>
+  <a href="https://mdhiyaulatha.me" target="_blank">mdhiyaulatha.me</a>
 </h2>
-
-
 
 <br/>
 
 <p align="center">
-  <a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/built-with-love.svg" /></a> &nbsp;
-  <a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/made-with-javascript.svg" /></a> &nbsp;
-  <a href="https://forthebadge.com"><img src="https://forthebadge.com/images/badges/open-source.svg" /></a> &nbsp;
-  <img src="https://img.shields.io/github/stars/Bangkah/Portfolio?color=red&logo=github&style=for-the-badge" /> &nbsp;
+  <a href="https://forthebadge.com">
+    <img src="https://forthebadge.com/images/badges/built-with-love.svg" />
+  </a>
+  &nbsp;
+  <a href="https://forthebadge.com">
+    <img src="https://forthebadge.com/images/badges/made-with-javascript.svg" />
+  </a>
+  &nbsp;
+  <a href="https://forthebadge.com">
+    <img src="https://forthebadge.com/images/badges/open-source.svg" />
+  </a>
+  &nbsp;
+  <img src="https://img.shields.io/github/stars/Bangkah/Portfolio?color=red&logo=github&style=for-the-badge" />
+  &nbsp;
   <img src="https://img.shields.io/github/forks/Bangkah/Portfolio?color=red&logo=github&style=for-the-badge" />
 </p>
 
 <h3 align="center">
-  🔹 <a href="https://github.com/Bangkah/Portfolio/issues">Laporkan Bug</a> &nbsp;&nbsp;
+  🔹 <a href="https://github.com/Bangkah/Portfolio/issues">Laporkan Bug</a>
+  &nbsp;&nbsp;
   🔹 <a href="https://github.com/Bangkah/Portfolio/issues">Ajukan Fitur</a>
 </h3>
 
 ---
+<br>
 
-## 🔥 Sekilas
+Website ini adalah **portofolio pribadi Muhammad Dhiyaul Atha**, yang menampilkan:
 
-Ini adalah website portofolio pribadi saya yang menampilkan beberapa proyek yang pernah saya kerjakan, resume, serta sertifikat. Dibuat agar mudah dikembangkan kembali di masa depan.
+- Proyek yang pernah dikerjakan
+- Resume / CV
+- Sertifikat pencapaian
+
+Website ini dibangun dengan struktur yang rapi dan **mudah dikembangkan kembali di masa depan**.
 
 ---
 
-## 🚀 Dibangun Dengan
+## Dibangun Dengan
 
-Website ini dibuat menggunakan:
+Teknologi yang digunakan dalam proyek ini:
 
 - React.js
 - CSS3
 - Bootstrap & React-Bootstrap
-- Vercel (untuk hosting)
+- Vercel (Hosting & Deployment)
 - Visual Studio Code
 
 ---
 
-## 🎯 Fitur
+## Fitur Utama
 
-- 📖 Multi-Halaman (Multi-Page Layout)
-- 🎨 Desain responsif dan modern
-- 📁 Menampilkan Proyek, Resume, dan Sertifikat
+- Multi-Halaman (SPA dengan React Router)
+- Desain modern & responsif
+- Halaman Proyek, Resume, dan Sertifikat
+- SEO Friendly
+- Performa cepat (Vercel)
 
 ---
 
-## 🛠️ Instalasi & Setup
+## Kontak
 
-1. Clone repositori:
-   
-       git clone https://github.com/Bangkah/Portfolio.git
-       cd Portfolio
+- Website: https://mdhiyaulatha.me
 
-2. Instalasi dependency:
+- GitHub: https://github.com/Bangkah
 
-        npm install
+---
 
-3. Jalankan aplikasi:
+## Dukung Proyek Ini
 
-        npm start
+<p>Jika proyek ini bermanfaat:
+<br>
+Beri ⭐ di GitHub
+<br>
+Fork & kembangkan sesuai versimu
+</p>
 
-Buka http://localhost:3000 di browser untuk melihat hasilnya.
-📁 Struktur Proyek
+## Traktir Kopi
 
-    Semua komponen: src/components/
+Jika kamu ingin mendukung pengembangan proyek ini:
 
-    Kamu bisa edit bagian Projects, Resume, dan Certificates sesuai kebutuhanmu.
+<p align="center"> <a href="https://saweria.co/mdhiyaulatha" target="_blank"> <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Saweria" height="60" /> </a> </p>
 
-🌟 Dukung Proyek Ini
-
-Beri ⭐ jika kamu suka proyek ini dan merasa terbantu!
-☕ Belikan Saya Kopi
-
-Jika kamu ingin mendukung saya, kamu bisa traktir kopi melalui Saweria:
-<p align="center"> <a href="https://saweria.co/mdhyaulatha" target="_blank"> <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Saweria" height="60" /> </a> </p> ```

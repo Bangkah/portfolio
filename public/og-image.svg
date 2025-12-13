@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Muhammad Dhiyaul Atha Portfolio</title>
+  <desc id="desc">Open Graph image for Muhammad Dhiyaul Atha web developer portfolio</desc>
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#312e81" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)" />
+  <rect x="60" y="60" width="1080" height="510" rx="28" ry="28" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width="2" />
+  <text x="110" y="220" fill="#c7d2fe" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="54" font-weight="700">Muhammad Dhiyaul Atha</text>
+  <text x="110" y="290" fill="#e2e8f0" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="34">Web Developer · Mahasiswa Teknik Informatika</text>
+  <text x="110" y="360" fill="#a5b4fc" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="28">React · JavaScript · Linux · Frontend Development</text>
+  <text x="110" y="430" fill="#cbd5e1" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="24">mdhiyaulatha.me</text>
+</svg>

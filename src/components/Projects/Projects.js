@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
+import SEO from "../SEO";
 
 import muslimlifeImg from "../../Assets/Projects/muslimlife.png";
 import akademikImg from "../../Assets/Projects/akademik.png";
@@ -16,6 +17,12 @@ import topupImg from "../../Assets/Projects/topup.png";
 function Projects() {
   return (
     <Container fluid className="project-section">
+      <SEO 
+        title="Proyek | Muhammad Dhiyaul Atha Portfolio"
+        description="Lihat proyek web development Muhammad Dhiyaul Atha. Termasuk aplikasi React, Laravel, sistem akademik, absensi, blog Islam, AI assistant, dan banyak lagi."
+        keywords="proyek web developer, portfolio projects, react projects, laravel projects, aplikasi web, sistem informasi, web applications"
+        url="https://mdhiyaulatha.me/projects"
+      />
       <Particle />
       <Container>
         <h1 className="project-heading">
@@ -106,13 +113,13 @@ function Projects() {
             />
           </Col>
 
-          {/* Top Up Game Online */}
+          {/* Your story portfolio */}
           <Col md={4} className="project-card">
             <ProjectCard
               imgPath={topupImg}
               isBlog={false}
-              title="Top Up Game Online"
-              description="Website layanan top up game seperti Mobile Legends & Free Fire. Dibuat dengan HTML, CSS, dan JavaScript untuk transaksi digital yang cepat dan mudah."
+              title="Your Story Portfolio"
+              description="Website portofolio profesional untuk startup Your Story, sebuah platform kreatif untuk menulis dan membaca cerita."
             />
           </Col>
 

@@ -6,10 +6,17 @@ import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
 import laptopImg from "../../Assets/about.png";
 import Toolstack from "./Toolstack";
+import SEO from "../SEO";
 
 function About() {
   return (
     <Container fluid className="about-section">
+      <SEO 
+        title="Tentang Saya | Muhammad Dhiyaul Atha"
+        description="Kenali Muhammad Dhiyaul Atha - mahasiswa Teknik Informatika, web developer, dan Linux enthusiast. Lihat skills, tools, dan teknologi yang saya kuasai."
+        keywords="about Atha, skills web developer, react developer skills, teknologi web, programming skills, github profile"
+        url="https://mdhiyaulatha.me/about"
+      />
       <Particle />
       <Container>
         <Row style={{ justifyContent: "center", padding: "10px" }}>
@@ -31,7 +38,13 @@ function About() {
             style={{ paddingTop: "120px", paddingBottom: "50px" }}
             className="about-img"
           >
-            <img src={laptopImg} alt="about" className="img-fluid" />
+            <img
+              src={laptopImg}
+              alt="Muhammad Dhiyaul Atha - ilustrasi bekerja dengan laptop"
+              className="img-fluid"
+              loading="lazy"
+              decoding="async"
+            />
           </Col>
         </Row>
 

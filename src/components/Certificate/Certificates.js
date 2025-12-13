@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
+import SEO from "../SEO";
 
 const certificates = [
   {
@@ -75,6 +76,12 @@ function Certificates() {
 
   return (
     <Container fluid className="project-section">
+      <SEO 
+        title="Sertifikat | Muhammad Dhiyaul Atha"
+        description="Lihat koleksi sertifikat dan pencapaian Muhammad Dhiyaul Atha dalam bidang web development, programming, cloud computing, cybersecurity, dan teknologi lainnya."
+        keywords="sertifikat web developer, programming certificates, cloud computing certification, tech certifications, achievement portfolio"
+        url="https://mdhiyaulatha.me/certificates"
+      />
       <h1 className="project-heading">
         <strong className="purple">Sertifikat</strong> Saya
       </h1>
@@ -90,6 +97,8 @@ function Certificates() {
                 alt={`certificate-${idx}`}
                 fluid
                 className="shadow"
+                loading="lazy"
+                decoding="async"
                 style={{
                   maxHeight: "400px",
                   objectFit: "contain",

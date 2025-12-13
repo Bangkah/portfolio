@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import myImg from "../../Assets/avatar.svg";
+import { Link } from "react-router-dom";
 import Tilt from "react-parallax-tilt";
 import {
   AiFillGithub,
@@ -46,7 +47,13 @@ function Home2() {
           </Col>
           <Col md={4} className="myAvtar">
             <Tilt>
-              <img src={myImg} className="img-fluid" alt="avatar" />
+              <img
+                src={myImg}
+                className="img-fluid"
+                alt="Muhammad Dhiyaul Atha avatar illustration"
+                loading="lazy"
+                decoding="async"
+              />
             </Tilt>
           </Col>
         </Row>
@@ -62,6 +69,7 @@ function Home2() {
                   href="https://github.com/Bangkah"
                   target="_blank"
                   rel="noreferrer"
+                  aria-label="GitHub profile"
                   className="icon-colour home-social-icons"
                 >
                   <AiFillGithub />
@@ -72,6 +80,7 @@ function Home2() {
                   href="https://x.com/mdhiyaulatha"  
                   target="_blank"
                   rel="noreferrer"
+                  aria-label="X profile"
                   className="icon-colour home-social-icons"
                 >
                   <AiOutlineTwitter />
@@ -82,6 +91,7 @@ function Home2() {
                   href="https://www.linkedin.com/in/muhammad-dhyaul-atha/" 
                   target="_blank"
                   rel="noreferrer"
+                  aria-label="LinkedIn profile"
                   className="icon-colour home-social-icons"
                 >
                   <FaLinkedinIn />
@@ -92,12 +102,27 @@ function Home2() {
                   href="https://www.instagram.com/mdhiyaulatha/" 
                   target="_blank"
                   rel="noreferrer"
+                  aria-label="Instagram profile"
                   className="icon-colour home-social-icons"
                 >
                   <AiFillInstagram />
                 </a>
               </li>
             </ul>
+            <div className="home-internal-links" style={{ marginTop: "1rem" }}>
+              <Link to="/projects" className="btn btn-primary" style={{ marginRight: "0.5rem", marginBottom: "0.5rem" }}>
+                Lihat Proyek
+              </Link>
+              <Link to="/about" className="btn btn-outline-light" style={{ marginRight: "0.5rem", marginBottom: "0.5rem" }}>
+                Tentang Saya
+              </Link>
+              <Link to="/certificates" className="btn btn-outline-light" style={{ marginRight: "0.5rem", marginBottom: "0.5rem" }}>
+                Sertifikat
+              </Link>
+              <Link to="/resume" className="btn btn-outline-light" style={{ marginBottom: "0.5rem" }}>
+                Unduh CV
+              </Link>
+            </div>
           </Col>
         </Row>
       </Container>

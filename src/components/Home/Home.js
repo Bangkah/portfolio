@@ -4,10 +4,17 @@ import homeLogo from "../../Assets/home-main.svg";
 import Particle from "../Particle";
 import Home2 from "./Home2";
 import Type from "./Type";
+import SEO from "../SEO";
 
 function Home() {
   return (
     <section>
+      <SEO 
+        title="Muhammad Dhiyaul Atha | Web Developer & Mahasiswa Teknik Informatika"
+        description="Hi! Saya Muhammad Dhiyaul Atha, mahasiswa Teknik Informatika dan web developer dengan passion dalam pengembangan web modern. Portfolio berisi proyek React, Laravel, dan teknologi web lainnya."
+        keywords="Muhammad Dhiyaul Atha, web developer Indonesia, react developer, teknik informatika, portfolio developer, frontend developer, backend developer, full stack developer"
+        url="https://mdhiyaulatha.me/"
+      />
       <Container fluid className="home-section" id="home">
         <Particle />
         <Container className="home-content">
@@ -33,7 +40,10 @@ function Home() {
             <Col md={5} style={{ paddingBottom: 20 }}>
               <img
                 src={homeLogo}
-                alt="home pic"
+                alt="Ilustrasi Muhammad Dhiyaul Atha"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
                 className="img-fluid"
                 style={{ maxHeight: "450px" }}
               />

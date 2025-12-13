@@ -71,7 +71,7 @@ function NavBar() {
             <Nav.Item>
               <Nav.Link
                 as={Link}
-                to="/project"
+                to="/projects"
                 onClick={() => updateExpanded(false)}
               >
                 <AiOutlineFundProjectionScreen
@@ -84,7 +84,7 @@ function NavBar() {
             <Nav.Item>
               <Nav.Link
                 as={Link}
-                to="/sertifikat"
+                to="/certificates"
                 onClick={() => updateExpanded(false)}
               >
                 <RiMedalLine style={{ marginBottom: "2px" }} /> Sertifikat
