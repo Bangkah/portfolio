@@ -1,0 +1,26 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "atha.vercel.app"
+        }
+      ],
+      "destination": "https://mdhiyaulatha.me/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.mdhiyaulatha.me"
+        }
+      ],
+      "destination": "https://mdhiyaulatha.me/$1",
+      "permanent": true
+    }
+  ]
+}
