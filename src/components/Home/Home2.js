@@ -109,7 +109,7 @@ function Home2() {
                 </a>
               </li>
             </ul>
-            <div className="home-internal-links" style={{ marginTop: "1rem" }}>
+            {/* <div className="home-internal-links" style={{ marginTop: "1rem" }}>
               <Link to="/projects" className="btn btn-primary" style={{ marginRight: "0.5rem", marginBottom: "0.5rem" }}>
                 Lihat Proyek
               </Link>
@@ -122,7 +122,7 @@ function Home2() {
               <Link to="/resume" className="btn btn-outline-light" style={{ marginBottom: "0.5rem" }}>
                 Unduh CV
               </Link>
-            </div>
+            </div> */}
           </Col>
         </Row>
       </Container>

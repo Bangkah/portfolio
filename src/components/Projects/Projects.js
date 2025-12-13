@@ -12,7 +12,7 @@ import mantapaiImg from "../../Assets/Projects/mantapai.png";
 import gudangtugasImg from "../../Assets/Projects/gudangtugas.png";
 import jekyllblogImg from "../../Assets/Projects/jekyllblog.png";
 import portfolioImg from "../../Assets/Projects/portfolio.png";
-import topupImg from "../../Assets/Projects/topup.png";
+import yourstoryImg from "../../Assets/Projects/yourstory.png";
 
 function Projects() {
   return (
@@ -116,7 +116,7 @@ function Projects() {
           {/* Your story portfolio */}
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={topupImg}
+              imgPath={yourstoryImg}
               isBlog={false}
               title="Your Story Portfolio"
               description="Website portofolio profesional untuk startup Your Story, sebuah platform kreatif untuk menulis dan membaca cerita."
