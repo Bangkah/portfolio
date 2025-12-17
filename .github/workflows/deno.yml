@@ -1,19 +1,30 @@
-{
-  "name": "portfolio",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^18",
-    "react-dom": "^18"
-  },
-  "devDependencies": {
-    "eslint": "^8",
-    "react-scripts": "^5"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "lint": "eslint src/"
-  }
-}
+name: Deno
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: stable
+          cache: true
+
+      - name: Run linter
+        run: deno lint
+
+      - name: Run tests (optional, likely to fail for React DOM tests)
+        run: deno test -A
