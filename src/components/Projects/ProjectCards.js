@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { CgWebsite } from "react-icons/cg";
@@ -49,5 +50,15 @@ function ProjectCards(props) {
     </Card>
   );
 }
+
+
+ProjectCards.propTypes = {
+  imgPath: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  ghLink: PropTypes.string,
+  isBlog: PropTypes.bool,
+  demoLink: PropTypes.string,
+};
 
 export default ProjectCards;

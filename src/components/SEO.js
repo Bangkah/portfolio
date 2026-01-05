@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
 
 function SEO({ 
@@ -37,5 +38,14 @@ function SEO({
     </Helmet>
   );
 }
+
+
+SEO.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  keywords: PropTypes.string,
+  ogImage: PropTypes.string,
+  url: PropTypes.string,
+};
 
 export default SEO;

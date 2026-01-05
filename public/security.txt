@@ -1,0 +1,7 @@
+# security.txt for mdhiyaulatha.me
+# See: https://securitytxt.org/
+
+Contact: mailto:mdhiyaulatha@gmail.com
+Expires: 2027-01-05T00:00:00.000Z
+Preferred-Languages: id, en
+Canonical: https://mdhiyaulatha.me/.well-known/security.txt
