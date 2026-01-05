@@ -83,8 +83,11 @@ function Certificates() {
         url="https://mdhiyaulatha.me/certificates"
       />
       <h1 className="project-heading">
-        <strong className="purple">Sertifikat</strong> Saya
+        <strong className="purple">Sertifikat</strong> Muhammad Dhiyaul Atha (Atha, Dhiyaul, Bangkah)
       </h1>
+      <p style={{ color: '#444', marginBottom: '1.5rem' }}>
+        Temukan bukti keahlian <b>Atha</b>, <b>Dhiyaul</b>, <b>Bangkah</b>, dan <b>Muhammad Dhiyaul Atha</b> di bidang web development, cloud, dan teknologi. Lihat juga <a href="/projects">proyek</a> dan <a href="/about">profil</a> saya.
+      </p>
       <Row style={{ justifyContent: "center", paddingBottom: "20px" }}>
         {certificates.map((cert, idx) => (
           <Col md={4} className="project-card" key={idx}>

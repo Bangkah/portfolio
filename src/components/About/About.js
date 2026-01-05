@@ -32,6 +32,11 @@ function About() {
               Kenali <strong className="purple">Saya</strong>
             </h1>
             <Aboutcard />
+            <div style={{marginTop: '1.5rem'}}>
+              <a href="/projects" className="btn btn-primary" style={{marginRight: '0.5rem', marginBottom: '0.5rem'}}>Lihat Proyek Atha</a>
+              <a href="/certificates" className="btn btn-outline-dark" style={{marginRight: '0.5rem', marginBottom: '0.5rem'}}>Sertifikat Dhiyaul</a>
+              <a href="/resume" className="btn btn-outline-dark" style={{marginBottom: '0.5rem'}}>Unduh CV Muhammad Dhiyaul Atha</a>
+            </div>
           </Col>
           <Col
             md={5}

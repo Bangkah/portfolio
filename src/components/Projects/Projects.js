@@ -29,7 +29,7 @@ function Projects() {
           Proyek <strong className="purple">Terbaru</strong> Saya
         </h1>
         <p style={{ color: "white" }}>
-          Berikut adalah beberapa proyek yang telah saya kerjakan:
+          Berikut adalah beberapa proyek yang telah saya kerjakan. Temukan karya terbaik <b>Atha</b>, <b>Dhiyaul</b>, <b>Bangkah</b>, dan <b>Muhammad Dhiyaul Atha</b> di bawah ini. Lihat juga <a href="/about">profil lengkap</a> dan <a href="/certificates">sertifikat</a> saya.
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
 
