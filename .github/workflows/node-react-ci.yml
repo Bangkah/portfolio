@@ -1,6 +1,4 @@
-on:
-jobs:
-name: Node.js React Lint
+name: Node.js React CI
 
 on:
   push:
@@ -11,7 +9,7 @@ on:
 permissions:
   contents: read
 
-
+jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -28,5 +26,20 @@ permissions:
 
       - name: Run ESLint
         run: npm run lint
-      - name: Run tests
-        run: deno test -A
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build React app
+        run: npm run build
