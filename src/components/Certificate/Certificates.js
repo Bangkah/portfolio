@@ -4,12 +4,15 @@ import SEO from "../SEO";
 
 const certificates = [
   {
+    // eslint-disable-next-line no-undef
     file: require("../../Assets/Certificates/Certificates-Build on BNB Chain - Course 2 _ Solidity for BNB Chain Development-Muhammad Dhiyaul Atha_page-0001.jpg"),
   },
   {
+    // eslint-disable-next-line no-undef
     file: require("../../Assets/Certificates/Certificates-Build On Stacks-Muhammad Dhiyaul Atha_page-0001.jpg"),
   },
   {
+    // eslint-disable-next-line no-undef
     file: require("../../Assets/Certificates/Muhammad Dhyaul Atha_page-0001.jpg"),
   },
    {
@@ -22,12 +25,14 @@ const certificates = [
     file: require("../../Assets/Certificates/muhammad-dhyaul-atha-certificate-completion-damc_page-0001.jpg"),
   },
   {
+    // eslint-disable-next-line no-undef
     file: require("../../Assets/Certificates/prinsip_pemograman_solid.jpg"),
   },   
   {
     file: require("../../Assets/Certificates/sertifikat_course_653_3254278_270925161325_page-0001.jpg"),
   }, 
   {
+    // eslint-disable-next-line no-undef
     file: require("../../Assets/Certificates/IBMDesign20250807-32-9a1ab9_page-0001.jpg"),
   },
   {
@@ -83,11 +88,9 @@ function Certificates() {
         url="https://mdhiyaulatha.me/certificates"
       />
       <h1 className="project-heading">
-        <strong className="purple">Sertifikat</strong> Muhammad Dhiyaul Atha (Atha, Dhiyaul, Bangkah)
+        <strong className="purple">Sertifikat</strong> 
       </h1>
-      <p style={{ color: '#444', marginBottom: '1.5rem' }}>
-        Temukan bukti keahlian <b>Atha</b>, <b>Dhiyaul</b>, <b>Bangkah</b>, dan <b>Muhammad Dhiyaul Atha</b> di bidang web development, cloud, dan teknologi. Lihat juga <a href="/projects">proyek</a> dan <a href="/about">profil</a> saya.
-      </p>
+      
       <Row style={{ justifyContent: "center", paddingBottom: "20px" }}>
         {certificates.map((cert, idx) => (
           <Col md={4} className="project-card" key={idx}>

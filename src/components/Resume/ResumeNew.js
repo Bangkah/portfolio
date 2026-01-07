@@ -33,7 +33,7 @@ function ResumeNew() {
           <iframe
             src={pdf}
             width="80%"
-            height="800px"
+            height="1200px"
             style={{ border: "none" }}
             title="CV"
           ></iframe>

@@ -5,8 +5,8 @@ import { Helmet } from 'react-helmet-async';
 function SEO({ 
   title = "Muhammad Dhiyaul Atha | Web Developer & Mahasiswa Teknik Informatika",
   description = "Portofolio resmi Muhammad Dhiyaul Atha, mahasiswa Teknik Informatika dan web developer. Berisi proyek, pengalaman, dan karya digital.",
-  keywords = "Muhammad Dhiyaul Atha, web developer, teknik informatika, portfolio developer, react developer, frontend developer",
-  ogImage = "/og-image.svg",
+  keywords = "Muhammad Dhiyaul Atha, web developer, Backend developer, teknik informatika, portfolio developer, Laravel developer, full stack developer, Atha",
+  ogImage = "/public/og-image.svg",
   url = "https://mdhiyaulatha.me/"
 }) {
   // Pastikan ogImage absolute agar tidak bergantung pada context router

@@ -24,7 +24,7 @@ function Home2() {
               <br />
               <br />Saya terbiasa menggunakan bahasa pemrograman seperti
               <i>
-                <b className="purple"> JavaScript, PHP, C, dan Java.</b>
+                <b className="purple"> JavaScript, PHP, Python, dan Java.</b>
               </i>
               <br />
               <br />
