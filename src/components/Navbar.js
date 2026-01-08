@@ -104,7 +104,7 @@ function NavBar() {
             {/* Ganti link blog ke GitHub atau blog milikmu */}
             <Nav.Item>
               <Nav.Link
-                href="https://github.com/Bangkah"
+                href="https://dev.to/bangkah"
                 target="_blank"
                 rel="noreferrer"
               >
