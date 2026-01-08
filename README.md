@@ -1,5 +1,5 @@
 <h2 align="center">
-  Website Portfolio – v2.0<br/>
+  Website Portfolio<br/>
   <a href="https://mdhiyaulatha.me" target="_blank">mdhiyaulatha.me</a>
 </h2>
 
