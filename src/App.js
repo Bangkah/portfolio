@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Projects from "./components/Projects/Projects";
+import ProjectDetail from "./components/Projects/ProjectDetail/ProjectDetail";
 import Footer from "./components/Footer";
 import Resume from "./components/Resume/ResumeNew";
 import Certificates from "./components/Certificate/Certificates";
@@ -42,6 +43,7 @@ function App() {
   <Route path="/" element={<Home />} />
   <Route path="/about" element={<About />} />
   <Route path="/projects" element={<Projects />} />
+  <Route path="/projects/:slug" element={<ProjectDetail />} />
   <Route path="/resume" element={<Resume />} />
   <Route path="/certificates" element={<Certificates />} />
 
