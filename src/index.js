@@ -6,6 +6,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { HelmetProvider } from "react-helmet-async";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 
 
 const container = document.getElementById("root");
@@ -16,6 +17,7 @@ root.render(
     <HelmetProvider>
       <App />
       <SpeedInsights />
+      <Analytics />
     </HelmetProvider>
   </React.StrictMode>
 );
