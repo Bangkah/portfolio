@@ -101,14 +101,14 @@ function NavBar() {
               </Nav.Link>
             </Nav.Item>
 
-            {/* Ganti link blog ke GitHub atau blog milikmu */}
             <Nav.Item>
               <Nav.Link
                 href="https://dev.to/bangkah"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                title="Baca artikel dan tutorial saya di DEV.to"
               >
-                <ImBlog style={{ marginBottom: "2px" }} /> Blog / GitHub
+                <ImBlog style={{ marginBottom: "2px" }} /> Blog
               </Nav.Link>
             </Nav.Item>
 
