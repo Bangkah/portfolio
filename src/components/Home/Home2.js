@@ -15,20 +15,11 @@ function Home2() {
               Perkenalkan <strong className="purple">Diri Saya</strong>
             </h1>
             <p className="home-about-body" style={{ textAlign: "justify" }}>
-              Halo! Saya <span className="purple">Muhammad Dhiyaul Atha</span>, seorang <span className="purple">mahasiswa Teknik Informatika</span> di Politeknik Negeri Lhokseumawe.
+              Hai! Saya <span className="purple">Atha</span>.<br />
+              Seorang mahasiswa yang suka ngulik <span className="purple">teknologi</span>, <span className="purple">ngoding</span>, dan membangun hal-hal baru di dunia digital.
               <br />
               <br />
-              Saya memiliki fokus utama dalam pengembangan website menggunakan <strong className="purple">PHP native</strong> maupun <strong className="purple">framework Laravel</strong>. Saya senang membangun aplikasi web yang bersih, efisien, responsif, dan mudah dikembangkan.
-              <br />
-              <br />
-              Selain itu, saya aktif mengikuti perkembangan teknologi web, terus meningkatkan kemampuan fullstack, dan terbuka untuk berbagai bentuk kolaborasi, seperti:
-              <ul>
-                <li>📦 Proyek freelance (UMKM & individu)</li>
-                <li>🌐 Kontribusi open-source</li>
-                <li>👨‍💻 Kolaborasi tim pengembangan aplikasi</li>
-              </ul>
-              <br />
-              🎯 Tujuan saya adalah menjadi seorang <strong className="purple">Full-Stack Web Developer</strong> yang kompeten, profesional, dan mampu memberikan dampak positif melalui teknologi.
+              Saya percaya, belajar dan berbagi adalah kunci berkembang di dunia IT. Yuk, saling terhubung dan bertumbuh bersama!
             </p>
           </Col>
           <Col md={4} className="myAvtar">
