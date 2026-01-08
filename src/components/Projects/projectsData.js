@@ -1,67 +1,75 @@
 // Data project untuk halaman Projects dan ProjectDetail
+import muslimlifeImg from "../../Assets/Projects/muslimlife.png";
+import akademikImg from "../../Assets/Projects/akademik.png";
+import absensiImg from "../../Assets/Projects/absensi.png";
+import islamicblogImg from "../../Assets/Projects/islamicblog.png";
+import mantapaiImg from "../../Assets/Projects/mantapai.png";
+import gudangtugasImg from "../../Assets/Projects/gudangtugas.png";
+import jekyllblogImg from "../../Assets/Projects/jekyllblog.png";
+import portfolioImg from "../../Assets/Projects/portfolio.png";
+import yourstoryImg from "../../Assets/Projects/yourstory.png";
+
 const projectsData = [
   {
     slug: "muslimlife",
     title: "Website Muslim Life",
-    imgPath: require("../../Assets/Projects/muslimlife.png"),
+    imgPath: muslimlifeImg,
     description: "Platform Islami lengkap dengan jadwal shalat, Al-Qur'an digital, dan doa harian. Dibangun dengan HTML, CSS, dan JavaScript untuk pengalaman pengguna yang intuitif.",
     detail: `<ul><li>Fitur: Jadwal shalat, Al-Qur'an digital, doa harian, dan artikel Islami.</li><li>Teknologi: HTML, CSS, JavaScript.</li><li>Tujuan: Memudahkan umat Muslim mengakses informasi ibadah harian.</li></ul>`,
-    ghLink: "https://github.com/Bangkah/muslimlife",
-    demoLink: "https://muslimlife.vercel.app/"
   },
   {
     slug: "akademik-kampus",
     title: "Aplikasi Akademik Kampus",
-    imgPath: require("../../Assets/Projects/akademik.png"),
+    imgPath: akademikImg,
     description: "Sistem informasi akademik berbasis web untuk manajemen data mahasiswa, dosen, kelas, dan prodi. Dibuat menggunakan PHP & MySQL untuk efisiensi administrasi kampus.",
     detail: `<ul><li>Fitur: Manajemen data mahasiswa, dosen, kelas, prodi, dan nilai.</li><li>Teknologi: PHP, MySQL.</li><li>Tujuan: Memudahkan administrasi kampus secara digital.</li></ul>`,
   },
   {
     slug: "absensi-karyawan",
     title: "Aplikasi Absensi Karyawan",
-    imgPath: require("../../Assets/Projects/absensi.png"),
+    imgPath: absensiImg,
     description: "Sistem absensi berbasis web dengan fitur QR Code, absensi manual, manajemen izin, dan laporan lengkap. Dibangun menggunakan Laravel 10 untuk perusahaan skala menengah.",
     detail: `<ul><li>Fitur: Absensi QR Code, absensi manual, izin, laporan.</li><li>Teknologi: Laravel 10.</li><li>Tujuan: Otomatisasi absensi dan pelaporan karyawan.</li></ul>`,
   },
   {
     slug: "blog-islam",
     title: "Aplikasi Blog Islam",
-    imgPath: require("../../Assets/Projects/islamicblog.png"),
+    imgPath: islamicblogImg,
     description: "Platform blogging Islami dengan CRUD konten dan API terintegrasi. Dirancang responsif agar pengguna dapat mengakses artikel dari perangkat apapun.",
     detail: `<ul><li>Fitur: CRUD artikel, API, responsif.</li><li>Teknologi: React, Node.js.</li><li>Tujuan: Media dakwah dan berbagi ilmu Islam.</li></ul>`,
   },
   {
     slug: "mantap-ai",
     title: "Mantap AI",
-    imgPath: require("../../Assets/Projects/mantapai.png"),
+    imgPath: mantapaiImg,
     description: "Aplikasi web untuk menjalankan AI Assistant berbasis LLM lokal dan Ollama. Backend dibuat dengan Node.js & Express, menyediakan interaksi AI real-time.",
     detail: `<ul><li>Fitur: Chat AI, integrasi LLM lokal, real-time.</li><li>Teknologi: Node.js, Express, React.</li><li>Tujuan: Eksplorasi AI Assistant open source.</li></ul>`,
   },
   {
     slug: "gudang-tugas",
     title: "Gudang Tugas",
-    imgPath: require("../../Assets/Projects/gudangtugas.png"),
+    imgPath: gudangtugasImg,
     description: "Situs web untuk menyimpan dan berbagi tugas kuliah secara terstruktur. Dibangun dengan PHP & MySQL untuk kemudahan pengelolaan dokumen akademik.",
     detail: `<ul><li>Fitur: Upload, download, dan berbagi tugas kuliah.</li><li>Teknologi: PHP, MySQL.</li><li>Tujuan: Kolaborasi dan dokumentasi tugas mahasiswa.</li></ul>`,
   },
   {
     slug: "jekyll-blog",
     title: "Blog Pribadi dengan Jekyll",
-    imgPath: require("../../Assets/Projects/jekyllblog.png"),
+    imgPath: jekyllblogImg,
     description: "Blog statis dengan Jekyll dan GitHub Pages, menampilkan artikel teknologi dan dokumentasi proyek open source secara terorganisir.",
     detail: `<ul><li>Fitur: Blog statis, dokumentasi proyek.</li><li>Teknologi: Jekyll, GitHub Pages.</li><li>Tujuan: Berbagi pengetahuan dan dokumentasi open source.</li></ul>`,
   },
   {
     slug: "portfolio",
     title: "Website Portofolio",
-    imgPath: require("../../Assets/Projects/portfolio.png"),
+    imgPath: portfolioImg,
     description: "Portofolio pribadi interaktif menggunakan React.js & Bootstrap, menampilkan proyek dan kemampuan teknis. Dideploy ke Vercel untuk akses global.",
     detail: `<ul><li>Fitur: Showcase project, responsif, modern UI.</li><li>Teknologi: React.js, Bootstrap, Vercel.</li><li>Tujuan: Personal branding dan presentasi karya.</li></ul>`,
   },
   {
     slug: "yourstory",
     title: "Your Story Portfolio",
-    imgPath: require("../../Assets/Projects/yourstory.png"),
+    imgPath: yourstoryImg,
     description: "Website portofolio profesional untuk startup Your Story, sebuah platform kreatif untuk menulis dan membaca cerita.",
     detail: `<ul><li>Fitur: Portofolio startup, platform cerita.</li><li>Teknologi: React.js, Node.js.</li><li>Tujuan: Mendukung kreator menulis dan berbagi cerita.</li></ul>`,
   },

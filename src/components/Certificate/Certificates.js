@@ -24,7 +24,7 @@ import img20 from "../../Assets/Certificates/Salinan E Sertifikat _Muhammad Dhiy
 import img21 from "../../Assets/Certificates/Muhammad Dhyaul Atha Sertifikat Webinar IT Cyber Security 25 Juli 2025_page-0001.jpg";
 import img22 from "../../Assets/Certificates/sertifikat_page-0001.jpg";
 
-const certificates = [
+export const certificates = [
   { file: img1 },
   { file: img2 },
   { file: img3 },

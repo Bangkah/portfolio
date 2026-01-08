@@ -7,23 +7,16 @@ function AboutCard() {
       <Card.Body>
         <blockquote className="blockquote mb-0">
           <p style={{ textAlign: "justify" }}>
-            Halo! Saya <span className="purple">Muhammad Dhiyaul Atha</span>, seorang <span className="purple">mahasiswa Teknik Informatika</span> di Politeknik Negeri Lhokseumawe.
-
+            Saya memiliki ketertarikan yang kuat dalam dunia <b className="purple">programming</b> dan terus mengembangkan kemampuan hingga saat ini.
             <br />
             <br />
-            Saya memiliki fokus utama dalam pengembangan website menggunakan <strong className="purple">PHP native</strong> maupun <strong className="purple">framework Laravel</strong>. Saya senang membangun aplikasi web yang bersih, efisien, responsif, dan mudah dikembangkan.
-
+            Saya terbiasa menggunakan bahasa pemrograman seperti <b className="purple">JavaScript, PHP, Python, dan Java</b>.
             <br />
             <br />
-            Selain itu, saya aktif mengikuti perkembangan teknologi web, terus meningkatkan kemampuan fullstack, dan terbuka untuk berbagai bentuk kolaborasi, seperti:
-            <ul>
-              <li>📦 Proyek freelance (UMKM & individu)</li>
-              <li>🌐 Kontribusi open-source</li>
-              <li>👨‍💻 Kolaborasi tim pengembangan aplikasi</li>
-            </ul>
-
+            Fokus utama saya saat ini adalah membangun berbagai <b className="purple">aplikasi dan website modern</b>, termasuk blog pribadi, sistem absensi karyawan, dan portofolio, dengan memanfaatkan <b className="purple">Laravel, React.js, dan MySQL</b>.
             <br />
-            🎯 Tujuan saya adalah menjadi seorang <strong className="purple">Full-Stack Web Developer</strong> yang kompeten, profesional, dan mampu memberikan dampak positif melalui teknologi.
+            <br />
+            Dalam proses pengembangan, saya juga memanfaatkan berbagai alat bantu profesional seperti <b className="purple">Visual Studio Code, Postman, GitHub, dan Linux/Arch Linux</b> untuk memastikan proyek berjalan efisien dan terstruktur.
           </p>
         </blockquote>
       </Card.Body>
