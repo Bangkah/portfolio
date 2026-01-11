@@ -97,7 +97,7 @@ function Home() {
           {previewProjects.map((project) => (
             <Col md={4} key={project.slug} className="mb-3">
               <Card className="h-100 shadow-sm">
-                <Card.Img variant="top" src={project.imgPath} alt={project.title} style={{objectFit:'cover',height:'180px'}} />
+                <Card.Img variant="top" src={project.imgPath} alt={project.title} width={320} height={180} style={{objectFit:'cover',height:'180px'}} />
                 <Card.Body>
                   <Card.Title>{project.title}</Card.Title>
                   <Card.Text>{project.description}</Card.Text>
@@ -119,7 +119,7 @@ function Home() {
           {previewCertificates.map((img, idx) => (
             <Col md={4} key={idx} className="mb-3">
               <Card className="h-100 shadow-sm">
-                <Image src={img} alt={`sertifikat-${idx}`} fluid style={{objectFit:'contain',height:'180px'}} />
+                <Image src={img} alt={`sertifikat-${idx}`} width={320} height={180} fluid style={{objectFit:'contain',height:'180px'}} />
               </Card>
             </Col>
           ))}

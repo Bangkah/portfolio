@@ -96,7 +96,7 @@ export default function AdminDashboard() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 24 }}>
             {projects.map(p => (
               <div key={p.id} style={{ background: "#222034", borderRadius: 10, padding: 16, color: "#fff", boxShadow: "0 2px 8px #0002", position: "relative" }}>
-                <img src={p.imgPath} alt={p.title} style={{ width: "100%", height: 140, objectFit: "cover", borderRadius: 8, marginBottom: 10, background: "#181028" }} />
+                <img src={p.imgPath} alt={p.title} width={320} height={140} style={{ width: "100%", height: 140, objectFit: "cover", borderRadius: 8, marginBottom: 10, background: "#181028" }} />
                 <div style={{ fontWeight: 700, fontSize: 18 }}>{p.title}</div>
                 <div style={{ fontSize: 14, margin: "8px 0 0 0" }}>{p.description}</div>
                 <button onClick={() => handleDeleteProject(p.id)} style={{ position: "absolute", top: 10, right: 10, background: "#e11d48", color: "#fff", border: 0, borderRadius: 6, padding: "4px 10px", fontWeight: 600, cursor: "pointer", fontSize: 13 }}>Hapus</button>
@@ -118,7 +118,7 @@ export default function AdminDashboard() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 24 }}>
             {certificates.map((c, idx) => (
               <div key={c.id} style={{ background: "#222034", borderRadius: 10, padding: 12, textAlign: "center", boxShadow: "0 2px 8px #0002", position: "relative" }}>
-                <img src={c.file} alt={`certificate-${idx}`} style={{ width: "100%", height: 180, objectFit: "contain", borderRadius: 8, background: "#181028" }} />
+                <img src={c.file} alt={`certificate-${idx}`} width={320} height={180} style={{ width: "100%", height: 180, objectFit: "contain", borderRadius: 8, background: "#181028" }} />
                 <button onClick={() => handleDeleteCertificate(c.id)} style={{ position: "absolute", top: 10, right: 10, background: "#e11d48", color: "#fff", border: 0, borderRadius: 6, padding: "4px 10px", fontWeight: 600, cursor: "pointer", fontSize: 13 }}>Hapus</button>
               </div>
             ))}

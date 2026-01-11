@@ -12,6 +12,8 @@ function ProjectCards(props) {
         variant="top"
         src={props.imgPath}
         alt={`${props.title} preview`}
+        width={320}
+        height={180}
         loading="lazy"
         decoding="async"
       />
