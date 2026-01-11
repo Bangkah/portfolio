@@ -7,8 +7,29 @@ import Particle from "../Particle";
 import SEO from "../SEO";
 
 
+
+function getLocalProjects() {
+  try {
+    const data = localStorage.getItem("projects");
+    return data ? JSON.parse(data) : [];
+  } catch {
+    return [];
+  }
+}
+
 function Projects() {
   const navigate = useNavigate();
+  // Gabungkan project dari localStorage dan projectsData.js
+  const localProjects = getLocalProjects();
+  // Format agar slug unik (pakai id jika dari localStorage)
+  const allProjects = [
+    ...localProjects.map((p) => ({
+      ...p,
+      slug: p.slug || `custom-${p.id}`,
+    })),
+    ...projectsData,
+  ];
+
   return (
     <Container fluid className="project-section">
       <SEO 
@@ -24,7 +45,7 @@ function Projects() {
         </h1>
 
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          {projectsData.map((project) => (
+          {allProjects.map((project) => (
             <Col md={4} className="project-card" key={project.slug}>
               <div style={{cursor: "pointer"}} onClick={() => navigate(`/projects/${project.slug}`)}>
                 <ProjectCard

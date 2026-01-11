@@ -5,10 +5,25 @@ import projectDetailsData from "../projectDetailsData";
 import SEO from "../../SEO";
 import Particle from "../../Particle";
 
+function getLocalProjects() {
+  try {
+    const data = localStorage.getItem("projects");
+    return data ? JSON.parse(data) : [];
+  } catch {
+    return [];
+  }
+}
+
 function ProjectDetail() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const project = projectDetailsData[slug];
+  let project = projectDetailsData[slug];
+
+  // Jika tidak ditemukan di static, cari di localStorage
+  if (!project) {
+    const localProjects = getLocalProjects();
+    project = localProjects.find(p => (p.slug === slug) || (`custom-${p.id}` === slug));
+  }
 
   if (!project) {
     return (
