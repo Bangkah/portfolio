@@ -182,6 +182,8 @@ function ProjectDetail() {
               <img
                 src={project.hero}
                 alt={project.title}
+                width={420}
+                height={315}
                 style={{
                   width: '100%',
                   maxWidth: 420,

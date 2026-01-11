@@ -50,10 +50,10 @@ function Home() {
                   👋🏻
                 </span>
               </h1>
-              <h1 className="heading-name">
+                <h2 className="heading-name">
                 I&apos;M
                 <strong className="main-name"> MUHAMMAD DHIYAUL ATHA</strong>
-              </h1>
+                </h2>
               <div style={{ padding: 50, textAlign: "left" }}>
                 <Type />
               </div>
@@ -62,6 +62,8 @@ function Home() {
               <img
                 src={homeLogo}
                 alt="Ilustrasi Muhammad Dhiyaul Atha"
+                width="450"
+                height="450"
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"

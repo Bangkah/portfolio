@@ -71,28 +71,30 @@ function Certificates() {
               className="certificate-img-card"
               style={{ textAlign: "center", marginBottom: "20px" }}
             >
-              <Image
-                src={cert.file}
-                alt={`certificate-${idx}`}
-                fluid
-                className="shadow"
-                loading="lazy"
-                decoding="async"
-                style={{
-                  maxHeight: "400px",
-                  objectFit: "contain",
-                  marginBottom: "10px",
-                  transition: "transform 0.3s, box-shadow 0.3s",
-                  transform: hovered === idx ? "scale(1.05)" : "scale(1)",
-                  boxShadow:
-                    hovered === idx
-                      ? "0 8px 32px rgba(80,0,120,0.25)"
-                      : undefined,
-                  zIndex: hovered === idx ? 2 : 1,
-                }}
-                onMouseEnter={() => setHovered(idx)}
-                onMouseLeave={() => setHovered(null)}
-              />
+                <Image
+                  src={cert.file}
+                  alt={`certificate-${idx}`}
+                  width={350}
+                  height={250}
+                  fluid
+                  className="shadow"
+                  loading="lazy"
+                  decoding="async"
+                  style={{
+                    maxHeight: "400px",
+                    objectFit: "contain",
+                    marginBottom: "10px",
+                    transition: "transform 0.3s, box-shadow 0.3s",
+                    transform: hovered === idx ? "scale(1.05)" : "scale(1)",
+                    boxShadow:
+                      hovered === idx
+                        ? "0 8px 32px rgba(80,0,120,0.25)"
+                        : undefined,
+                    zIndex: hovered === idx ? 2 : 1,
+                  }}
+                  onMouseEnter={() => setHovered(idx)}
+                  onMouseLeave={() => setHovered(null)}
+                />
             </div>
           </Col>
         ))}

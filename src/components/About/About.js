@@ -41,6 +41,8 @@ function About() {
             <img
               src={laptopImg}
               alt="Muhammad Dhiyaul Atha - ilustrasi bekerja dengan laptop"
+              width={400}
+              height={300}
               className="img-fluid"
               loading="lazy"
               decoding="async"

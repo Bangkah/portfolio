@@ -16,6 +16,7 @@ function ProjectCards(props) {
         height={180}
         loading="lazy"
         decoding="async"
+        style={{ width: "320px", height: "180px", objectFit: "cover" }}
       />
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
