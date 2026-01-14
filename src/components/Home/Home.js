@@ -58,17 +58,38 @@ function Home() {
                 <Type />
               </div>
             </Col>
-            <Col md={5} style={{ paddingBottom: 20 }}>
-                      <img
-                        src={profilImg}
-                        alt="Foto Profil Muhammad Dhiyaul Atha"
-                        width="320"
-                        height="320"
-                        loading="eager"
-                        decoding="async"
-                        className="img-fluid"
-                        style={{ borderRadius: "50%", boxShadow: "0 0 0 2px #c770f0", background: "#fff", objectFit: "cover", maxHeight: "320px" }}
-                      />
+            <Col md={5} style={{ paddingBottom: 20, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div
+                style={{
+                  background: "#8e44ad",
+                  borderRadius: "50%",
+                  border: "2px solid #fff",
+                  boxShadow: "0 0 0 3px #c770f0",
+                  width: "240px",
+                  height: "240px",
+                  aspectRatio: "1/1",
+                  overflow: "hidden",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  maxWidth: "90vw",
+                  minWidth: "120px"
+                }}
+              >
+                <img
+                  src={profilImg}
+                  alt="Foto Profil Muhammad Dhiyaul Atha"
+                  loading="eager"
+                  decoding="async"
+                  className="img-fluid"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    background: "transparent"
+                  }}
+                />
+              </div>
             </Col>
           </Row>
         </Container>
