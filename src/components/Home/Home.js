@@ -66,7 +66,6 @@ function Home() {
                         height="320"
                         loading="eager"
                         decoding="async"
-                        fetchPriority="high"
                         className="img-fluid"
                         style={{ borderRadius: "50%", boxShadow: "0 0 0 2px #c770f0", background: "#fff", objectFit: "cover", maxHeight: "320px" }}
                       />
