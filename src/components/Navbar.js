@@ -37,14 +37,8 @@ function NavBar() {
       className={navColour ? "sticky" : "navbar"}
     >
       <Container>
-        <Navbar.Brand href="/" className="d-flex align-items-center" aria-label="Home">
-          <img
-            src="https://avatars.githubusercontent.com/u/141197600?v=4"
-            alt="Logo GitHub Bangkah"
-            width="36"
-            height="36"
-            style={{ borderRadius: "50%", marginRight: 8, border: "2px solid #fff", background: "#fff" }}
-          />
+        <Navbar.Brand href="/" aria-label="Home">
+          Portfolio
         </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
