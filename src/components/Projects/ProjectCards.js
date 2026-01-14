@@ -8,16 +8,15 @@ import { BsGithub } from "react-icons/bs";
 function ProjectCards(props) {
   return (
     <Card className="project-card-view">
-      <Card.Img
-        variant="top"
-        src={props.imgPath}
-        alt={`${props.title} preview`}
-        width={320}
-        height={180}
-        loading="lazy"
-        decoding="async"
-        style={{ width: "320px", height: "180px", objectFit: "cover" }}
-      />
+      <div style={{ width: "100%", aspectRatio: "16/9", overflow: "hidden", borderTopLeftRadius: '0.5rem', borderTopRightRadius: '0.5rem' }}>
+        <img
+          src={props.imgPath}
+          alt={`${props.title} preview`}
+          loading="lazy"
+          decoding="async"
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
+      </div>
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
         <Card.Text style={{ textAlign: "justify" }}>

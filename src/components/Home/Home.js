@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Button, Card, Image } from "react-bootstrap";
+import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import homeLogo from "../../Assets/home-main.svg";
 import Particle from "../Particle";
@@ -59,17 +59,17 @@ function Home() {
               </div>
             </Col>
             <Col md={5} style={{ paddingBottom: 20 }}>
-              <img
-                src={homeLogo}
-                alt="Ilustrasi Muhammad Dhiyaul Atha"
-                width="450"
-                height="450"
-                loading="eager"
-                decoding="async"
-                fetchPriority="high"
-                className="img-fluid"
-                style={{ maxHeight: "450px" }}
-              />
+                      <img
+                        src={homeLogo}
+                        alt="Ilustrasi Muhammad Dhiyaul Atha"
+                        width="450"
+                        height="450"
+                        loading="eager"
+                        decoding="async"
+                        fetchPriority="high"
+                        className="img-fluid"
+                        style={{ borderRadius: "50%", boxShadow: "0 0 0 2px #fff", background: "transparent", objectFit: "cover", maxHeight: "450px" }}
+                      />
             </Col>
           </Row>
         </Container>
@@ -81,52 +81,64 @@ function Home() {
 
       {/* About Preview */}
       <Container className="mt-5 mb-4">
-        <h2 className="purple mb-3">Tentang Saya</h2>
+        <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Tentang Saya</h2>
         <Row>
           <Col md={8}>
-            <AboutCard />
+            <div style={{ background: "rgba(34, 20, 51, 0.7)", borderRadius: 16, boxShadow: "0 2px 16px rgba(80,0,120,0.10)", padding: 24 }}>
+              <AboutCard />
+            </div>
           </Col>
           <Col md={4} className="d-flex align-items-center justify-content-center">
-            <Button variant="outline-primary" onClick={() => navigate("/about")}>View All</Button>
+            <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/about")}>View All</Button>
           </Col>
         </Row>
       </Container>
 
       {/* Project Preview */}
       <Container className="mt-5 mb-4">
-        <h2 className="purple mb-3">Project Terbaru</h2>
+        <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Project Terbaru</h2>
         <Row>
           {previewProjects.map((project) => (
             <Col md={4} key={project.slug} className="mb-3">
-              <Card className="h-100 shadow-sm">
-                <Card.Img variant="top" src={project.imgPath} alt={project.title} width={320} height={180} style={{objectFit:'cover',height:'180px'}} />
+              <Card className="h-100 shadow-sm" style={{ background: "rgba(34, 20, 51, 0.7)", borderRadius: 16, border: "1px solid #2d1950" }}>
+                <div style={{ width: "100%", aspectRatio: "16/9", overflow: "hidden", borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
+                  <img src={project.imgPath} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                </div>
                 <Card.Body>
-                  <Card.Title>{project.title}</Card.Title>
-                  <Card.Text>{project.description}</Card.Text>
-                  <Button variant="primary" onClick={() => navigate(`/projects/${project.slug}`)}>Detail</Button>
+                  <Card.Title style={{ color: "#c770f0", fontWeight: 600 }}>{project.title}</Card.Title>
+                  <Card.Text style={{ color: "#eee" }}>{project.description}</Card.Text>
+                  <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate(`/projects/${project.slug}`)}>Detail</Button>
                 </Card.Body>
               </Card>
             </Col>
           ))}
           <Col md={12} className="d-flex justify-content-end mt-2">
-            <Button variant="outline-primary" onClick={() => navigate("/projects")}>View All</Button>
+            <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/projects")}>View All</Button>
           </Col>
         </Row>
       </Container>
 
       {/* Certificate Preview */}
       <Container className="mt-5 mb-4">
-        <h2 className="purple mb-3">Sertifikat</h2>
+        <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Sertifikat</h2>
         <Row>
           {previewCertificates.map((img, idx) => (
             <Col md={4} key={idx} className="mb-3">
-              <Card className="h-100 shadow-sm">
-                <Image src={img} alt={`sertifikat-${idx}`} width={320} height={180} fluid style={{objectFit:'contain',height:'180px'}} />
+              <Card className="h-100 shadow-sm" style={{ background: "rgba(34, 20, 51, 0.7)", borderRadius: 16, border: "1px solid #2d1950" }}>
+                <div style={{ width: "100%", aspectRatio: "4/3", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
+                  <img
+                    src={img}
+                    alt={`sertifikat-${idx}`}
+                    loading="lazy"
+                    decoding="async"
+                    style={{ width: "100%", height: "100%", objectFit: "contain", display: "block", maxHeight: "220px", background: "#fff" }}
+                  />
+                </div>
               </Card>
             </Col>
           ))}
           <Col md={12} className="d-flex justify-content-end mt-2">
-            <Button variant="outline-primary" onClick={() => navigate("/certificates")}>View All</Button>
+            <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/certificates")}>View All</Button>
           </Col>
         </Row>
       </Container>

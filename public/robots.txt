@@ -1,5 +1,5 @@
-# https://www.robotstxt.org/robotstxt.html
+
+# robots.txt for mdhiyaulatha.me
 User-agent: *
 Allow: /
-Sitemap: https://mdhiyaulatha.me/sitemap.xml
 Sitemap: https://mdhiyaulatha.me/sitemap.xml
