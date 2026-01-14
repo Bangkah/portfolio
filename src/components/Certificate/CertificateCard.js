@@ -7,7 +7,15 @@ import Card from "react-bootstrap/Card";
 function CertificateCard({ imgPath, title }) {
   return (
     <Card className="project-card-view">
-      <Card.Img variant="top" src={imgPath} alt={title ? `Sertifikat ${title}` : "sertifikat"} loading="lazy" />
+      <Card.Img
+        variant="top"
+        src={imgPath}
+        alt={title ? `Sertifikat ${title}` : "sertifikat"}
+        loading="lazy"
+        width={320}
+        height={240}
+        style={{ objectFit: "cover", background: "#fff" }}
+      />
     </Card>
   );
 }
