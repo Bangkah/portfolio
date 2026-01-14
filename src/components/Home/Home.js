@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import profilImg from "../../Assets/profil.png";
+import profilImg from "../../Assets/profil.jpg";
 import Particle from "../Particle";
 import Home2 from "./Home2";
 import Type from "./Type";
