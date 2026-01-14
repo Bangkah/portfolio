@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import homeLogo from "../../Assets/home-main.svg";
+import profilImg from "../../Assets/profil.png";
 import Particle from "../Particle";
 import Home2 from "./Home2";
 import Type from "./Type";
@@ -60,15 +60,15 @@ function Home() {
             </Col>
             <Col md={5} style={{ paddingBottom: 20 }}>
                       <img
-                        src={homeLogo}
-                        alt="Ilustrasi Muhammad Dhiyaul Atha"
-                        width="450"
-                        height="450"
+                        src={profilImg}
+                        alt="Foto Profil Muhammad Dhiyaul Atha"
+                        width="320"
+                        height="320"
                         loading="eager"
                         decoding="async"
                         fetchPriority="high"
                         className="img-fluid"
-                        style={{ borderRadius: "50%", boxShadow: "0 0 0 2px #fff", background: "transparent", objectFit: "cover", maxHeight: "450px" }}
+                        style={{ borderRadius: "50%", boxShadow: "0 0 0 2px #c770f0", background: "#fff", objectFit: "cover", maxHeight: "320px" }}
                       />
             </Col>
           </Row>
