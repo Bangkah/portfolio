@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import profilImg from "../../Assets/profil.jpg";
-import Particle from "../Particle";
 import Home2 from "./Home2";
 import Type from "./Type";
 import SEO from "../SEO";
@@ -39,47 +38,35 @@ function Home() {
         url="https://mdhiyaulatha.me/"
       />
 
+
       <Container fluid className="home-section" id="home">
-        <Particle />
-        <Container className="home-content">
-          <Row>
-            <Col md={7} className="home-header">
-              <h1 style={{ paddingBottom: 15 }} className="heading">
-                Hi There!{" "}
-                <span className="wave" role="img" aria-labelledby="wave">
-                  👋🏻
-                </span>
-              </h1>
-                <h2 className="heading-name">
-                I&apos;M
-                <strong className="main-name"> MUHAMMAD DHIYAUL ATHA</strong>
-                </h2>
-              <div style={{ padding: 50, textAlign: "left" }}>
-                <Type />
-              </div>
-            </Col>
-            <Col md={5} style={{ paddingBottom: 20, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <div
-                style={{
-                  background: "#8e44ad",
-                  borderRadius: "50%",
-                  border: "2px solid #fff",
-                  boxShadow: "0 0 0 3px #c770f0",
-                  width: "240px",
-                  height: "240px",
-                  aspectRatio: "1/1",
-                  overflow: "hidden",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  maxWidth: "90vw",
-                  minWidth: "120px"
-                }}
-              >
+        <Row className="justify-content-center align-items-center" style={{ minHeight: "60vh" }}>
+          <Col md={5} className="d-flex justify-content-center align-items-center">
+            <div
+              style={{
+                background: "#8e44ad",
+                borderRadius: "50%",
+                border: "8px solid #fff",
+                boxShadow: "0 0 0 6px #c770f0",
+                width: "240px",
+                height: "240px",
+                aspectRatio: "1/1",
+                overflow: "hidden",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                maxWidth: "90vw",
+                minWidth: "120px"
+              }}
+            >
+              <picture>
+                <source srcSet={profilImg.replace(/\.(png|jpg|jpeg|svg)$/i, '.webp')} type="image/webp" />
                 <img
                   src={profilImg}
                   alt="Foto Profil Muhammad Dhiyaul Atha"
-                  loading="eager"
+                  width={240}
+                  height={240}
+                  loading="lazy"
                   decoding="async"
                   className="img-fluid"
                   style={{
@@ -89,10 +76,16 @@ function Home() {
                     background: "transparent"
                   }}
                 />
-              </div>
-            </Col>
-          </Row>
-        </Container>
+              </picture>
+            </div>
+          </Col>
+          <Col md={7} className="d-flex flex-column align-items-start justify-content-center mt-4 mt-md-0">
+            <h1 className="heading-name" style={{ fontWeight: 700, color: "#fff" }}>
+              Hi! Saya <strong className="main-name">Muhammad Dhiyaul Atha</strong>
+            </h1>
+            <Type />
+          </Col>
+        </Row>
       </Container>
 
       {/* Perkenalan Diri Setelah Hero, Sebelum Tentang Saya */}
