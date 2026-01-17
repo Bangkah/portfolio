@@ -46,8 +46,8 @@ function Home() {
               style={{
                 background: "#8e44ad",
                 borderRadius: "50%",
-                border: "8px solid #fff",
-                boxShadow: "0 0 0 6px #c770f0",
+                border: "2px solid #fff",
+                boxShadow: "0 0 0 3px #c770f0",
                 width: "240px",
                 height: "240px",
                 aspectRatio: "1/1",
@@ -59,24 +59,21 @@ function Home() {
                 minWidth: "120px"
               }}
             >
-              <picture>
-                <source srcSet={profilImg.replace(/\.(png|jpg|jpeg|svg)$/i, '.webp')} type="image/webp" />
-                <img
-                  src={profilImg}
-                  alt="Foto Profil Muhammad Dhiyaul Atha"
-                  width={240}
-                  height={240}
-                  loading="lazy"
-                  decoding="async"
-                  className="img-fluid"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    background: "transparent"
-                  }}
-                />
-              </picture>
+              <img
+                src={profilImg}
+                alt="Foto Profil Muhammad Dhiyaul Atha"
+                width={240}
+                height={240}
+                loading="lazy"
+                decoding="async"
+                className="img-fluid"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  background: "transparent"
+                }}
+              />
             </div>
           </Col>
           <Col md={7} className="d-flex flex-column align-items-start justify-content-center mt-4 mt-md-0">
