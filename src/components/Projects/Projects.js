@@ -24,8 +24,8 @@ function Projects() {
   // Format agar slug unik (pakai id jika dari localStorage)
   const allProjects = [
     ...localProjects.map((p) => ({
-      ...p,
-      slug: p.slug || `custom-${p.id}`,
+          ...p,
+          slug: p.slug || `${p.id}`,
     })),
     ...projectsData,
   ];

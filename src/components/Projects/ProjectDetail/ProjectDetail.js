@@ -68,7 +68,7 @@ function ProjectDetail() {
         {/* Back Button */}
         <Button 
           variant="secondary" 
-          onClick={() => navigate(-1)} 
+          onClick={() => window.location.href = '/projects'} 
           style={{
             marginBottom: 20, 
             fontWeight: 500, 
