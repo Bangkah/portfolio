@@ -38,7 +38,7 @@ function NavBar() {
     >
       <Container>
         <Navbar.Brand href="/" aria-label="Home">
-          Portfolio
+          Bangkah
         </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
