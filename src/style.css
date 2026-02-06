@@ -1,3 +1,101 @@
+/* --- Mobile Optimization Enhancement (2026-01-24) --- */
+@media (max-width: 575px) {
+  html, body {
+    font-size: 14px !important;
+  }
+  .heading,
+  .heading-name,
+  .project-heading {
+    font-size: 1.05em !important;
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    text-align: center !important;
+    margin-bottom: 0.7em !important;
+  }
+  .home-content {
+    padding: 1.2rem 0.2rem !important;
+    text-align: center !important;
+  }
+  .myAvtar {
+    padding-top: 1em !important;
+    margin-bottom: 0.5em !important;
+    max-width: 180px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .footer h3 {
+    font-size: 0.8em !important;
+    margin: 0.2em 0 !important;
+  }
+  .container,
+  .container-fluid {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+  }
+  .home-about-description {
+    padding-top: 12px !important;
+    font-size: 0.98em !important;
+    text-align: center !important;
+  }
+  .home-about-body {
+    padding-top: 10px !important;
+    font-size: 0.98em !important;
+    text-align: left !important;
+  }
+  .certificate-img-card img,
+  .project-card img,
+  .img-fluid {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(80,0,120,0.10) !important;
+  }
+  .project-card,
+  .certificate-img-card {
+    margin-bottom: 1.2em !important;
+    padding: 0.5em !important;
+    border-radius: 10px !important;
+    box-shadow: 0 2px 8px rgba(80,0,120,0.08) !important;
+  }
+  .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .col,
+  .col-4,
+  .col-md-4,
+  .col-md-7,
+  .col-md-5 {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+  }
+  .navbar {
+    padding: 0.2rem 0.2rem !important;
+    font-size: 1rem !important;
+  }
+  .navbar-brand {
+    font-size: 1rem !important;
+  }
+  .footer {
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+  }
+  .footer-icons {
+    margin-top: 0.2em !important;
+    margin-bottom: 0.2em !important;
+  }
+  .tech-icons {
+    font-size: 2.2em !important;
+    margin: 6px !important;
+    padding: 4px !important;
+  }
+  .about-section, .resume-section, .home-section {
+    padding-top: 60px !important;
+    padding-bottom: 10px !important;
+  }
+}
 /* --- Responsive Mobile Improvements (2026-01-24) --- */
 @media (max-width: 767px) {
   .heading,

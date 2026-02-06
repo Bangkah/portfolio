@@ -40,9 +40,9 @@ function Home() {
           url="https://mdhiyaulatha.me/"
         />
 
-        <Container fluid className="home-section" id="home">
-          <Row className="justify-content-center align-items-center" style={{ minHeight: "60vh" }}>
-            <Col md={5} className="d-flex justify-content-center align-items-center">
+        <Container fluid className="home-section px-2 px-sm-4" id="home">
+          <Row className="justify-content-center align-items-center flex-column-reverse flex-md-row" style={{ minHeight: "60vh" }}>
+            <Col xs={12} md={5} className="d-flex justify-content-center align-items-center mb-4 mb-md-0">
               <div
                 style={{
                   background: "#8e44ad",
@@ -77,7 +77,7 @@ function Home() {
                 />
               </div>
             </Col>
-            <Col md={7} className="d-flex flex-column align-items-start justify-content-center mt-4 mt-md-0">
+            <Col xs={12} md={7} className="d-flex flex-column align-items-center align-items-md-start justify-content-center mt-2 mt-md-0 text-center text-md-start">
               <h1 className="heading-name" style={{ fontWeight: 700, color: "#fff" }}>
                 Hi! Saya <strong className="main-name">Muhammad Dhiyaul Atha</strong>
               </h1>
@@ -90,26 +90,26 @@ function Home() {
         <Home2 />
 
         {/* About Preview */}
-        <Container className="mt-5 mb-4">
+        <Container className="mt-5 mb-4 px-2 px-sm-4">
           <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Tentang Saya</h2>
           <Row>
-            <Col md={8}>
-              <div style={{ background: "rgba(34, 20, 51, 0.7)", borderRadius: 16, boxShadow: "0 2px 16px rgba(80,0,120,0.10)", padding: 24 }}>
+            <Col xs={12} md={8} className="mb-3 mb-md-0">
+              <div style={{ background: "rgba(34, 20, 51, 0.7)", borderRadius: 16, boxShadow: "0 2px 16px rgba(80,0,120,0.10)", padding: 16 }}>
                 <AboutCard />
               </div>
             </Col>
-            <Col md={4} className="d-flex align-items-center justify-content-center">
+            <Col xs={12} md={4} className="d-flex align-items-center justify-content-center">
               <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/about")}>View All</Button>
             </Col>
           </Row>
         </Container>
 
         {/* Project Preview */}
-        <Container className="mt-5 mb-4">
+        <Container className="mt-5 mb-4 px-2 px-sm-4">
           <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Project Terbaru</h2>
           <Row>
             {previewProjects.map((project) => (
-              <Col md={4} key={project.slug} className="mb-3">
+              <Col xs={12} sm={6} md={4} key={project.slug} className="mb-3">
                 <Card className="h-100 shadow-sm" style={{ background: "rgba(34, 20, 51, 0.7)", borderRadius: 16, border: "1px solid #2d1950" }}>
                   <div style={{ width: "100%", aspectRatio: "16/9", overflow: "hidden", borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
                     <img src={project.imgPath} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
@@ -122,18 +122,18 @@ function Home() {
                 </Card>
               </Col>
             ))}
-            <Col md={12} className="d-flex justify-content-end mt-2">
+            <Col xs={12} className="d-flex justify-content-end mt-2">
               <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/projects")}>View All</Button>
             </Col>
           </Row>
         </Container>
 
         {/* Certificate Preview */}
-        <Container className="mt-5 mb-4">
+        <Container className="mt-5 mb-4 px-2 px-sm-4">
           <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Sertifikat</h2>
           <Row>
             {previewCertificates.map((img, idx) => (
-              <Col md={4} key={idx} className="mb-3">
+              <Col xs={12} sm={6} md={4} key={idx} className="mb-3">
                 <Card className="h-100 shadow-sm" style={{ background: "rgba(34, 20, 51, 0.7)", borderRadius: 16, border: "1px solid #2d1950" }}>
                   <div style={{ width: "100%", aspectRatio: "4/3", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
                     <img
@@ -147,15 +147,15 @@ function Home() {
                 </Card>
               </Col>
             ))}
-            <Col md={12} className="d-flex justify-content-end mt-2">
+            <Col xs={12} className="d-flex justify-content-end mt-2">
               <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/certificates")}>View All</Button>
             </Col>
           </Row>
         </Container>
 
         {/* Sosial Media Section - sudah ada aria-label di semua link */}
-        <Row>
-          <Col md={12} className="home-about-social">
+        <Row className="mt-4">
+          <Col xs={12} className="home-about-social">
             <h2>TERHUBUNG DENGAN SAYA</h2>
             <p>
               Jangan ragu untuk <span className="purple">menghubungi</span> saya melalui media sosial berikut
