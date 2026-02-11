@@ -44,7 +44,7 @@ const projectDetailsData = {
   "netinfo": {
     title: "netinfo",
     hero: netinfoImg,
-    description: "Professional CLI tool to display user network and system information (IP, ASN, ISP, etc)",
+    description: "netinfo is a minimal command-line utility for Linux that displays network and system information in a clean and predictable way. The main goal of this tool is to only show information that can be verified, without guessing or misleading output.",
     features: [
       "Show public and local IP addresses",
       "Detect ASN and organization/ISP",

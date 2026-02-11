@@ -35,7 +35,7 @@ function Projects() {
       <SEO 
         title="Proyek | Muhammad Dhiyaul Atha Portfolio"
         description="Lihat proyek web development Muhammad Dhiyaul Atha. Termasuk aplikasi React, Laravel, sistem akademik, absensi, blog Islam, AI assistant, dan banyak lagi."
-        keywords="proyek web developer, portfolio projects, react projects, laravel projects, aplikasi web, sistem informasi, web applications"
+        keywords="proyek web developer, portfolio projects, react projects, laravel projects, aplikasi web, sistem informasi, web applications, netinfo"
         url="https://mdhiyaulatha.me/projects"
       />
       <Particle />
