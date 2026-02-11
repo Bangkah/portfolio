@@ -1,6 +1,7 @@
 // Data detail project, lebih spesifik dan lengkap
 import muslimlifeImg from "../../Assets/Projects/muslimlife.png";
 import akademikImg from "../../Assets/Projects/akademik.png";
+import netinfoImg from "../../Assets/Projects/netinfo.png"
 import absensiImg from "../../Assets/Projects/absensi.png";
 import islamicblogImg from "../../Assets/Projects/islamicblog.png";
 import mantapaiImg from "../../Assets/Projects/mantapai.png";
@@ -39,6 +40,22 @@ const projectDetailsData = {
     technologies: ["PHP", "MySQL", "Bootstrap"],
     motivation: "Digitalisasi administrasi kampus agar lebih efisien dan transparan.",
     challenges: "Membuat sistem multi-user dan validasi data akademik.",
+  },
+  "netinfo": {
+    title: "netinfo",
+    hero: netinfoImg,
+    description: "Professional CLI tool to display user network and system information (IP, ASN, ISP, etc)",
+    features: [
+      "Show public and local IP addresses",
+      "Detect ASN and organization/ISP",
+      "Reverse DNS lookup",
+      "Estimate network type (Mobile/Fiber/DSL/Wireless/ISP",
+      "Display system info: OS, kernel, architecture, hostname, terminal, shell",
+      "Detect VPN/proxy status (if available)"
+    ],
+    technologies: ["Python", "Shell", "Arch Linux", "AUR Packaging"],
+    motivation: "I built netinfo to create a fast, reliable, and minimal network diagnostic tool that focuses only on verifiable data. Many existing tools provide excessive or unverified information, so I wanted a clean and trustworthy CLI utility suitable for troubleshooting, scripting, and system auditing.",
+    challenges: "One of the main challenges was ensuring accuracy and reliability of network data across different environments, while keeping the output minimal and fast. Packaging and distributing the tool through AUR also required learning Arch packaging standards, dependency management, and maintaining compatibility with different system configurations.",
   },
   "absensi-karyawan": {
     title: "Aplikasi Absensi Karyawan",
