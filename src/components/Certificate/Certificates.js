@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import SEO from "../SEO";
 import img1 from "../../Assets/Certificates/Certificates-Build on BNB Chain - Course 2 _ Solidity for BNB Chain Development-Muhammad Dhiyaul Atha_page-0001.jpg";
 import img2 from "../../Assets/Certificates/Certificates-Build On Stacks-Muhammad Dhiyaul Atha_page-0001.jpg";
@@ -63,36 +63,27 @@ function Certificates() {
       <h1 className="project-heading">
         <strong className="purple">Sertifikat</strong> 
       </h1>
-      
-      <Row style={{ justifyContent: "center", paddingBottom: "20px" }}>
+      <Row style={{ justifyContent: "center", paddingBottom: "10px", rowGap: 16 }}>
         {certificates.map((cert, idx) => (
-          <Col md={4} className="project-card" key={idx}>
+          <Col xs={6} sm={6} md={4} className="project-card" key={idx} style={{ marginBottom: 12 }}>
             <div
               className="certificate-img-card"
-              style={{ textAlign: "center", marginBottom: "20px" }}
+              style={{ textAlign: "center" }}
             >
-              <Image
-                src={cert.file}
-                alt={`certificate-${idx}`}
-                fluid
-                className="shadow"
-                loading="lazy"
-                decoding="async"
-                style={{
-                  maxHeight: "400px",
-                  objectFit: "contain",
-                  marginBottom: "10px",
-                  transition: "transform 0.3s, box-shadow 0.3s",
-                  transform: hovered === idx ? "scale(1.05)" : "scale(1)",
-                  boxShadow:
-                    hovered === idx
-                      ? "0 8px 32px rgba(80,0,120,0.25)"
-                      : undefined,
-                  zIndex: hovered === idx ? 2 : 1,
-                }}
-                onMouseEnter={() => setHovered(idx)}
-                onMouseLeave={() => setHovered(null)}
-              />
+                <div style={{ width: "100%", aspectRatio: "4/3", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", borderRadius: '0.5rem', boxShadow: hovered === idx ? "0 8px 32px rgba(80,0,120,0.25)" : undefined, transition: "transform 0.3s, box-shadow 0.3s", transform: hovered === idx ? "scale(1.05)" : "scale(1)", zIndex: hovered === idx ? 2 : 1 }}
+                  onMouseEnter={() => setHovered(idx)}
+                  onMouseLeave={() => setHovered(null)}
+                >
+                  <img
+                    src={cert.file}
+                    alt={`certificate-${idx}`}
+                    loading="lazy"
+                    decoding="async"
+                    width={320}
+                    height={240}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", background: "#fff" }}
+                  />
+                </div>
             </div>
           </Col>
         ))}

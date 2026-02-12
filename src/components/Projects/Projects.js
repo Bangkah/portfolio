@@ -7,14 +7,35 @@ import Particle from "../Particle";
 import SEO from "../SEO";
 
 
+
+function getLocalProjects() {
+  try {
+    const data = localStorage.getItem("projects");
+    return data ? JSON.parse(data) : [];
+  } catch {
+    return [];
+  }
+}
+
 function Projects() {
   const navigate = useNavigate();
+  // Gabungkan project dari localStorage dan projectsData.js
+  const localProjects = getLocalProjects();
+  // Format agar slug unik (pakai id jika dari localStorage)
+  const allProjects = [
+    ...localProjects.map((p) => ({
+          ...p,
+          slug: p.slug || `${p.id}`,
+    })),
+    ...projectsData,
+  ];
+
   return (
     <Container fluid className="project-section">
       <SEO 
         title="Proyek | Muhammad Dhiyaul Atha Portfolio"
         description="Lihat proyek web development Muhammad Dhiyaul Atha. Termasuk aplikasi React, Laravel, sistem akademik, absensi, blog Islam, AI assistant, dan banyak lagi."
-        keywords="proyek web developer, portfolio projects, react projects, laravel projects, aplikasi web, sistem informasi, web applications"
+        keywords="proyek web developer, portfolio projects, react projects, laravel projects, aplikasi web, sistem informasi, web applications, netinfo"
         url="https://mdhiyaulatha.me/projects"
       />
       <Particle />
@@ -24,7 +45,7 @@ function Projects() {
         </h1>
 
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
-          {projectsData.map((project) => (
+          {allProjects.map((project) => (
             <Col md={4} className="project-card" key={project.slug}>
               <div style={{cursor: "pointer"}} onClick={() => navigate(`/projects/${project.slug}`)}>
                 <ProjectCard

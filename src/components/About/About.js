@@ -5,6 +5,7 @@ import Github from "./Github";
 import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
 import laptopImg from "../../Assets/about.png";
+
 import Toolstack from "./Toolstack";
 import SEO from "../SEO";
 
@@ -41,6 +42,8 @@ function About() {
             <img
               src={laptopImg}
               alt="Muhammad Dhiyaul Atha - ilustrasi bekerja dengan laptop"
+              width={400}
+              height={300}
               className="img-fluid"
               loading="lazy"
               decoding="async"
