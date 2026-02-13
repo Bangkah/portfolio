@@ -1,3 +1,55 @@
+/* Project & Certificate Image Responsive */
+.project-image-wrapper {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  background: #fff;
+}
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+.project-card-view:hover .project-image {
+  transform: scale(1.04);
+}
+
+.certificate-card-view {
+  padding: 0.5rem 0.5rem 1.2rem 0.5rem !important;
+}
+.certificate-image-wrapper {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: #fff;
+  margin-bottom: 0.5rem;
+}
+.certificate-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #fff;
+}
+
+@media (max-width: 767px) {
+  .project-image-wrapper {
+    aspect-ratio: 16/11;
+    min-height: 160px;
+  }
+  .certificate-image-wrapper {
+    aspect-ratio: 4/3;
+    min-height: 120px;
+  }
+  .project-image, .certificate-image {
+    border-radius: 0.4rem;
+  }
+}
 html {
   --section-background-color: linear-gradient(
     to bottom left,
@@ -417,12 +469,36 @@ button:focus {
 }
 
 @media (max-width: 767px) {
-  .footer-copywright {
-    text-align: center !important;
+  .footer {
+    padding-top: 18px !important;
+    padding-bottom: 18px !important;
   }
-
+  .footer-copywright,
   .footer-body {
     text-align: center !important;
+    margin-bottom: 10px !important;
+  }
+  .footer .row {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .footer-icons {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 18px !important;
+    margin-top: 10px !important;
+    margin-bottom: 0 !important;
+  }
+  .footer-icons .social-icons a {
+    font-size: 2.1em !important;
+    padding: 10px !important;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    transition: background 0.2s;
+  }
+  .footer-icons .social-icons a:active,
+  .footer-icons .social-icons a:focus {
+    background: rgba(255,255,255,0.18);
   }
 }
 

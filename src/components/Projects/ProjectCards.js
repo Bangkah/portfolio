@@ -8,13 +8,13 @@ import { BsGithub } from "react-icons/bs";
 function ProjectCards(props) {
   return (
     <Card className="project-card-view">
-      <div style={{ width: "100%", aspectRatio: "16/9", overflow: "hidden", borderTopLeftRadius: '0.5rem', borderTopRightRadius: '0.5rem' }}>
+      <div className="project-image-wrapper">
         <img
           src={props.imgPath}
           alt={`${props.title} preview`}
           loading="lazy"
           decoding="async"
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          className="project-image"
         />
       </div>
       <Card.Body>
