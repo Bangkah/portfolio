@@ -9,6 +9,7 @@ import ProjectDetail from "./components/Projects/ProjectDetail/ProjectDetail";
 import Footer from "./components/Footer";
 import Resume from "./components/Resume/ResumeNew";
 import Certificates from "./components/Certificate/Certificates";
+import { Analytics } from "@vercel/analytics/react";
 import AdminLogin from "./components/admin/AdminLogin";
 import AdminDashboard from "./components/admin/AdminDashboard";
 
@@ -62,6 +63,7 @@ function App() {
 
         <Footer />
       </div>
+      <Analytics />
     </Router>
   );
 }
