@@ -1,11 +1,12 @@
 import React from "react";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import profilImg from "../../Assets/profil.jpg";
+import profilImg from "../../Assets/profil.webp";
 import Home2 from "./Home2";
 import Type from "./Type";
 import SEO from "../SEO";
 import AboutCard from "../About/AboutCard";
+import SmartImage from "../common/SmartImage";
 import projectsData from "../Projects/projectsData";
 import { certificates as certificatesData } from "../Certificate/Certificates";
 import {
@@ -60,13 +61,14 @@ function Home() {
                   minWidth: "120px"
                 }}
               >
-                <img
+                <SmartImage
                   src={profilImg}
                   alt="Foto Profil Muhammad Dhiyaul Atha"
                   width={240}
                   height={240}
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
+                  fetchPriority="high"
                   className="img-fluid"
                   style={{
                     width: "100%",
@@ -112,7 +114,7 @@ function Home() {
               <Col xs={12} sm={6} md={4} key={project.slug} className="mb-3">
                 <Card className="h-100 shadow-sm" style={{ background: "rgba(34, 20, 51, 0.7)", borderRadius: 16, border: "1px solid #2d1950" }}>
                   <div style={{ width: "100%", aspectRatio: "16/9", overflow: "hidden", borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
-                    <img src={project.imgPath} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                    <SmartImage src={project.imgPath} alt={project.title} loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                   </div>
                   <Card.Body>
                     <Card.Title style={{ color: "#c770f0", fontWeight: 600 }}>{project.title}</Card.Title>

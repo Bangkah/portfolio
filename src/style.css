@@ -1,3 +1,48 @@
+.legal-page {
+  max-width: 860px;
+  margin-top: 110px;
+  margin-bottom: 48px;
+  text-align: left;
+  color: #eae6f7;
+  line-height: 1.75;
+}
+
+.legal-page h1,
+.legal-page h2 {
+  color: #d39cff;
+}
+
+.legal-page h1 {
+  margin-bottom: 16px;
+}
+
+.legal-page h2 {
+  margin-top: 26px;
+  margin-bottom: 10px;
+  font-size: 1.35rem;
+}
+
+.footer-legal-links {
+  margin: 10px 0 0;
+  font-size: 0.92rem;
+}
+
+.footer-legal-links a {
+  color: #d39cff;
+  text-decoration: none;
+}
+
+.footer-legal-links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .legal-page {
+    margin-top: 92px;
+    margin-bottom: 36px;
+    padding: 0 14px;
+  }
+}
 /* Project & Certificate Image Responsive */
 .project-image-wrapper {
   width: 100%;
@@ -309,7 +354,7 @@ button:focus {
 .home-section {
   position: relative;
   z-index: -1;
-  background-image: var(--image-gradient), url(./Assets/home-bg.jpg);
+  background-image: var(--image-gradient), url(./Assets/home-bg.webp);
   background-position: top center;
   background-repeat: no-repeat;
   padding-bottom: 30px !important;
@@ -347,6 +392,11 @@ button:focus {
 }
 
 @media (max-width: 767px) {
+  .home-section {
+    background-image: var(--image-gradient);
+    background-size: cover;
+  }
+
   .Typewriter__wrapper {
     font-size: 1.4em !important;
     font-weight: 500 !important;

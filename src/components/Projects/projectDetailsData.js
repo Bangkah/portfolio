@@ -1,14 +1,14 @@
 // Data detail project, lebih spesifik dan lengkap
-import muslimlifeImg from "../../Assets/Projects/muslimlife.png";
-import akademikImg from "../../Assets/Projects/akademik.png";
-import netinfoImg from "../../Assets/Projects/netinfo.png"
-import absensiImg from "../../Assets/Projects/absensi.png";
-import islamicblogImg from "../../Assets/Projects/islamicblog.png";
-import mantapaiImg from "../../Assets/Projects/mantapai.png";
-import gudangtugasImg from "../../Assets/Projects/gudangtugas.png";
-import jekyllblogImg from "../../Assets/Projects/jekyllblog.png";
-import portfolioImg from "../../Assets/Projects/portfolio.png";
-import yourstoryImg from "../../Assets/Projects/yourstory.png";
+import muslimlifeImg from "../../Assets/Projects/muslimlife.webp";
+import akademikImg from "../../Assets/Projects/akademik.webp";
+import netinfoImg from "../../Assets/Projects/netinfo.webp"
+import absensiImg from "../../Assets/Projects/absensi.webp";
+import islamicblogImg from "../../Assets/Projects/islamicblog.webp";
+import mantapaiImg from "../../Assets/Projects/mantapai.webp";
+import gudangtugasImg from "../../Assets/Projects/gudangtugas.webp";
+import jekyllblogImg from "../../Assets/Projects/jekyllblog.webp";
+import portfolioImg from "../../Assets/Projects/portfolio.webp";
+import yourstoryImg from "../../Assets/Projects/yourstory.webp";
 
 const projectDetailsData = {
   muslimlife: {

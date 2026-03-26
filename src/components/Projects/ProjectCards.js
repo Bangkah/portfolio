@@ -4,12 +4,13 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { CgWebsite } from "react-icons/cg";
 import { BsGithub } from "react-icons/bs";
+import SmartImage from "../common/SmartImage";
 
 function ProjectCards(props) {
   return (
     <Card className="project-card-view">
       <div className="project-image-wrapper">
-        <img
+        <SmartImage
           src={props.imgPath}
           alt={`${props.title} preview`}
           loading="lazy"

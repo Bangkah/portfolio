@@ -64,6 +64,43 @@ Teknologi yang digunakan dalam proyek ini:
 
 ---
 
+## Workflow Optimasi Gambar
+
+- Jalankan optimasi WebP manual:
+  - `npm run optimize:images` (full)
+  - `npm run optimize:new` (sekali jalan untuk aset baru/yang berubah)
+- Optimasi otomatis saat build/deploy:
+  - Sudah terpasang di script `build`
+
+Optimasi ini akan:
+
+- Mengonversi aset gambar di `src/Assets` ke `.webp`
+- Menjaga rentang kompresi sertifikat sekitar 60-80% agar tetap ringan tapi tetap terbaca
+
+---
+
+## Audit PageSpeed Mobile
+
+- Jalankan audit mobile:
+  - `npm run audit:mobile`
+- Set API key lokal:
+  - Salin `.env.example` menjadi `.env.local`
+  - Isi `PSI_API_KEY` dengan key Google PageSpeed Insights API
+
+Output audit menampilkan metrik utama (FCP, LCP, Speed Index, TBT, CLS) dan status target `LCP < 3s`.
+
+---
+
+## CI Gate Performa
+
+- Workflow: `.github/workflows/performance-gate.yml`
+- Audit berjalan berkala (setiap 12 jam) dan pada push/PR
+- Deploy dianggap gagal bila target `LCP < 3s` tidak terpenuhi
+- Set secret repository:
+  - `PSI_API_KEY`
+
+---
+
 ## Kontak
 
 - Website: https://mdhiyaulatha.me

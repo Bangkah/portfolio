@@ -2,13 +2,20 @@ import React from "react";
 import Particles from "react-tsparticles";
 
 function Particle() {
+  const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
+  const reducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (isMobile || reducedMotion) {
+    return null;
+  }
+
   return (
     <Particles
       id="tsparticles"
       params={{
         particles: {
           number: {
-            value: 160,
+            value: 100,
             density: {
               enable: true,
               value_area: 1500,

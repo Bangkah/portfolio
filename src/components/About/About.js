@@ -4,10 +4,11 @@ import Particle from "../Particle";
 import Github from "./Github";
 import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
-import laptopImg from "../../Assets/about.png";
+import laptopImg from "../../Assets/about.webp";
 
 import Toolstack from "./Toolstack";
 import SEO from "../SEO";
+import SmartImage from "../common/SmartImage";
 
 function About() {
   return (
@@ -39,7 +40,7 @@ function About() {
             style={{ paddingTop: "120px", paddingBottom: "50px" }}
             className="about-img"
           >
-            <img
+            <SmartImage
               src={laptopImg}
               alt="Muhammad Dhiyaul Atha - ilustrasi bekerja dengan laptop"
               width={400}

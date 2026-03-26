@@ -4,6 +4,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import projectDetailsData from "../projectDetailsData";
 import SEO from "../../SEO";
 import Particle from "../../Particle";
+import SmartImage from "../../common/SmartImage";
 
 function getLocalProjects() {
   try {
@@ -179,7 +180,7 @@ function ProjectDetail() {
                 e.currentTarget.style.transform = 'translateY(0) scale(1)';
               }}
             >
-              <img
+              <SmartImage
                 src={project.hero}
                 alt={project.title}
                 width={420}
@@ -196,8 +197,8 @@ function ProjectDetail() {
                   background: '#fff',
                   border: '2px solid #c770f0',
                 }}
-                onMouseOver={e => e.currentTarget.style.transform = 'scale(1.07)'}
-                onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </Col>
