@@ -1,12 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import {
-  AiFillGithub,
-  AiOutlineTwitter,
-  AiFillInstagram,
-} from "react-icons/ai";
-import { FaLinkedinIn } from "react-icons/fa";
 
 function Footer() {
   let date = new Date();
@@ -34,7 +28,9 @@ function Footer() {
                 rel="noopener noreferrer"
                 aria-label="GitHub"
               >
-                <AiFillGithub />
+                <svg className="footer-icon-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                  <text className="footer-icon-text" x="16" y="17" textAnchor="middle" dominantBaseline="middle">GH</text>
+                </svg>
               </a>
             </li>
             <li className="social-icons">
@@ -45,7 +41,9 @@ function Footer() {
                 rel="noopener noreferrer"
                 aria-label="Twitter"
               >
-                <AiOutlineTwitter />
+                <svg className="footer-icon-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                  <text className="footer-icon-text" x="16" y="17" textAnchor="middle" dominantBaseline="middle">X</text>
+                </svg>
               </a>
             </li>
             <li className="social-icons">
@@ -56,7 +54,9 @@ function Footer() {
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
               >
-                <FaLinkedinIn />
+                <svg className="footer-icon-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                  <text className="footer-icon-text" x="16" y="17" textAnchor="middle" dominantBaseline="middle">in</text>
+                </svg>
               </a>
             </li>
             <li className="social-icons">
@@ -67,7 +67,9 @@ function Footer() {
                 rel="noopener noreferrer"
                 aria-label="Instagram"
               >
-                <AiFillInstagram />
+                <svg className="footer-icon-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                  <text className="footer-icon-text" x="16" y="17" textAnchor="middle" dominantBaseline="middle">IG</text>
+                </svg>
               </a>
             </li>
           </ul>

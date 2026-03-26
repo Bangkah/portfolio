@@ -651,6 +651,32 @@ button:focus {
   padding: 0 !important;
 }
 
+.footer-icons .social-icons a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.footer-icon-svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  fill: currentColor;
+}
+
+.footer-icon-text {
+  fill: currentColor;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-family: "Raleway", "Segoe UI", Arial, sans-serif;
+}
+
 .blockquote-footer {
   color: #a588c0 !important;
 }
