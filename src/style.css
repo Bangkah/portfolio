@@ -726,11 +726,30 @@ button:focus {
   opacity: 0.9 !important;
   transition: all 0.5s ease 0s !important;
   height: 100% !important;
+  min-height: 520px;
 }
 .project-card-view:hover {
   transform: scale(1.02) !important;
   overflow: hidden !important;
   box-shadow: 0 4px 4px 5px rgba(129, 72, 144, 0.561) !important;
+}
+
+.project-card-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 5.6em;
+}
+
+@media (max-width: 767px) {
+  .project-card-view {
+    min-height: 0;
+  }
+
+  .project-card-view:hover {
+    transform: none !important;
+  }
 }
 
 .blog-card {
