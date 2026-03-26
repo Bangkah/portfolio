@@ -5,6 +5,8 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import profilImg from "../Assets/profil.webp";
+import profilImg96 from "../Assets/profil-96.webp";
+import profilImg160 from "../Assets/profil-160.webp";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -35,7 +37,16 @@ function NavBar() {
           Bangkah
         </Navbar.Brand>
         <div className="navbar-mobile-profile d-md-none" aria-hidden="true">
-          <img src={profilImg} alt="" width={34} height={34} loading="lazy" decoding="async" />
+          <img
+            src={profilImg96}
+            srcSet={`${profilImg96} 96w, ${profilImg160} 160w, ${profilImg} 240w`}
+            sizes="34px"
+            alt=""
+            width={34}
+            height={34}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"

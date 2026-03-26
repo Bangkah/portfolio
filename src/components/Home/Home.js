@@ -2,6 +2,8 @@ import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import profilImg from "../../Assets/profil.webp";
+import profilImg96 from "../../Assets/profil-96.webp";
+import profilImg160 from "../../Assets/profil-160.webp";
 import Type from "./Type";
 import SEO from "../SEO";
 import SmartImage from "../common/SmartImage";
@@ -41,6 +43,8 @@ function Home() {
               <div className="home-profile-wrapper">
                 <SmartImage
                   src={profilImg}
+                  srcSet={`${profilImg96} 96w, ${profilImg160} 160w, ${profilImg} 240w`}
+                  sizes="(max-width: 767px) 96px, 240px"
                   alt="Foto Profil Muhammad Dhiyaul Atha"
                   width={240}
                   height={240}

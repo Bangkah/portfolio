@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 function SmartImage({
   src,
+  srcSet,
+  sizes,
   fallbackSrc = "/profile.webp",
   alt,
   className,
@@ -18,9 +20,11 @@ function SmartImage({
 
   return (
     <picture>
-      <source srcSet={src} type="image/webp" />
+      <source srcSet={srcSet || src} sizes={sizes} type="image/webp" />
       <img
         src={currentSrc}
+        srcSet={srcSet}
+        sizes={sizes}
         alt={alt}
         className={className}
         style={style}
@@ -37,6 +41,8 @@ function SmartImage({
 
 SmartImage.propTypes = {
   src: PropTypes.string.isRequired,
+  srcSet: PropTypes.string,
+  sizes: PropTypes.string,
   fallbackSrc: PropTypes.string,
   alt: PropTypes.string.isRequired,
   className: PropTypes.string,
