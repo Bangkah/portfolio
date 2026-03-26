@@ -390,7 +390,7 @@ button:focus {
 
 @media (min-width: 768px) {
   .home-section {
-    background-image: var(--image-gradient), url(./Assets/home-bg.webp);
+    background-image: var(--image-gradient);
   }
 }
 
@@ -398,6 +398,10 @@ button:focus {
   padding: 9rem 0 2rem !important;
   color: whitesmoke;
   text-align: left;
+}
+
+.home-hero-text {
+  min-height: 240px;
 }
 
 .home-profile-wrapper {
@@ -435,6 +439,10 @@ button:focus {
   padding-left: 45px !important;
 }
 
+.home-hero-title {
+  font-size: 2.2em !important;
+}
+
 .main-name {
   color: #cd5ff8;
 }
@@ -459,6 +467,7 @@ button:focus {
 
   .home-hero-text {
     padding-top: 24px !important;
+    min-height: 200px;
   }
 
   .heading,
@@ -467,7 +476,7 @@ button:focus {
   }
 
   .heading-name {
-    font-size: 2rem !important;
+    font-size: 1.7rem !important;
     line-height: 1.25 !important;
   }
 

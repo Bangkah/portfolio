@@ -58,7 +58,7 @@ function Home() {
               </div>
             </Col>
             <Col xs={12} md={7} className="home-hero-text d-flex flex-column align-items-center align-items-md-start justify-content-center mt-2 mt-md-0 text-center text-md-start">
-              <h1 className="heading-name" style={{ fontWeight: 700, color: "#fff" }}>
+              <h1 className="heading-name home-hero-title" style={{ fontWeight: 700, color: "#fff" }}>
                 Hi! Saya <strong className="main-name">Muhammad Dhiyaul Atha</strong>
               </h1>
               <Type />
