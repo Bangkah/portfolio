@@ -33,4 +33,9 @@ jobs:
       - name: Run mobile performance gate
         env:
           PSI_API_KEY: ${{ secrets.PSI_API_KEY }}
-        run: npm run audit:mobile
+        run: |
+          if [ -z "$PSI_API_KEY" ]; then
+            echo "PSI_API_KEY secret is missing. Set it in GitHub repo settings > Secrets and variables > Actions."
+            exit 1
+          fi
+          npm run audit:mobile:ci

@@ -24,6 +24,7 @@
     "optimize:images": "node scripts/optimize-images.mjs --all",
     "optimize:new": "node scripts/optimize-images.mjs",
     "audit:mobile": "node --env-file=.env.local scripts/audit-pagespeed.mjs https://mdhiyaulatha.me",
+    "audit:mobile:ci": "node scripts/audit-pagespeed.mjs https://mdhiyaulatha.me",
     "lint": "eslint src --ext .js,.jsx",
     "eject": "react-scripts eject"
   },
