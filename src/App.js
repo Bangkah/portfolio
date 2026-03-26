@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import Preloader from "../src/components/Pre";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -29,6 +29,47 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const load = false;
+
+  useEffect(() => {
+    if (process.env.NODE_ENV !== "production") {
+      return;
+    }
+
+    const loadThirdParty = () => {
+      if (!window.dataLayer) {
+        window.dataLayer = [];
+      }
+      window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+
+      const gtmScript = document.createElement("script");
+      gtmScript.async = true;
+      gtmScript.src = "https://www.googletagmanager.com/gtm.js?id=GTM-KLBJD68Q";
+
+      const adsScript = document.createElement("script");
+      adsScript.async = true;
+      adsScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5584140685283917";
+      adsScript.crossOrigin = "anonymous";
+
+      document.head.appendChild(gtmScript);
+      document.head.appendChild(adsScript);
+    };
+
+    const onLoad = () => {
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(() => loadThirdParty(), { timeout: 3000 });
+      } else {
+        window.setTimeout(loadThirdParty, 1500);
+      }
+    };
+
+    if (document.readyState === "complete") {
+      onLoad();
+    } else {
+      window.addEventListener("load", onLoad, { once: true });
+    }
+
+    return () => window.removeEventListener("load", onLoad);
+  }, []);
 
   const adminElement = localStorage.getItem("isAdmin") === "true"
     ? <AdminDashboard />

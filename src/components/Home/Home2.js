@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import myImg from "../../Assets/home-main.svg";
 // import { Link } from "react-router-dom";
-import Tilt from "react-parallax-tilt";
 
 
 function Home2() {
@@ -21,16 +20,14 @@ function Home2() {
             </p>
           </Col>
           <Col xs={12} md={4} className="myAvtar d-flex justify-content-center mb-3 mb-md-0">
-            <Tilt>
-              <img
-                src={myImg}
-                className="img-fluid"
-                alt="Muhammad Dhiyaul Atha avatar illustration"
-                loading="lazy"
-                decoding="async"
-                style={{ maxWidth: "220px", width: "100%" }}
-              />
-            </Tilt>
+            <img
+              src={myImg}
+              className="img-fluid"
+              alt="Muhammad Dhiyaul Atha avatar illustration"
+              loading="lazy"
+              decoding="async"
+              style={{ maxWidth: "220px", width: "100%" }}
+            />
           </Col>
         </Row>
       </Container>

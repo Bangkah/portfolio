@@ -8,7 +8,7 @@ import SEO from "../SEO";
 import AboutCard from "../About/AboutCard";
 import SmartImage from "../common/SmartImage";
 import projectsData from "../Projects/projectsData";
-import { certificates as certificatesData } from "../Certificate/Certificates";
+import certificatesPreviewData from "../Certificate/certificatesPreviewData";
 import {
   AiFillGithub,
   AiOutlineTwitter,
@@ -20,16 +20,7 @@ function Home() {
   const navigate = useNavigate();
   // Ambil 3 project dan 3 sertifikat terbaru
   const previewProjects = projectsData.slice(0, 3);
-  // Ambil 3 sertifikat terbaru dari certificates.js (array of { file })
-  let previewCertificates = [];
-  try {
-    // certificatesData bisa berupa komponen, ambil data array jika ada
-    previewCertificates = (certificatesData && certificatesData.length)
-      ? certificatesData.slice(0, 3).map(cert => cert.file)
-      : [];
-  } catch (e) {
-    previewCertificates = [];
-  }
+  const previewCertificates = certificatesPreviewData;
   return (
     // LANDMARK: Main content for accessibility & SEO
     <main role="main">
@@ -138,7 +129,7 @@ function Home() {
               <Col xs={12} sm={6} md={4} key={idx} className="mb-3">
                 <Card className="h-100 shadow-sm" style={{ background: "rgba(34, 20, 51, 0.7)", borderRadius: 16, border: "1px solid #2d1950" }}>
                   <div style={{ width: "100%", aspectRatio: "4/3", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
-                    <img
+                    <SmartImage
                       src={img}
                       alt={`sertifikat-${idx}`}
                       loading="lazy"
