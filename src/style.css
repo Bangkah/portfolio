@@ -501,6 +501,21 @@ button:focus {
   min-height: 44px;
 }
 
+.home-secondary-wrapper {
+  min-height: 900px;
+}
+
+.home-secondary-placeholder {
+  min-height: 900px;
+}
+
+@media (max-width: 767px) {
+  .home-secondary-wrapper,
+  .home-secondary-placeholder {
+    min-height: 700px;
+  }
+}
+
 .myAvtar {
   justify-content: center !important;
   padding-top: 9em !important;

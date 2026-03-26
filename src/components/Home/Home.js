@@ -12,19 +12,7 @@ const HomeSecondary = React.lazy(() => import("./HomeSecondary"));
 function Home() {
   const navigate = useNavigate();
 
-  const [showSecondarySections, setShowSecondarySections] = React.useState(false);
-
-  React.useEffect(() => {
-    const reveal = () => setShowSecondarySections(true);
-    window.addEventListener("scroll", reveal, { once: true, passive: true });
-    window.addEventListener("mousemove", reveal, { once: true });
-    window.addEventListener("touchstart", reveal, { once: true, passive: true });
-    return () => {
-      window.removeEventListener("scroll", reveal);
-      window.removeEventListener("mousemove", reveal);
-      window.removeEventListener("touchstart", reveal);
-    };
-  }, []);
+  const [showSecondarySections] = React.useState(true);
 
   return (
     // LANDMARK: Main content for accessibility & SEO
@@ -69,18 +57,17 @@ function Home() {
               <div className="home-hero-actions mt-3 d-flex gap-2 flex-wrap justify-content-center justify-content-md-start">
                 <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/projects")}>Lihat Project</Button>
                 <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/about")}>Tentang Saya</Button>
-                {!showSecondarySections && (
-                  <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => setShowSecondarySections(true)}>Tampilkan Seksi</Button>
-                )}
               </div>
             </Col>
           </Row>
         </Container>
 
         {showSecondarySections && (
-          <React.Suspense fallback={null}>
-            <HomeSecondary />
-          </React.Suspense>
+          <div className="home-secondary-wrapper">
+            <React.Suspense fallback={<div className="home-secondary-placeholder" />}>
+              <HomeSecondary />
+            </React.Suspense>
+          </div>
         )}
       </section>
     </main>
