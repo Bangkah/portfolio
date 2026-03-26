@@ -57,23 +57,52 @@
   <script type="application/ld+json">
   {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Muhammad Dhiyaul Atha",
-  "alternateName": ["Atha", "Bangkah", "Dhiyaul", "Dhiyaul Atha"],
-  "url": "https://mdhiyaulatha.me",
-  "image": "https://avatars.githubusercontent.com/u/141197600?v=4",
-  "jobTitle": "Web Developer & Mahasiswa Teknik Informatika",
-  "description": "Portofolio resmi Muhammad Dhiyaul Atha, mahasiswa Teknik Informatika dan Web Developer dari Indonesia. Jelajahi proyek, karya, dan pengembangan web modern yang telah dibuat oleh Atha.",
-  "sameAs": [
-    "https://github.com/Bangkah",
-    "https://x.com/mdhiyaulatha",
-    "https://www.linkedin.com/in/muhammad-dhyaul-atha/",
-    "https://www.instagram.com/mdhiyaulatha/"
-  ],
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "ID"
-  }
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://mdhiyaulatha.me/#person",
+      "name": "Muhammad Dhiyaul Atha",
+      "alternateName": ["Atha", "Bangkah", "Dhiyaul", "Dhiyaul Atha"],
+      "url": "https://mdhiyaulatha.me",
+      "image": "https://avatars.githubusercontent.com/u/141197600?v=4",
+      "jobTitle": "Web Developer & Mahasiswa Teknik Informatika",
+      "description": "Portofolio resmi Muhammad Dhiyaul Atha, mahasiswa Teknik Informatika dan Web Developer dari Indonesia. Jelajahi proyek, karya, dan pengembangan web modern yang telah dibuat oleh Atha.",
+      "sameAs": [
+        "https://github.com/Bangkah",
+        "https://x.com/mdhiyaulatha",
+        "https://www.linkedin.com/in/muhammad-dhyaul-atha/",
+        "https://www.instagram.com/mdhiyaulatha/"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "ID"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mdhiyaulatha.me/#website",
+      "url": "https://mdhiyaulatha.me/",
+      "name": "Muhammad Dhiyaul Atha - Portfolio",
+      "publisher": {
+        "@id": "https://mdhiyaulatha.me/#person"
+      },
+      "inLanguage": "id-ID"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://mdhiyaulatha.me/#webpage",
+      "url": "https://mdhiyaulatha.me/",
+      "name": "Muhammad Dhiyaul Atha | Web Developer & Mahasiswa Teknik Informatika",
+      "isPartOf": {
+        "@id": "https://mdhiyaulatha.me/#website"
+      },
+      "about": {
+        "@id": "https://mdhiyaulatha.me/#person"
+      },
+      "inLanguage": "id-ID",
+      "description": "Portofolio resmi Muhammad Dhiyaul Atha, mahasiswa Teknik Informatika dan web developer. Berisi proyek, pengalaman, dan karya digital."
+    }
+  ]
 }
   </script>
   <link rel="alternate" href="https://mdhiyaulatha.me/" hreflang="id" />

@@ -354,11 +354,17 @@ button:focus {
 .home-section {
   position: relative;
   z-index: -1;
-  background-image: var(--image-gradient), url(./Assets/home-bg.webp);
+  background-image: var(--image-gradient);
   background-position: top center;
   background-repeat: no-repeat;
   padding-bottom: 30px !important;
   padding-top: 30px !important;
+}
+
+@media (min-width: 768px) {
+  .home-section {
+    background-image: var(--image-gradient), url(./Assets/home-bg.webp);
+  }
 }
 
 .home-content {
