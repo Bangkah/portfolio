@@ -62,7 +62,7 @@ function Home() {
                 Hi! Saya <strong className="main-name">Muhammad Dhiyaul Atha</strong>
               </h1>
               <Type />
-              <div className="mt-3 d-flex gap-2 flex-wrap justify-content-center justify-content-md-start">
+              <div className="home-hero-actions mt-3 d-flex gap-2 flex-wrap justify-content-center justify-content-md-start">
                 <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/projects")}>Lihat Project</Button>
                 <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/about")}>Tentang Saya</Button>
                 {!showSecondarySections && (
