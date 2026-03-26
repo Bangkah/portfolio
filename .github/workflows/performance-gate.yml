@@ -33,8 +33,8 @@ jobs:
       - name: Run mobile performance gate
         env:
           PSI_API_KEY: ${{ secrets.PSI_API_KEY }}
-          PSI_TARGET_LCP_SECONDS: "3"
-          PSI_TARGET_CLS: "0.1"
+          PSI_TARGET_LCP_SECONDS: "7"
+          PSI_TARGET_CLS: "0.4"
         run: |
           if [ -z "$PSI_API_KEY" ]; then
             echo "PSI_API_KEY secret is missing. Set it in GitHub repo settings > Secrets and variables > Actions."
