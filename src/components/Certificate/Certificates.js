@@ -82,7 +82,7 @@ function Certificates() {
                     decoding="async"
                     width={320}
                     height={240}
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", background: "#fff" }}
+                    style={{ width: "100%", height: "100%", objectFit: "contain", display: "block", background: "#fff" }}
                   />
                 </div>
             </div>

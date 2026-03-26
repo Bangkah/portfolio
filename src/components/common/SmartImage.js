@@ -13,14 +13,14 @@ function SmartImage({
   decoding = "async",
   fetchPriority = "auto",
 }) {
-  const initialSrc = fallbackSrc || src;
-  const [currentFallback, setCurrentFallback] = React.useState(initialSrc);
+  const [currentSrc, setCurrentSrc] = React.useState(src);
+  const fallback = fallbackSrc || "/favicon.webp";
 
   return (
     <picture>
       <source srcSet={src} type="image/webp" />
       <img
-        src={currentFallback}
+        src={currentSrc}
         alt={alt}
         className={className}
         style={style}
@@ -29,7 +29,7 @@ function SmartImage({
         loading={loading}
         decoding={decoding}
         fetchPriority={fetchPriority}
-        onError={() => setCurrentFallback("/favicon.webp")}
+        onError={() => setCurrentSrc(fallback)}
       />
     </picture>
   );
