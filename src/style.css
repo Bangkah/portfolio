@@ -460,6 +460,10 @@ button:focus {
 }
 
 @media (max-width: 767px) {
+  body {
+    font-family: "Segoe UI", Arial, sans-serif !important;
+  }
+
   .home-section {
     background-image: var(--image-gradient);
     background-size: cover;
