@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import profilImg from "../../Assets/profil.webp";
-import Home2 from "./Home2";
+const Home2 = React.lazy(() => import("./Home2"));
 import Type from "./Type";
 import SEO from "../SEO";
 import AboutCard from "../About/AboutCard";
@@ -118,7 +118,7 @@ function Home() {
         </Container>
 
         {showSecondarySections && (
-          <>
+          <React.Suspense fallback={null}>
             {/* Perkenalan Diri Setelah Hero, Sebelum Tentang Saya */}
             <Home2 />
 
@@ -185,7 +185,7 @@ function Home() {
                 </Col>
               </Row>
             </Container>
-          </>
+          </React.Suspense>
         )}
 
         {/* Sosial Media Section - sudah ada aria-label di semua link */}

@@ -417,6 +417,19 @@ button:focus {
     padding-top: 2em !important;
     padding-bottom: 2em !important;
   }
+
+  .home-about-section {
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+  }
+
+  .home-about-description {
+    padding-top: 24px !important;
+  }
+
+  .home-about-body {
+    padding-top: 16px !important;
+  }
 }
 
 .home-about-section {

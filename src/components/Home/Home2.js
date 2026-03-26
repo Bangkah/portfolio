@@ -5,6 +5,8 @@ import myImg from "../../Assets/home-main.svg";
 
 
 function Home2() {
+  const isMobile = typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
+
   return (
     <Container fluid className="home-about-section" id="about">
       <Container>
@@ -19,16 +21,18 @@ function Home2() {
               Saya percaya, belajar dan berbagi adalah kunci berkembang di dunia IT. Yuk, saling terhubung dan bertumbuh bersama!
             </p>
           </Col>
-          <Col xs={12} md={4} className="myAvtar d-flex justify-content-center mb-3 mb-md-0">
-            <img
-              src={myImg}
-              className="img-fluid"
-              alt="Muhammad Dhiyaul Atha avatar illustration"
-              loading="lazy"
-              decoding="async"
-              style={{ maxWidth: "220px", width: "100%" }}
-            />
-          </Col>
+          {!isMobile && (
+            <Col xs={12} md={4} className="myAvtar d-flex justify-content-center mb-3 mb-md-0">
+              <img
+                src={myImg}
+                className="img-fluid"
+                alt="Muhammad Dhiyaul Atha avatar illustration"
+                loading="lazy"
+                decoding="async"
+                style={{ maxWidth: "220px", width: "100%" }}
+              />
+            </Col>
+          )}
         </Row>
       </Container>
     </Container>
