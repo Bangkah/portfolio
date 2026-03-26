@@ -18,8 +18,12 @@ import { FaLinkedinIn } from "react-icons/fa";
 
 function Home() {
   const navigate = useNavigate();
-  const [isMobile, setIsMobile] = React.useState(false);
-  const [showSecondarySections, setShowSecondarySections] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+    return window.matchMedia("(max-width: 767px)").matches;
+  });
 
   React.useEffect(() => {
     const media = window.matchMedia("(max-width: 767px)");
@@ -27,11 +31,6 @@ function Home() {
     apply();
     media.addEventListener("change", apply);
     return () => media.removeEventListener("change", apply);
-  }, []);
-
-  React.useEffect(() => {
-    const timer = window.setTimeout(() => setShowSecondarySections(true), 1200);
-    return () => window.clearTimeout(timer);
   }, []);
 
   // Ambil 3 project dan 3 sertifikat terbaru
@@ -101,13 +100,11 @@ function Home() {
           </Row>
         </Container>
 
-        {showSecondarySections && (
-          <>
-            {/* Perkenalan Diri Setelah Hero, Sebelum Tentang Saya */}
-            <Home2 />
+        {/* Perkenalan Diri Setelah Hero, Sebelum Tentang Saya */}
+        <Home2 />
 
-            {/* About Preview */}
-            <Container className="mt-5 mb-4 px-2 px-sm-4">
+        {/* About Preview */}
+        <Container className="mt-5 mb-4 px-2 px-sm-4">
           <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Tentang Saya</h2>
           <Row>
             <Col xs={12} md={8} className="mb-3 mb-md-0">
@@ -119,10 +116,10 @@ function Home() {
               <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/about")}>View All</Button>
             </Col>
           </Row>
-            </Container>
+          </Container>
 
-            {/* Project Preview */}
-            <Container className="mt-5 mb-4 px-2 px-sm-4">
+          {/* Project Preview */}
+          <Container className="mt-5 mb-4 px-2 px-sm-4">
           <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Project Terbaru</h2>
           <Row>
             {previewProjects.map((project) => (
@@ -143,10 +140,10 @@ function Home() {
               <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/projects")}>View All</Button>
             </Col>
           </Row>
-            </Container>
+          </Container>
 
-            {/* Certificate Preview */}
-            <Container className="mt-5 mb-4 px-2 px-sm-4">
+          {/* Certificate Preview */}
+          <Container className="mt-5 mb-4 px-2 px-sm-4">
           <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Sertifikat</h2>
           <Row>
             {previewCertificates.map((img, idx) => (
@@ -168,9 +165,7 @@ function Home() {
               <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/certificates")}>View All</Button>
             </Col>
           </Row>
-            </Container>
-          </>
-        )}
+        </Container>
 
         {/* Sosial Media Section - sudah ada aria-label di semua link */}
         <Row className="mt-4">

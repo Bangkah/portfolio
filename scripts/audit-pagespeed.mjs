@@ -1,5 +1,7 @@
-const defaultUrl = "https://mdhiyaulatha.me";
+const defaultUrl = process.env.PSI_AUDIT_URL || "https://mdhiyaulatha.me";
 const targetUrl = process.argv[2] || defaultUrl;
+const targetLcpSeconds = Number(process.env.PSI_TARGET_LCP_SECONDS || "3");
+const targetCls = Number(process.env.PSI_TARGET_CLS || "0.1");
 const psiApiKeyRaw = (process.env.PSI_API_KEY || "").trim();
 const psiApiKey = /YOUR_PAGESPEED_API_KEY/i.test(psiApiKeyRaw) ? "" : psiApiKeyRaw;
 
@@ -17,6 +19,13 @@ function createEndpoint(useKey) {
 function parseSeconds(value) {
   if (typeof value !== "string") return null;
   const normalized = value.trim().replace("s", "");
+  const parsed = Number(normalized);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function parseNumeric(value) {
+  if (typeof value !== "string") return null;
+  const normalized = value.trim().replace(/[^0-9.]/g, "");
   const parsed = Number(normalized);
   return Number.isFinite(parsed) ? parsed : null;
 }
@@ -71,7 +80,10 @@ async function run() {
   const speedIndex = getAudit(audits, "speed-index");
 
   const lcpSeconds = parseSeconds(lcp.displayValue);
-  const passUnder3s = lcpSeconds !== null && lcpSeconds < 3;
+  const clsValue = parseNumeric(cls.displayValue);
+  const passLcp = lcpSeconds !== null && lcpSeconds < targetLcpSeconds;
+  const passCls = clsValue !== null && clsValue <= targetCls;
+  const passGate = passLcp && passCls;
 
   console.log(`URL: ${targetUrl}`);
   console.log(`Performance score (mobile): ${performanceScore}`);
@@ -80,9 +92,10 @@ async function run() {
   console.log(`Speed Index: ${speedIndex.displayValue}`);
   console.log(`TBT: ${tbt.displayValue}`);
   console.log(`CLS: ${cls.displayValue}`);
-  console.log(`Target LCP < 3s: ${passUnder3s ? "PASS" : "FAIL"}`);
+  console.log(`Target LCP < ${targetLcpSeconds}s: ${passLcp ? "PASS" : "FAIL"}`);
+  console.log(`Target CLS <= ${targetCls}: ${passCls ? "PASS" : "FAIL"}`);
 
-  if (!passUnder3s) {
+  if (!passGate) {
     process.exitCode = 2;
   }
 }
