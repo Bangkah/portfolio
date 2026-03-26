@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import profilImg from "../Assets/profil.webp";
 import { CgGitFork } from "react-icons/cg";
 import { ImBlog } from "react-icons/im";
 import {
@@ -43,6 +44,9 @@ function NavBar() {
         <Navbar.Brand href="/" aria-label="Home">
           Bangkah
         </Navbar.Brand>
+        <div className="navbar-mobile-profile d-md-none" aria-hidden="true">
+          <img src={profilImg} alt="" loading="lazy" decoding="async" />
+        </div>
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
           onClick={() => {

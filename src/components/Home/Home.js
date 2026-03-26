@@ -9,20 +9,6 @@ const HomeSecondary = React.lazy(() => import("./HomeSecondary"));
 
 function Home() {
   const navigate = useNavigate();
-  const [isMobile, setIsMobile] = React.useState(() => {
-    if (typeof window === "undefined") {
-      return false;
-    }
-    return window.matchMedia("(max-width: 767px)").matches;
-  });
-
-  React.useEffect(() => {
-    const media = window.matchMedia("(max-width: 767px)");
-    const apply = () => setIsMobile(media.matches);
-    apply();
-    media.addEventListener("change", apply);
-    return () => media.removeEventListener("change", apply);
-  }, []);
 
   const [showSecondarySections, setShowSecondarySections] = React.useState(false);
 
@@ -51,25 +37,8 @@ function Home() {
 
         <Container fluid className="home-section px-2 px-sm-4" id="home">
           <Row className="justify-content-center align-items-center flex-column-reverse flex-md-row" style={{ minHeight: "60vh" }}>
-            {!isMobile && (
-            <Col xs={12} md={5} className="d-flex justify-content-center align-items-center mb-4 mb-md-0">
-              <div
-                style={{
-                  background: "#8e44ad",
-                  borderRadius: "50%",
-                  border: "8px solid #fff",
-                  boxShadow: "0 0 0 6px #c770f0",
-                  width: "240px",
-                  height: "240px",
-                  aspectRatio: "1/1",
-                  overflow: "hidden",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  maxWidth: "90vw",
-                  minWidth: "120px"
-                }}
-              >
+            <Col xs={12} md={5} className="home-hero-media d-none d-md-flex justify-content-center align-items-center mb-4 mb-md-0">
+              <div className="home-profile-wrapper">
                 <SmartImage
                   src={profilImg}
                   alt="Foto Profil Muhammad Dhiyaul Atha"
@@ -78,7 +47,7 @@ function Home() {
                   loading="eager"
                   decoding="async"
                   fetchPriority="high"
-                  className="img-fluid"
+                  className="img-fluid home-profile-image"
                   style={{
                     width: "100%",
                     height: "100%",
@@ -88,8 +57,7 @@ function Home() {
                 />
               </div>
             </Col>
-            )}
-            <Col xs={12} md={7} className="d-flex flex-column align-items-center align-items-md-start justify-content-center mt-2 mt-md-0 text-center text-md-start">
+            <Col xs={12} md={7} className="home-hero-text d-flex flex-column align-items-center align-items-md-start justify-content-center mt-2 mt-md-0 text-center text-md-start">
               <h1 className="heading-name" style={{ fontWeight: 700, color: "#fff" }}>
                 Hi! Saya <strong className="main-name">Muhammad Dhiyaul Atha</strong>
               </h1>

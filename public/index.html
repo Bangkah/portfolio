@@ -9,12 +9,13 @@
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net;
   font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net;
   img-src 'self' data: https://www.googletagmanager.com https://avatars.githubusercontent.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net;
-  frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com;
+  frame-src 'self' blob: https://googleads.g.doubleclick.net https://tpc.googlesyndication.com;
   connect-src 'self' https://github-contributions-api.jogruber.de https://vitals.vercel-insights.com https://googleads.g.doubleclick.net;
   ">
   <!-- Preconnect Google Fonts for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
 

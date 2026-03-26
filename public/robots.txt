@@ -1,4 +1,3 @@
-
 # robots.txt for mdhiyaulatha.me
 User-agent: *
 Allow: /
