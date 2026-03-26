@@ -35,7 +35,14 @@ function App() {
       return;
     }
 
+    let hasLoaded = false;
+
     const loadThirdParty = () => {
+      if (hasLoaded) {
+        return;
+      }
+      hasLoaded = true;
+
       if (!window.dataLayer) {
         window.dataLayer = [];
       }
@@ -54,7 +61,7 @@ function App() {
       document.head.appendChild(adsScript);
     };
 
-    const onLoad = () => {
+    const scheduleLoad = () => {
       if ("requestIdleCallback" in window) {
         window.requestIdleCallback(() => loadThirdParty(), { timeout: 3000 });
       } else {
@@ -62,13 +69,28 @@ function App() {
       }
     };
 
-    if (document.readyState === "complete") {
-      onLoad();
-    } else {
-      window.addEventListener("load", onLoad, { once: true });
-    }
+    const onFirstInteraction = () => {
+      scheduleLoad();
+      window.removeEventListener("scroll", onFirstInteraction);
+      window.removeEventListener("mousemove", onFirstInteraction);
+      window.removeEventListener("touchstart", onFirstInteraction);
+      window.removeEventListener("click", onFirstInteraction);
+      window.removeEventListener("keydown", onFirstInteraction);
+    };
 
-    return () => window.removeEventListener("load", onLoad);
+    window.addEventListener("scroll", onFirstInteraction, { passive: true, once: true });
+    window.addEventListener("mousemove", onFirstInteraction, { once: true });
+    window.addEventListener("touchstart", onFirstInteraction, { passive: true, once: true });
+    window.addEventListener("click", onFirstInteraction, { once: true });
+    window.addEventListener("keydown", onFirstInteraction, { once: true });
+
+    return () => {
+      window.removeEventListener("scroll", onFirstInteraction);
+      window.removeEventListener("mousemove", onFirstInteraction);
+      window.removeEventListener("touchstart", onFirstInteraction);
+      window.removeEventListener("click", onFirstInteraction);
+      window.removeEventListener("keydown", onFirstInteraction);
+    };
   }, []);
 
   const adminElement = localStorage.getItem("isAdmin") === "true"
