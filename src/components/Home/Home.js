@@ -7,12 +7,11 @@ import profilImg160 from "../../Assets/profil-160.webp";
 import Type from "./Type";
 import SEO from "../SEO";
 import SmartImage from "../common/SmartImage";
-const HomeSecondary = React.lazy(() => import("./HomeSecondary"));
+import HomeSecondary from "./HomeSecondary";
 
 function Home() {
   const navigate = useNavigate();
 
-  const [showSecondarySections] = React.useState(true);
 
   return (
     // LANDMARK: Main content for accessibility & SEO
@@ -62,13 +61,7 @@ function Home() {
           </Row>
         </Container>
 
-        {showSecondarySections && (
-          <div className="home-secondary-wrapper">
-            <React.Suspense fallback={<div className="home-secondary-placeholder" />}>
-              <HomeSecondary />
-            </React.Suspense>
-          </div>
-        )}
+        <HomeSecondary />
       </section>
     </main>
   );

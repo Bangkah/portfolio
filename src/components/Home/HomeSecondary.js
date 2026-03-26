@@ -43,7 +43,15 @@ function HomeSecondary() {
             <Col xs={12} sm={6} md={4} key={project.slug} className="mb-3">
               <Card className="h-100 shadow-sm" style={{ background: "rgba(34, 20, 51, 0.7)", borderRadius: 16, border: "1px solid #2d1950" }}>
                 <div style={{ width: "100%", aspectRatio: "16/9", overflow: "hidden", borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
-                  <SmartImage src={project.imgPath} alt={project.title} loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  <SmartImage
+                    src={project.imgPath}
+                    alt={project.title}
+                    loading="lazy"
+                    decoding="async"
+                    width={640}
+                    height={360}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  />
                 </div>
                 <Card.Body>
                   <Card.Title style={{ color: "#c770f0", fontWeight: 600 }}>{project.title}</Card.Title>
@@ -71,6 +79,8 @@ function HomeSecondary() {
                     alt={`sertifikat-${idx}`}
                     loading="lazy"
                     decoding="async"
+                    width={800}
+                    height={600}
                     style={{ width: "100%", height: "100%", objectFit: "contain", display: "block", maxHeight: "220px", background: "#fff" }}
                   />
                 </div>
