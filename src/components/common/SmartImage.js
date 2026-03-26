@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 function SmartImage({
   src,
-  fallbackSrc = "/profile.png",
+  fallbackSrc = "/profile.webp",
   alt,
   className,
   style,
@@ -29,7 +29,7 @@ function SmartImage({
         loading={loading}
         decoding={decoding}
         fetchPriority={fetchPriority}
-        onError={() => setCurrentFallback("/favicon.png")}
+        onError={() => setCurrentFallback("/favicon.webp")}
       />
     </picture>
   );

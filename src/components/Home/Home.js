@@ -33,6 +33,20 @@ function Home() {
     return () => media.removeEventListener("change", apply);
   }, []);
 
+  const [showSecondarySections, setShowSecondarySections] = React.useState(false);
+
+  React.useEffect(() => {
+    const reveal = () => setShowSecondarySections(true);
+    window.addEventListener("scroll", reveal, { once: true, passive: true });
+    window.addEventListener("mousemove", reveal, { once: true });
+    window.addEventListener("touchstart", reveal, { once: true, passive: true });
+    return () => {
+      window.removeEventListener("scroll", reveal);
+      window.removeEventListener("mousemove", reveal);
+      window.removeEventListener("touchstart", reveal);
+    };
+  }, []);
+
   // Ambil 3 project dan 3 sertifikat terbaru
   const previewProjects = projectsData.slice(0, 3);
   const previewCertificates = certificatesPreviewData;
@@ -95,77 +109,84 @@ function Home() {
               <div className="mt-3 d-flex gap-2 flex-wrap justify-content-center justify-content-md-start">
                 <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/projects")}>Lihat Project</Button>
                 <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/about")}>Tentang Saya</Button>
+                {!showSecondarySections && (
+                  <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => setShowSecondarySections(true)}>Tampilkan Seksi</Button>
+                )}
               </div>
             </Col>
           </Row>
         </Container>
 
-        {/* Perkenalan Diri Setelah Hero, Sebelum Tentang Saya */}
-        <Home2 />
+        {showSecondarySections && (
+          <>
+            {/* Perkenalan Diri Setelah Hero, Sebelum Tentang Saya */}
+            <Home2 />
 
-        {/* About Preview */}
-        <Container className="mt-5 mb-4 px-2 px-sm-4">
-          <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Tentang Saya</h2>
-          <Row>
-            <Col xs={12} md={8} className="mb-3 mb-md-0">
-              <div style={{ background: "rgba(34, 20, 51, 0.7)", borderRadius: 16, boxShadow: "0 2px 16px rgba(80,0,120,0.10)", padding: 16 }}>
-                <AboutCard />
-              </div>
-            </Col>
-            <Col xs={12} md={4} className="d-flex align-items-center justify-content-center">
-              <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/about")}>View All</Button>
-            </Col>
-          </Row>
-          </Container>
-
-          {/* Project Preview */}
-          <Container className="mt-5 mb-4 px-2 px-sm-4">
-          <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Project Terbaru</h2>
-          <Row>
-            {previewProjects.map((project) => (
-              <Col xs={12} sm={6} md={4} key={project.slug} className="mb-3">
-                <Card className="h-100 shadow-sm" style={{ background: "rgba(34, 20, 51, 0.7)", borderRadius: 16, border: "1px solid #2d1950" }}>
-                  <div style={{ width: "100%", aspectRatio: "16/9", overflow: "hidden", borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
-                    <SmartImage src={project.imgPath} alt={project.title} loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+            {/* About Preview */}
+            <Container className="mt-5 mb-4 px-2 px-sm-4">
+              <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Tentang Saya</h2>
+              <Row>
+                <Col xs={12} md={8} className="mb-3 mb-md-0">
+                  <div style={{ background: "rgba(34, 20, 51, 0.7)", borderRadius: 16, boxShadow: "0 2px 16px rgba(80,0,120,0.10)", padding: 16 }}>
+                    <AboutCard />
                   </div>
-                  <Card.Body>
-                    <Card.Title style={{ color: "#c770f0", fontWeight: 600 }}>{project.title}</Card.Title>
-                    <Card.Text style={{ color: "#eee" }}>{project.description}</Card.Text>
-                    <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate(`/projects/${project.slug}`)}>Detail</Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-            <Col xs={12} className="d-flex justify-content-end mt-2">
-              <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/projects")}>View All</Button>
-            </Col>
-          </Row>
-          </Container>
+                </Col>
+                <Col xs={12} md={4} className="d-flex align-items-center justify-content-center">
+                  <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/about")}>View All</Button>
+                </Col>
+              </Row>
+            </Container>
 
-          {/* Certificate Preview */}
-          <Container className="mt-5 mb-4 px-2 px-sm-4">
-          <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Sertifikat</h2>
-          <Row>
-            {previewCertificates.map((img, idx) => (
-              <Col xs={12} sm={6} md={4} key={idx} className="mb-3">
-                <Card className="h-100 shadow-sm" style={{ background: "rgba(34, 20, 51, 0.7)", borderRadius: 16, border: "1px solid #2d1950" }}>
-                  <div style={{ width: "100%", aspectRatio: "4/3", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
-                    <SmartImage
-                      src={img}
-                      alt={`sertifikat-${idx}`}
-                      loading="lazy"
-                      decoding="async"
-                      style={{ width: "100%", height: "100%", objectFit: "contain", display: "block", maxHeight: "220px", background: "#fff" }}
-                    />
-                  </div>
-                </Card>
-              </Col>
-            ))}
-            <Col xs={12} className="d-flex justify-content-end mt-2">
-              <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/certificates")}>View All</Button>
-            </Col>
-          </Row>
-        </Container>
+            {/* Project Preview */}
+            <Container className="mt-5 mb-4 px-2 px-sm-4">
+              <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Project Terbaru</h2>
+              <Row>
+                {previewProjects.map((project) => (
+                  <Col xs={12} sm={6} md={4} key={project.slug} className="mb-3">
+                    <Card className="h-100 shadow-sm" style={{ background: "rgba(34, 20, 51, 0.7)", borderRadius: 16, border: "1px solid #2d1950" }}>
+                      <div style={{ width: "100%", aspectRatio: "16/9", overflow: "hidden", borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
+                        <SmartImage src={project.imgPath} alt={project.title} loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                      </div>
+                      <Card.Body>
+                        <Card.Title style={{ color: "#c770f0", fontWeight: 600 }}>{project.title}</Card.Title>
+                        <Card.Text style={{ color: "#eee" }}>{project.description}</Card.Text>
+                        <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate(`/projects/${project.slug}`)}>Detail</Button>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+                <Col xs={12} className="d-flex justify-content-end mt-2">
+                  <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/projects")}>View All</Button>
+                </Col>
+              </Row>
+            </Container>
+
+            {/* Certificate Preview */}
+            <Container className="mt-5 mb-4 px-2 px-sm-4">
+              <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Sertifikat</h2>
+              <Row>
+                {previewCertificates.map((img, idx) => (
+                  <Col xs={12} sm={6} md={4} key={idx} className="mb-3">
+                    <Card className="h-100 shadow-sm" style={{ background: "rgba(34, 20, 51, 0.7)", borderRadius: 16, border: "1px solid #2d1950" }}>
+                      <div style={{ width: "100%", aspectRatio: "4/3", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
+                        <SmartImage
+                          src={img}
+                          alt={`sertifikat-${idx}`}
+                          loading="lazy"
+                          decoding="async"
+                          style={{ width: "100%", height: "100%", objectFit: "contain", display: "block", maxHeight: "220px", background: "#fff" }}
+                        />
+                      </div>
+                    </Card>
+                  </Col>
+                ))}
+                <Col xs={12} className="d-flex justify-content-end mt-2">
+                  <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/certificates")}>View All</Button>
+                </Col>
+              </Row>
+            </Container>
+          </>
+        )}
 
         {/* Sosial Media Section - sudah ada aria-label di semua link */}
         <Row className="mt-4">
