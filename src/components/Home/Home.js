@@ -18,6 +18,22 @@ import { FaLinkedinIn } from "react-icons/fa";
 
 function Home() {
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = React.useState(false);
+  const [showSecondarySections, setShowSecondarySections] = React.useState(false);
+
+  React.useEffect(() => {
+    const media = window.matchMedia("(max-width: 767px)");
+    const apply = () => setIsMobile(media.matches);
+    apply();
+    media.addEventListener("change", apply);
+    return () => media.removeEventListener("change", apply);
+  }, []);
+
+  React.useEffect(() => {
+    const timer = window.setTimeout(() => setShowSecondarySections(true), 1200);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   // Ambil 3 project dan 3 sertifikat terbaru
   const previewProjects = projectsData.slice(0, 3);
   const previewCertificates = certificatesPreviewData;
@@ -34,6 +50,7 @@ function Home() {
 
         <Container fluid className="home-section px-2 px-sm-4" id="home">
           <Row className="justify-content-center align-items-center flex-column-reverse flex-md-row" style={{ minHeight: "60vh" }}>
+            {!isMobile && (
             <Col xs={12} md={5} className="d-flex justify-content-center align-items-center mb-4 mb-md-0">
               <div
                 style={{
@@ -70,20 +87,27 @@ function Home() {
                 />
               </div>
             </Col>
+            )}
             <Col xs={12} md={7} className="d-flex flex-column align-items-center align-items-md-start justify-content-center mt-2 mt-md-0 text-center text-md-start">
               <h1 className="heading-name" style={{ fontWeight: 700, color: "#fff" }}>
                 Hi! Saya <strong className="main-name">Muhammad Dhiyaul Atha</strong>
               </h1>
               <Type />
+              <div className="mt-3 d-flex gap-2 flex-wrap justify-content-center justify-content-md-start">
+                <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/projects")}>Lihat Project</Button>
+                <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/about")}>Tentang Saya</Button>
+              </div>
             </Col>
           </Row>
         </Container>
 
-        {/* Perkenalan Diri Setelah Hero, Sebelum Tentang Saya */}
-        <Home2 />
+        {showSecondarySections && (
+          <>
+            {/* Perkenalan Diri Setelah Hero, Sebelum Tentang Saya */}
+            <Home2 />
 
-        {/* About Preview */}
-        <Container className="mt-5 mb-4 px-2 px-sm-4">
+            {/* About Preview */}
+            <Container className="mt-5 mb-4 px-2 px-sm-4">
           <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Tentang Saya</h2>
           <Row>
             <Col xs={12} md={8} className="mb-3 mb-md-0">
@@ -95,10 +119,10 @@ function Home() {
               <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/about")}>View All</Button>
             </Col>
           </Row>
-        </Container>
+            </Container>
 
-        {/* Project Preview */}
-        <Container className="mt-5 mb-4 px-2 px-sm-4">
+            {/* Project Preview */}
+            <Container className="mt-5 mb-4 px-2 px-sm-4">
           <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Project Terbaru</h2>
           <Row>
             {previewProjects.map((project) => (
@@ -119,10 +143,10 @@ function Home() {
               <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/projects")}>View All</Button>
             </Col>
           </Row>
-        </Container>
+            </Container>
 
-        {/* Certificate Preview */}
-        <Container className="mt-5 mb-4 px-2 px-sm-4">
+            {/* Certificate Preview */}
+            <Container className="mt-5 mb-4 px-2 px-sm-4">
           <h2 className="purple mb-3" style={{ fontWeight: 700, letterSpacing: 1 }}>Sertifikat</h2>
           <Row>
             {previewCertificates.map((img, idx) => (
@@ -144,7 +168,9 @@ function Home() {
               <Button variant="outline-light" style={{ borderColor: "#c770f0", color: "#c770f0" }} onClick={() => navigate("/certificates")}>View All</Button>
             </Col>
           </Row>
-        </Container>
+            </Container>
+          </>
+        )}
 
         {/* Sosial Media Section - sudah ada aria-label di semua link */}
         <Row className="mt-4">
