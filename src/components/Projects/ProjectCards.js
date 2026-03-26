@@ -12,9 +12,13 @@ function ProjectCards(props) {
       <div className="project-image-wrapper">
         <SmartImage
           src={props.imgPath}
+          srcSet={props.imgSrcSet}
+          sizes={props.imgSizes}
           alt={`${props.title} preview`}
           loading="lazy"
           decoding="async"
+          width={props.imgWidth || 640}
+          height={props.imgHeight || 360}
           className="project-image"
         />
       </div>
@@ -57,6 +61,10 @@ function ProjectCards(props) {
 
 ProjectCards.propTypes = {
   imgPath: PropTypes.string.isRequired,
+  imgSrcSet: PropTypes.string,
+  imgSizes: PropTypes.string,
+  imgWidth: PropTypes.number,
+  imgHeight: PropTypes.number,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   ghLink: PropTypes.string,

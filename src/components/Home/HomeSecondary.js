@@ -45,6 +45,8 @@ function HomeSecondary() {
                 <div style={{ width: "100%", aspectRatio: "16/9", overflow: "hidden", borderTopLeftRadius: 16, borderTopRightRadius: 16 }}>
                   <SmartImage
                     src={project.imgPath}
+                    srcSet={project.imgSrcSet}
+                    sizes={project.imgSizes}
                     alt={project.title}
                     loading="lazy"
                     decoding="async"

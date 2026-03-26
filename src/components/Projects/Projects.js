@@ -50,6 +50,10 @@ function Projects() {
               <div style={{cursor: "pointer"}} onClick={() => navigate(`/projects/${project.slug}`)}>
                 <ProjectCard
                   imgPath={project.imgPath}
+                  imgSrcSet={project.imgSrcSet}
+                  imgSizes={project.imgSizes}
+                  imgWidth={640}
+                  imgHeight={360}
                   isBlog={project.isBlog}
                   title={project.title}
                   description={project.description}

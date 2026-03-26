@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import profilImg from "../../Assets/profil.webp";
-import profilImg96 from "../../Assets/profil-96.webp";
-import profilImg160 from "../../Assets/profil-160.webp";
+const profilImg = "/profile.webp";
+const profilImg96 = "/profil-96.webp";
+const profilImg160 = "/profil-160.webp";
 import Type from "./Type";
 import SEO from "../SEO";
 import SmartImage from "../common/SmartImage";

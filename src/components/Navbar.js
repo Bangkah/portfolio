@@ -4,9 +4,9 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import profilImg from "../Assets/profil.webp";
-import profilImg96 from "../Assets/profil-96.webp";
-import profilImg160 from "../Assets/profil-160.webp";
+const profilImg = "/profile.webp";
+const profilImg96 = "/profil-96.webp";
+const profilImg160 = "/profil-160.webp";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
