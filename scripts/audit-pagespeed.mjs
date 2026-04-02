@@ -4,6 +4,9 @@ const targetLcpSeconds = Number(process.env.PSI_TARGET_LCP_SECONDS || "3");
 const targetCls = Number(process.env.PSI_TARGET_CLS || "0.1");
 const psiApiKeyRaw = (process.env.PSI_API_KEY || "").trim();
 const psiApiKey = /YOUR_PAGESPEED_API_KEY/i.test(psiApiKeyRaw) ? "" : psiApiKeyRaw;
+const maxRetries = Number(process.env.PSI_MAX_RETRIES || "3");
+const retryDelayMs = Number(process.env.PSI_RETRY_DELAY_MS || "2000");
+const allowFailure = (process.env.PSI_ALLOW_FAILURE || "true").toLowerCase() === "true";
 
 function createEndpoint(useKey) {
   const endpoint = new URL("https://www.googleapis.com/pagespeedonline/v5/runPagespeed");
@@ -39,32 +42,61 @@ function getAudit(audits, key) {
   };
 }
 
+function isTransientLighthouseError(bodyText) {
+  return (
+    bodyText.includes("FAILED_DOCUMENT_REQUEST") ||
+    bodyText.includes("lighthouseUserError") ||
+    bodyText.includes("ERR_TIMED_OUT")
+  );
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function run() {
   let endpoint = createEndpoint(true);
-  let response = await fetch(endpoint);
+  let response;
+  let bodyText = "";
 
-  if (!response.ok && response.status === 400 && psiApiKey) {
-    const bodyText = await response.text();
-    if (bodyText.includes("API_KEY_INVALID")) {
+  for (let attempt = 0; attempt <= maxRetries; attempt += 1) {
+    response = await fetch(endpoint);
+
+    if (response.ok) {
+      break;
+    }
+
+    bodyText = await response.text();
+
+    if (response.status === 400 && psiApiKey && bodyText.includes("API_KEY_INVALID")) {
       console.warn("PSI_API_KEY invalid, retrying without key...");
       endpoint = createEndpoint(false);
-      response = await fetch(endpoint);
-    } else {
-      const quotaHint =
-        response.status === 429
-          ? " Quota habis. Set PSI_API_KEY dari Google Cloud lalu jalankan ulang."
-          : "";
-      throw new Error(`PageSpeed API error: ${response.status} ${response.statusText}.${quotaHint} Response: ${bodyText}`);
+      continue;
     }
+
+    if (response.status === 400 && isTransientLighthouseError(bodyText) && attempt < maxRetries) {
+      console.warn(`PSI transient error, retrying (${attempt + 1}/${maxRetries})...`);
+      await sleep(retryDelayMs);
+      continue;
+    }
+
+    break;
   }
 
-  if (!response.ok) {
-    const body = await response.text();
+  if (!response || !response.ok) {
     const quotaHint =
-      response.status === 429
+      response?.status === 429
         ? " Quota habis. Set PSI_API_KEY dari Google Cloud lalu jalankan ulang."
         : "";
-    throw new Error(`PageSpeed API error: ${response.status} ${response.statusText}.${quotaHint} Response: ${body}`);
+    const responseBody = bodyText || (response ? await response.text() : "");
+    const errorMessage = `PageSpeed API error: ${response?.status || "unknown"} ${response?.statusText || ""}.${quotaHint} Response: ${responseBody}`;
+
+    if (allowFailure) {
+      console.warn(`${errorMessage}\nContinuing without failing the workflow (PSI_ALLOW_FAILURE=true).`);
+      return;
+    }
+
+    throw new Error(errorMessage);
   }
 
   const data = await response.json();
