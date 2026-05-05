@@ -1,33 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import { CgGitFork } from "react-icons/cg";
-import { ImBlog } from "react-icons/im";
-import {
-  AiFillStar,
-  AiOutlineHome,
-  AiOutlineFundProjectionScreen,
-  AiOutlineUser,
-} from "react-icons/ai";
-import { CgFileDocument } from "react-icons/cg";
-import { RiMedalLine } from "react-icons/ri";
+const profilImg = "/profile.webp";
+const profilImg96 = "/profil-96.webp";
+const profilImg160 = "/profil-160.webp";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
 
-  function scrollHandler() {
-    if (window.scrollY >= 20) {
-      updateNavbar(true);
-    } else {
-      updateNavbar(false);
+  useEffect(() => {
+    function scrollHandler() {
+      if (window.scrollY >= 20) {
+        updateNavbar(true);
+      } else {
+        updateNavbar(false);
+      }
     }
-  }
 
-  window.addEventListener("scroll", scrollHandler);
+    window.addEventListener("scroll", scrollHandler);
+    return () => window.removeEventListener("scroll", scrollHandler);
+  }, []);
 
   return (
     <Navbar
@@ -37,9 +33,21 @@ function NavBar() {
       className={navColour ? "sticky" : "navbar"}
     >
       <Container>
-        <Navbar.Brand href="/" className="d-flex">
-          
+        <Navbar.Brand href="/" aria-label="Home">
+          Bangkah
         </Navbar.Brand>
+        <div className="navbar-mobile-profile d-md-none" aria-hidden="true">
+          <img
+            src={profilImg96}
+            srcSet={`${profilImg96} 96w, ${profilImg160} 160w, ${profilImg} 240w`}
+            sizes="34px"
+            alt=""
+            width={34}
+            height={34}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
           onClick={() => {
@@ -54,7 +62,7 @@ function NavBar() {
           <Nav className="ms-auto" defaultActiveKey="#home">
             <Nav.Item>
               <Nav.Link as={Link} to="/" onClick={() => updateExpanded(false)}>
-                <AiOutlineHome style={{ marginBottom: "2px" }} /> Home
+                Home
               </Nav.Link>
             </Nav.Item>
 
@@ -64,7 +72,7 @@ function NavBar() {
                 to="/about"
                 onClick={() => updateExpanded(false)}
               >
-                <AiOutlineUser style={{ marginBottom: "2px" }} /> About
+                About
               </Nav.Link>
             </Nav.Item>
 
@@ -74,9 +82,6 @@ function NavBar() {
                 to="/projects"
                 onClick={() => updateExpanded(false)}
               >
-                <AiOutlineFundProjectionScreen
-                  style={{ marginBottom: "2px" }}
-                />{" "}
                 Projects
               </Nav.Link>
             </Nav.Item>
@@ -87,7 +92,7 @@ function NavBar() {
                 to="/certificates"
                 onClick={() => updateExpanded(false)}
               >
-                <RiMedalLine style={{ marginBottom: "2px" }} /> Sertifikat
+                Sertifikat
               </Nav.Link>
             </Nav.Item>
 
@@ -97,18 +102,18 @@ function NavBar() {
                 to="/resume"
                 onClick={() => updateExpanded(false)}
               >
-                <CgFileDocument style={{ marginBottom: "2px" }} /> Resume
+                Resume
               </Nav.Link>
             </Nav.Item>
 
-            {/* Ganti link blog ke GitHub atau blog milikmu */}
             <Nav.Item>
               <Nav.Link
                 href="https://dev.to/bangkah"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                title="Baca artikel dan tutorial saya di DEV.to"
               >
-                <ImBlog style={{ marginBottom: "2px" }} /> Blog / GitHub
+                Blog
               </Nav.Link>
             </Nav.Item>
 
@@ -119,8 +124,7 @@ function NavBar() {
                 target="_blank"
                 className="fork-btn-inner"
               >
-                <CgGitFork style={{ fontSize: "1.2em" }} />{" "}
-                <AiFillStar style={{ fontSize: "1.1em" }} />
+                GitHub
               </Button>
             </Nav.Item>
           </Nav>

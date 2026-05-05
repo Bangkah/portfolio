@@ -1,11 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import {
-  AiFillGithub,
-  AiOutlineTwitter,
-  AiFillInstagram,
-} from "react-icons/ai";
-import { FaLinkedinIn } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Footer() {
   let date = new Date();
@@ -18,6 +13,10 @@ function Footer() {
         </Col>
         <Col md="4" className="footer-copywright">
           <h3>Copyright © {year} Atha</h3>
+          <p className="footer-legal-links">
+            <Link to="/privacy-policy">Privacy Policy</Link> |{" "}
+            <Link to="/terms-of-service">Terms of Service</Link>
+          </p>
         </Col>
         <Col md="4" className="footer-body">
           <ul className="footer-icons">
@@ -27,8 +26,11 @@ function Footer() {
                 style={{ color: "white" }}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="GitHub"
               >
-                <AiFillGithub />
+                <svg className="footer-icon-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                  <text className="footer-icon-text" x="16" y="17" textAnchor="middle" dominantBaseline="middle">GH</text>
+                </svg>
               </a>
             </li>
             <li className="social-icons">
@@ -37,8 +39,11 @@ function Footer() {
                 style={{ color: "white" }}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Twitter"
               >
-                <AiOutlineTwitter />
+                <svg className="footer-icon-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                  <text className="footer-icon-text" x="16" y="17" textAnchor="middle" dominantBaseline="middle">X</text>
+                </svg>
               </a>
             </li>
             <li className="social-icons">
@@ -47,8 +52,11 @@ function Footer() {
                 style={{ color: "white" }}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="LinkedIn"
               >
-                <FaLinkedinIn />
+                <svg className="footer-icon-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                  <text className="footer-icon-text" x="16" y="17" textAnchor="middle" dominantBaseline="middle">in</text>
+                </svg>
               </a>
             </li>
             <li className="social-icons">
@@ -57,8 +65,11 @@ function Footer() {
                 style={{ color: "white" }}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Instagram"
               >
-                <AiFillInstagram />
+                <svg className="footer-icon-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                  <text className="footer-icon-text" x="16" y="17" textAnchor="middle" dominantBaseline="middle">IG</text>
+                </svg>
               </a>
             </li>
           </ul>

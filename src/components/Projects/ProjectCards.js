@@ -4,20 +4,27 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { CgWebsite } from "react-icons/cg";
 import { BsGithub } from "react-icons/bs";
+import SmartImage from "../common/SmartImage";
 
 function ProjectCards(props) {
   return (
     <Card className="project-card-view">
-      <Card.Img
-        variant="top"
-        src={props.imgPath}
-        alt={`${props.title} preview`}
-        loading="lazy"
-        decoding="async"
-      />
+      <div className="project-image-wrapper">
+        <SmartImage
+          src={props.imgPath}
+          srcSet={props.imgSrcSet}
+          sizes={props.imgSizes}
+          alt={`${props.title} preview`}
+          loading="lazy"
+          decoding="async"
+          width={props.imgWidth || 640}
+          height={props.imgHeight || 360}
+          className="project-image"
+        />
+      </div>
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
-        <Card.Text style={{ textAlign: "justify" }}>
+        <Card.Text className="project-card-description" style={{ textAlign: "justify" }}>
           {props.description}
         </Card.Text>
 
@@ -54,6 +61,10 @@ function ProjectCards(props) {
 
 ProjectCards.propTypes = {
   imgPath: PropTypes.string.isRequired,
+  imgSrcSet: PropTypes.string,
+  imgSizes: PropTypes.string,
+  imgWidth: PropTypes.number,
+  imgHeight: PropTypes.number,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   ghLink: PropTypes.string,

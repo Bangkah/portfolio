@@ -5,6 +5,7 @@ function AboutCard() {
   return (
     <Card className="quote-card-view">
       <Card.Body>
+        {/* Foto bulat di bawah judul dihapus, hanya ilustrasi samping yang tampil */}
         <blockquote className="blockquote mb-0">
           <p style={{ textAlign: "justify" }}>
             Halo! Saya <b className="purple">Muhammad Dhiyaul Atha</b>, seorang <b className="purple">mahasiswa Teknik Informatika</b> yang antusias dalam dunia <b className="purple">pengembangan web</b> dan teknologi.

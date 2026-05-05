@@ -4,11 +4,27 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import projectDetailsData from "../projectDetailsData";
 import SEO from "../../SEO";
 import Particle from "../../Particle";
+import SmartImage from "../../common/SmartImage";
+
+function getLocalProjects() {
+  try {
+    const data = localStorage.getItem("projects");
+    return data ? JSON.parse(data) : [];
+  } catch {
+    return [];
+  }
+}
 
 function ProjectDetail() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const project = projectDetailsData[slug];
+  let project = projectDetailsData[slug];
+
+  // Jika tidak ditemukan di static, cari di localStorage
+  if (!project) {
+    const localProjects = getLocalProjects();
+    project = localProjects.find(p => (p.slug === slug) || (`custom-${p.id}` === slug));
+  }
 
   if (!project) {
     return (
@@ -53,7 +69,7 @@ function ProjectDetail() {
         {/* Back Button */}
         <Button 
           variant="secondary" 
-          onClick={() => navigate(-1)} 
+          onClick={() => window.location.href = '/projects'} 
           style={{
             marginBottom: 20, 
             fontWeight: 500, 
@@ -164,9 +180,11 @@ function ProjectDetail() {
                 e.currentTarget.style.transform = 'translateY(0) scale(1)';
               }}
             >
-              <img
+              <SmartImage
                 src={project.hero}
                 alt={project.title}
+                width={420}
+                height={315}
                 style={{
                   width: '100%',
                   maxWidth: 420,
@@ -179,8 +197,8 @@ function ProjectDetail() {
                   background: '#fff',
                   border: '2px solid #c770f0',
                 }}
-                onMouseOver={e => e.currentTarget.style.transform = 'scale(1.07)'}
-                onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </Col>

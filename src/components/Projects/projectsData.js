@@ -1,21 +1,37 @@
 // Data project untuk halaman Projects dan ProjectDetail
-import muslimlifeImg from "../../Assets/Projects/muslimlife.png";
-import akademikImg from "../../Assets/Projects/akademik.png";
-import absensiImg from "../../Assets/Projects/absensi.png";
-import islamicblogImg from "../../Assets/Projects/islamicblog.png";
-import mantapaiImg from "../../Assets/Projects/mantapai.png";
-import gudangtugasImg from "../../Assets/Projects/gudangtugas.png";
-import jekyllblogImg from "../../Assets/Projects/jekyllblog.png";
-import portfolioImg from "../../Assets/Projects/portfolio.png";
-import yourstoryImg from "../../Assets/Projects/yourstory.png";
+import muslimlifeImg from "../../Assets/Projects/muslimlife.webp";
+import muslimlifeImg480 from "../../Assets/Projects/muslimlife-480.webp";
+import muslimlifeImg690 from "../../Assets/Projects/muslimlife-690.webp";
+import akademikImg from "../../Assets/Projects/akademik.webp";
+import netinfoImg from "../../Assets/Projects/netinfo.webp";
+import netinfoImg480 from "../../Assets/Projects/netinfo-480.webp";
+import netinfoImg690 from "../../Assets/Projects/netinfo-690.webp";
+import absensiImg from "../../Assets/Projects/absensi.webp";
+import islamicblogImg from "../../Assets/Projects/islamicblog.webp";
+import mantapaiImg from "../../Assets/Projects/mantapai.webp";
+import gudangtugasImg from "../../Assets/Projects/gudangtugas.webp";
+import jekyllblogImg from "../../Assets/Projects/jekyllblog.webp";
+import portfolioImg from "../../Assets/Projects/portfolio.webp";
+import yourstoryImg from "../../Assets/Projects/yourstory.webp";
 
 const projectsData = [
   {
     slug: "muslimlife",
     title: "Website Muslim Life",
     imgPath: muslimlifeImg,
+    imgSrcSet: `${muslimlifeImg480} 480w, ${muslimlifeImg690} 690w, ${muslimlifeImg} 1383w`,
+    imgSizes: "(max-width: 767px) 90vw, (max-width: 991px) 45vw, 30vw",
     description: "Platform Islami lengkap dengan jadwal shalat, Al-Qur'an digital, dan doa harian. Dibangun dengan HTML, CSS, dan JavaScript untuk pengalaman pengguna yang intuitif.",
     detail: `<ul><li>Fitur: Jadwal shalat, Al-Qur'an digital, doa harian, dan artikel Islami.</li><li>Teknologi: HTML, CSS, JavaScript.</li><li>Tujuan: Memudahkan umat Muslim mengakses informasi ibadah harian.</li></ul>`,
+  },
+  {
+    slug: "netinfo",
+    title: "Netinfo",
+    imgPath: netinfoImg,
+    imgSrcSet: `${netinfoImg480} 480w, ${netinfoImg690} 690w, ${netinfoImg} 972w`,
+    imgSizes: "(max-width: 767px) 90vw, (max-width: 991px) 45vw, 30vw",
+    description: "netinfo is a fast, minimal, and reliable command-line utility to display your network and system information. Designed for troubleshooting, auditing, scripting, or simply checking your connection status, netinfo only shows verifiable and essential data.",
+    detail: "<ul><li>Features: Public & local IP detection, ASN & ISP lookup, reverse DNS, network type estimation, VPN/proxy detection, and system information (OS, kernel, architecture, hostname, terminal, shell).</li><li>Technology: Python, Shell scripting.</li><li>Platform: Arch Linux (available on AUR).</li><li>Focus: Minimal output, verifiable data, and privacy-conscious reporting.</li><li>Version: 2.1.0 with professional English documentation and structured output.</li></ul>",
   },
   {
     slug: "akademik-kampus",
