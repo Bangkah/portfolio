@@ -19,6 +19,7 @@ const AnimatedBackground = () => {
 			currentScroll = newScroll
 
 			blobRefs.current.forEach((blob, index) => {
+				if (!blob || !blob.style) return;
 				const initialPos = initialPositions[index]
 
 				// Calculating movement in both X and Y direction
@@ -28,9 +29,13 @@ const AnimatedBackground = () => {
 				const x = initialPos.x + xOffset
 				const y = initialPos.y + yOffset
 
-				// Apply transformation with smooth transition
-				blob.style.transform = `translate(${x}px, ${y}px)`
-				blob.style.transition = "transform 1.4s ease-out"
+								// Apply transformation with smooth transition
+								try {
+									blob.style.transform = `translate(${x}px, ${y}px)`
+									blob.style.transition = "transform 1.4s ease-out"
+								} catch (e) {
+									// ignore if style cannot be set
+								}
 			})
 
 			requestId = requestAnimationFrame(handleScroll)

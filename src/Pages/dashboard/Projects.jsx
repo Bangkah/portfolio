@@ -340,11 +340,31 @@ export default function Projects() {
 
   const fetchProjects = async () => {
     setLoading(true);
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from("projects")
       .select("*")
       .order("created_at", { ascending: false });
-    setProjects(data || []);
+    if (error) {
+      console.error('Error fetching projects:', error);
+      setProjects([]);
+      setLoading(false);
+      return;
+    }
+
+    // Normalize DB row fields (lowercase) to the component's expected keys (PascalCase)
+    const normalized = (data || []).map((r) => ({
+      id: r.id,
+      Title: r.title || r.Title,
+      Description: r.description || r.Description,
+      Img: r.img || r.Img || null,
+      TechStack: r.tech_stack || r.TechStack || [],
+      Features: r.features || r.Features || [],
+      Link: r.link || r.Link || "",
+      Github: r.github || r.Github || "",
+      created_at: r.created_at,
+    }));
+
+    setProjects(normalized);
     setLoading(false);
   };
 
@@ -365,19 +385,25 @@ export default function Projects() {
     setUploading(true);
     let imgUrl = "";
     if (file) imgUrl = await uploadImage(file);
-    await supabase.from("projects").insert({
-      Title: form.Title,
-      Description: form.Description,
-      Img: imgUrl,
-      TechStack: form.TechStack.split(",")
-        .map((s) => s.trim())
-        .filter(Boolean),
-      Features: form.Features.split(",")
-        .map((s) => s.trim())
-        .filter(Boolean),
-      Link: form.Link,
-      Github: form.Github,
-    });
+    try {
+      const payload = {
+        title: form.Title,
+        description: form.Description,
+        img: imgUrl,
+        tech_stack: form.TechStack.split(",").map((s) => s.trim()).filter(Boolean),
+        features: form.Features.split(",").map((s) => s.trim()).filter(Boolean),
+        link: form.Link,
+        github: form.Github,
+      };
+      const { data: insertData, error: insertError } = await supabase.from("projects").insert(payload).select();
+      if (insertError) {
+        console.error('Error inserting project:', insertError);
+      } else {
+        console.debug('Inserted project:', insertData);
+      }
+    } catch (err) {
+      console.error('Unexpected error inserting project:', err);
+    }
     setShowCreate(false);
     setUploading(false);
     fetchProjects();
@@ -387,22 +413,22 @@ export default function Projects() {
     setUploading(true);
     let imgUrl = editProject.Img || "";
     if (file) imgUrl = await uploadImage(file);
-    await supabase
-      .from("projects")
-      .update({
-        Title: form.Title,
-        Description: form.Description,
-        Img: imgUrl,
-        TechStack: form.TechStack.split(",")
-          .map((s) => s.trim())
-          .filter(Boolean),
-        Features: form.Features.split(",")
-          .map((s) => s.trim())
-          .filter(Boolean),
-        Link: form.Link,
-        Github: form.Github,
-      })
-      .eq("id", editProject.id);
+    try {
+      const payload = {
+        title: form.Title,
+        description: form.Description,
+        img: imgUrl,
+        tech_stack: form.TechStack.split(",").map((s) => s.trim()).filter(Boolean),
+        features: form.Features.split(",").map((s) => s.trim()).filter(Boolean),
+        link: form.Link,
+        github: form.Github,
+      };
+      const { data: updateData, error: updateError } = await supabase.from('projects').update(payload).eq('id', editProject.id).select();
+      if (updateError) console.error('Error updating project:', updateError);
+      else console.debug('Updated project:', updateData);
+    } catch (err) {
+      console.error('Unexpected error updating project:', err);
+    }
     setEditProject(null);
     setUploading(false);
     fetchProjects();

@@ -1,5 +1,7 @@
-export const toSlug = (title) =>
-  title
+export const toSlug = (title) => {
+  if (!title || typeof title !== 'string') return '';
+  return title
     .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "");
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
+};

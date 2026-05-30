@@ -79,9 +79,28 @@ export default function Certificates() {
     if (!file) return
     setUploading(true)
     const fileName = `cert-${Date.now()}-${file.name}`
-    await supabase.storage.from('certificate-images').upload(fileName, file)
-    const { data } = supabase.storage.from('certificate-images').getPublicUrl(fileName)
-    await supabase.from('certificates').insert({ Img: data.publicUrl })
+    try {
+      const { data: uploadData, error: uploadError } = await supabase.storage.from('certificate-images').upload(fileName, file)
+      if (uploadError) {
+        console.error('Storage upload error:', uploadError)
+        setUploading(false)
+        return
+      }
+
+      const { data } = supabase.storage.from('certificate-images').getPublicUrl(fileName)
+      // Insert using lowercase `img` column (DB schema uses `img`)
+      const { data: insertData, error: insertError } = await supabase.from('certificates').insert({ img: data.publicUrl })
+      if (insertError) {
+        console.error('Insert certificate error:', insertError)
+        setUploading(false)
+        return
+      }
+      console.debug('Inserted certificate:', insertData)
+    } catch (err) {
+      console.error('Unexpected error during uploadImage:', err)
+      setUploading(false)
+      return
+    }
     setFile(null); setPreview(null); setUploading(false)
     fetchCerts()
   }

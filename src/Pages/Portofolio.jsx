@@ -149,33 +149,68 @@ export default function FullWidthTabs() {
       if (certificatesResponse.error) throw certificatesResponse.error;
 
       // Supabase mengembalikan data dalam properti 'data'
-      const projectData = projectsResponse.data || [];
-      const certificateData = certificatesResponse.data || [];
+      let projectData = projectsResponse.data || [];
+      let certificateData = certificatesResponse.data || [];
+
+      // Normalize Img fields: if the stored Img is a storage path (not a full URL),
+      // try to resolve a public URL using the expected buckets.
+      const resolveImg = async (item, bucketName) => {
+        // Support both `img` (DB column) and `Img` (legacy front-end prop)
+        const rawImg = item?.img ?? item?.Img;
+        if (!rawImg) return item;
+        if (typeof rawImg === 'string' && rawImg.startsWith('http')) return { ...item, Img: rawImg };
+
+        try {
+          const { data } = supabase.storage.from(bucketName).getPublicUrl(rawImg);
+          if (data?.publicUrl) return { ...item, Img: data.publicUrl };
+        } catch (e) {
+          // ignore and return original
+        }
+        return item;
+      };
+
+      // Map and resolve images where necessary
+      projectData = await Promise.all(projectData.map((p) => resolveImg(p, 'project-images')));
+      certificateData = await Promise.all(certificateData.map((c) => resolveImg(c, 'certificate-images')));
+
+      console.debug('Fetched projects:', projectData.length, 'certificates:', certificateData.length);
 
       setProjects(projectData);
       setCertificates(certificateData);
 
       // Store in localStorage (fungsionalitas ini tetap dipertahankan)
-      localStorage.setItem("projects", JSON.stringify(projectData));
-      localStorage.setItem("certificates", JSON.stringify(certificateData));
+      try {
+        localStorage.setItem("projects", JSON.stringify(projectData));
+        localStorage.setItem("certificates", JSON.stringify(certificateData));
+      } catch (err) {
+        console.warn('Failed to write localStorage:', err);
+      }
     } catch (error) {
-      console.error("Error fetching data from Supabase:", error.message);
+      console.error("Error fetching data from Supabase:", error);
     }
   }, []);
 
 
 
   useEffect(() => {
-    // Coba ambil dari localStorage dulu untuk laod lebih cepat
+    // Coba ambil dari localStorage dulu untuk load lebih cepat (UI snappy),
+    // lalu segera panggil fetchData() untuk sinkronisasi mutakhir.
     const cachedProjects = localStorage.getItem('projects');
     const cachedCertificates = localStorage.getItem('certificates');
 
-    if (cachedProjects && cachedCertificates) {
-        setProjects(JSON.parse(cachedProjects));
-        setCertificates(JSON.parse(cachedCertificates));
-    }
-    
-    fetchData(); // Tetap panggil fetchData untuk sinkronisasi data terbaru
+    if (cachedProjects) setProjects(JSON.parse(cachedProjects));
+    if (cachedCertificates) setCertificates(JSON.parse(cachedCertificates));
+
+    // Ambil data terbaru dari Supabase sekarang
+    fetchData();
+
+    // Re-fetch saat window kembali fokus (bila admin melakukan perubahan di tab lain)
+    const handleFocus = () => {
+      console.debug('Window focused — re-fetching projects & certificates');
+      fetchData();
+    };
+    window.addEventListener('focus', handleFocus);
+    return () => window.removeEventListener('focus', handleFocus);
   }, [fetchData]);
 
   const handleChange = (event, newValue) => {
@@ -198,6 +233,7 @@ export default function FullWidthTabs() {
     <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#030014] overflow-hidden" id="Portofolio">
       {/* Header section - unchanged */}
       <div className="text-center pb-10" data-aos="fade-up" data-aos-duration="1000">
+
         <h2 className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
           <span style={{
             color: '#6366f1',

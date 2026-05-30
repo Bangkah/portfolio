@@ -243,22 +243,25 @@ const Komentar = () => {
     useEffect(() => {
         const fetchPinnedComment = async () => {
             try {
-                const { data, error } = await supabase
-                    .from('portfolio_comments')
-                    .select('*')
-                    .eq('is_pinned', true)
-                    .single();
-                
-                if (error && error.code !== 'PGRST116') {
-                    console.error('Error fetching pinned comment:', error);
-                    return;
-                }
-                
-                if (data) {
-                    setPinnedComment(data);
-                }
-            } catch (error) {
-                console.error('Error fetching pinned comment:', error);
+                        try {
+                            const { data, error, status } = await supabase
+                                .from('portfolio_comments')
+                                .select('id,content,user_name,profile_image,is_pinned,created_at')
+                                .eq('is_pinned', true)
+                                .limit(1);
+
+                            if (error) {
+                                console.error('Error fetching pinned comment (status:', status, '):', error);
+                            }
+
+                            if (Array.isArray(data) && data.length > 0) {
+                                setPinnedComment(data[0]);
+                            }
+                        } catch (err) {
+                            console.error('Exception fetching pinned comment:', err);
+                        }
+            } catch (err) {
+                console.error('Exception fetching pinned comment:', err);
             }
         };
 
@@ -268,18 +271,27 @@ const Komentar = () => {
     // Fetch regular comments (excluding pinned) and set up real-time subscription
     useEffect(() => {
         const fetchComments = async () => {
-            const { data, error } = await supabase
-                .from('portfolio_comments')
-                .select('*')
-                .eq('is_pinned', false)
-                .order('created_at', { ascending: false });
-            
-            if (error) {
-                console.error('Error fetching comments:', error);
-                return;
+            try {
+                const { data, error } = await supabase
+                    .from('portfolio_comments')
+                    .select('id,content,user_name,profile_image,is_pinned,created_at')
+                    .eq('is_pinned', false)
+                    .order('created_at', { ascending: false });
+
+                if (error) {
+                    console.error('Error fetching comments:', {
+                        message: error.message,
+                        details: error.details,
+                        hint: error.hint,
+                        code: error.code,
+                    });
+                    return;
+                }
+
+                setComments(data || []);
+            } catch (err) {
+                console.error('Exception fetching comments:', err);
             }
-            
-            setComments(data || []);
         };
 
         fetchComments();
@@ -436,7 +448,7 @@ const Komentar = () => {
                     )}
                 </div>
             </div>
-            <style jsx>{`
+            <style>{`
                 .custom-scrollbar::-webkit-scrollbar {
                     width: 6px;
                 }
