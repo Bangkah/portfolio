@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import React, { useState, lazy, Suspense } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import "./index.css";
@@ -66,48 +66,44 @@ function App() {
       <div className="pointer-events-none">
   <AnimatedBackground />
 </div>
-      <BrowserRouter>
-        <Routes>
-          {/* PUBLIC */}
-          <Route
-            path="/"
-            element={
-              <LandingPage
-                showWelcome={showWelcome}
-                setShowWelcome={setShowWelcome}
-              />
-            }
-          />
-
-          <Route path="/project/:slug" element={<ProjectPageLayout />} />
-
-          {/* CV */}
-          <Route path="/cv" element={<Suspense fallback={<div className="h-screen bg-[#030014]"/>}><CVPage /></Suspense>} />
-
-          {/* AUTH */}
-          <Route path="/login" element={<Login />} />
-
-          {/* ADMIN (PROTECTED) */}
-          <Route
-            path="/dashboard/*"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-
-          {/* 404 */}
-          <Route
-            path="*"
-            element={
-              <Suspense fallback={null}>
-                <NotFoundPage />
-              </Suspense>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+      {
+        // createBrowserRouter is created inside the component so we can pass
+        // runtime state values (like `showWelcome`) into route elements.
+      }
+      <RouterProvider
+        router={createBrowserRouter(
+          [
+            {
+              path: "/",
+              element: (
+                <LandingPage
+                  showWelcome={showWelcome}
+                  setShowWelcome={setShowWelcome}
+                />
+              ),
+            },
+            { path: "/project/:slug", element: <ProjectPageLayout /> },
+            { path: "/cv", element: <Suspense fallback={<div className="h-screen bg-[#030014]"/>}><CVPage /></Suspense> },
+            { path: "/login", element: <Login /> },
+            {
+              path: "/dashboard/*",
+              element: (
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              ),
+            },
+            { path: "*", element: <Suspense fallback={null}><NotFoundPage /></Suspense> },
+          ],
+          {
+            future: {
+              // Opt-in to upcoming v7 behaviors to silence warnings in v6
+              v7_startTransition: true,
+              v7_relativeSplatPath: true,
+            },
+          }
+        )}
+      />
     </HelmetProvider>
   );
 }
