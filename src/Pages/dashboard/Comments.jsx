@@ -32,13 +32,34 @@ export default function Comments() {
 
   const fetchComments = async () => {
     setLoading(true);
-    const { data } = await supabase
-      .from("portfolio_comments")
-      .select("*")
-      .order("is_pinned", { ascending: false })
-      .order("created_at", { ascending: false });
-    setComments(data || []);
-    setLoading(false);
+
+    if (!supabase) {
+      setComments([])
+      setLoading(false)
+      return
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from("portfolio_comments")
+        .select("*")
+        .order("is_pinned", { ascending: false })
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error('Comments fetch error:', error)
+        setComments([])
+        setLoading(false)
+        return
+      }
+
+      setComments(data || []);
+    } catch (error) {
+      console.error('Unexpected error fetching comments:', error)
+      setComments([])
+    } finally {
+      setLoading(false)
+    }
   };
 
   useEffect(() => {
@@ -51,16 +72,38 @@ export default function Comments() {
   }, [filter, search]);
 
   const pin = async (id, value) => {
-    await supabase
+    if (!supabase) {
+      alert('Supabase belum dikonfigurasi. Dashboard admin tidak dapat memodifikasi komentar.')
+      return
+    }
+
+    const { error } = await supabase
       .from("portfolio_comments")
       .update({ is_pinned: value })
       .eq("id", id);
+
+    if (error) {
+      console.error('Pin comment error:', error)
+      alert(error.message || 'Gagal mengubah status pin komentar.')
+      return
+    }
+
     fetchComments();
   };
 
   const remove = async (id) => {
+    if (!supabase) {
+      alert('Supabase belum dikonfigurasi. Dashboard admin tidak dapat menghapus komentar.')
+      return
+    }
+
     if (!confirm("Delete this comment?")) return;
-    await supabase.from("portfolio_comments").delete().eq("id", id);
+    const { error } = await supabase.from("portfolio_comments").delete().eq("id", id);
+    if (error) {
+      console.error('Delete comment error:', error)
+      alert(error.message || 'Gagal menghapus komentar.')
+      return
+    }
     fetchComments();
   };
 

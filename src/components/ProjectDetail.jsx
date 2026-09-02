@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Swal from "sweetalert2";
 import { toSlug } from "../utils/slug";
+import { supabase } from "../supabase";
 
 const TECH_ICONS = {
   React: Globe,
@@ -122,26 +123,61 @@ const ProjectDetails = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const [project, setProject] = useState(null);
+  const [notFound, setNotFound] = useState(false);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    const storedProjects = JSON.parse(localStorage.getItem("projects")) || [];
-    // Cari project berdasarkan slug yang di-generate dari Title
-    const selectedProject = storedProjects.find(
-      (p) => toSlug(p.Title) === slug,
-    );
+    let isActive = true;
 
-    if (selectedProject) {
-      const enhancedProject = {
-        ...selectedProject,
-        Features: selectedProject.Features || [],
-        TechStack: selectedProject.TechStack || [],
-        Github: selectedProject.Github || "https://github.com/Bangkah",
-      };
-      setProject(enhancedProject);
-    }
+    window.scrollTo(0, 0);
+
+    const normalizeProject = (item) => ({
+      ...item,
+      Title: item.Title || item.title,
+      Description: item.Description || item.description,
+      Img: item.Img || item.img,
+      Features: item.Features || item.features || [],
+      TechStack: item.TechStack || item.tech_stack || [],
+      Link: item.Link || item.link || "",
+      Github: item.Github || item.github || "",
+    });
+
+    const loadProject = async () => {
+      let selectedProject;
+      try {
+        const storedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+        selectedProject = storedProjects.map(normalizeProject).find((item) => toSlug(item.Title) === slug);
+      } catch (error) {
+        console.warn("Failed to read cached projects:", error);
+      }
+
+      if (!selectedProject && supabase) {
+        const { data, error } = await supabase.from("projects").select("*");
+        if (error) console.error("Failed to load project details:", error);
+        selectedProject = (data || []).map(normalizeProject).find((item) => toSlug(item.Title) === slug);
+      }
+
+      if (!isActive) return;
+      if (selectedProject) setProject(selectedProject);
+      else setNotFound(true);
+    };
+
+    loadProject();
+    return () => { isActive = false; };
   }, [slug]);
+
+  if (notFound) {
+    return (
+      <div className="min-h-screen bg-[#030014] flex items-center justify-center px-6 text-center">
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold text-white">Project not found</h2>
+          <button onClick={() => navigate("/")} className="text-blue-400 hover:text-blue-300 transition-colors">
+            Back to portfolio
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   if (!project) {
     return (
@@ -326,7 +362,7 @@ const ProjectDetails = () => {
           </div>
         </div>
 
-        <style jsx>{`
+        <style>{`
           @keyframes blob {
             0% {
               transform: translate(0px, 0px) scale(1);

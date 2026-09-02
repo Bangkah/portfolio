@@ -12,20 +12,50 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault()
-    setLoading(true)
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
-    if (error) { alert(error.message); setLoading(false); return }
 
-    const { data: profile } = await supabase
-      .from('profiles').select('role').eq('id', data.user.id).single()
-
-    if (profile?.role !== 'admin') {
-      alert('Access denied')
-      await supabase.auth.signOut()
-      setLoading(false)
+    if (!supabase) {
+      alert('Supabase belum dikonfigurasi. Tambahkan VITE_SUPABASE_URL dan VITE_SUPABASE_ANON_KEY di file .env lalu restart aplikasi.')
       return
     }
-    navigate('/dashboard')
+
+    setLoading(true)
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+      if (error) {
+        alert(error.message)
+        setLoading(false)
+        return
+      }
+
+      const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', data.user.id)
+        .maybeSingle()
+
+      if (profileError) {
+        console.error('Profile lookup failed:', profileError)
+        alert('Profil admin belum dibuat di database Supabase.')
+        await supabase.auth.signOut()
+        setLoading(false)
+        return
+      }
+
+      if (profile?.role !== 'admin') {
+        alert('Access denied')
+        await supabase.auth.signOut()
+        setLoading(false)
+        return
+      }
+
+      navigate('/dashboard')
+    } catch (error) {
+      console.error('Login failed:', error)
+      alert('Login gagal. Silakan cek koneksi atau konfigurasi Supabase.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (

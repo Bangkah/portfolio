@@ -62,9 +62,29 @@ export default function Certificates() {
 
   const fetchCerts = async () => {
     setLoading(true)
-    const { data } = await supabase.from('certificates').select('*').order('created_at', { ascending: false })
-    setCerts(data || [])
-    setLoading(false)
+
+    if (!supabase) {
+      setCerts([])
+      setLoading(false)
+      return
+    }
+
+    try {
+      const { data, error } = await supabase.from('certificates').select('*').order('created_at', { ascending: false })
+      if (error) {
+        console.error('Certificate fetch error:', error)
+        setCerts([])
+        setLoading(false)
+        return
+      }
+
+      setCerts(data || [])
+    } catch (error) {
+      console.error('Unexpected error fetching certificates:', error)
+      setCerts([])
+    } finally {
+      setLoading(false)
+    }
   }
 
   useEffect(() => { fetchCerts() }, [])
@@ -77,37 +97,54 @@ export default function Certificates() {
 
   const uploadImage = async () => {
     if (!file) return
+    if (!supabase) {
+      alert('Supabase belum dikonfigurasi. Dashboard admin tidak dapat mengunggah sertifikat.')
+      return
+    }
+
     setUploading(true)
     const fileName = `cert-${Date.now()}-${file.name}`
     try {
-      const { data: uploadData, error: uploadError } = await supabase.storage.from('certificate-images').upload(fileName, file)
+      const { error: uploadError } = await supabase.storage.from('certificate-images').upload(fileName, file)
       if (uploadError) {
         console.error('Storage upload error:', uploadError)
+        alert(uploadError.message || 'Upload sertifikat gagal.')
         setUploading(false)
         return
       }
 
       const { data } = supabase.storage.from('certificate-images').getPublicUrl(fileName)
-      // Insert using lowercase `img` column (DB schema uses `img`)
-      const { data: insertData, error: insertError } = await supabase.from('certificates').insert({ img: data.publicUrl })
+      const { error: insertError } = await supabase.from('certificates').insert({ img: data.publicUrl })
       if (insertError) {
         console.error('Insert certificate error:', insertError)
+        alert(insertError.message || 'Gagal menyimpan sertifikat.')
         setUploading(false)
         return
       }
-      console.debug('Inserted certificate:', insertData)
     } catch (err) {
       console.error('Unexpected error during uploadImage:', err)
+      alert(err.message || 'Upload sertifikat gagal.')
       setUploading(false)
       return
     }
+
     setFile(null); setPreview(null); setUploading(false)
     fetchCerts()
   }
 
   const deleteCert = async (id) => {
+    if (!supabase) {
+      alert('Supabase belum dikonfigurasi. Dashboard admin tidak dapat menghapus data.')
+      return
+    }
+
     if (!confirm('Delete this certificate?')) return
-    await supabase.from('certificates').delete().eq('id', id)
+    const { error } = await supabase.from('certificates').delete().eq('id', id)
+    if (error) {
+      console.error('Delete certificate error:', error)
+      alert(error.message || 'Gagal menghapus sertifikat.')
+      return
+    }
     fetchCerts()
   }
 

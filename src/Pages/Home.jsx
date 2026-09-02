@@ -110,32 +110,37 @@ const Home = () => {
     return () => setIsLoaded(false);
   }, []);
 
-  const handleTyping = useCallback(() => {
+  useEffect(() => {
     if (isTyping) {
       if (charIndex < WORDS[wordIndex].length) {
-        setText(prev => prev + WORDS[wordIndex][charIndex]);
-        setCharIndex(prev => prev + 1);
-      } else {
-        setTimeout(() => setIsTyping(false), PAUSE_DURATION);
-      }
-    } else {
-      if (charIndex > 0) {
-        setText(prev => prev.slice(0, -1));
-        setCharIndex(prev => prev - 1);
-      } else {
-        setWordIndex(prev => (prev + 1) % WORDS.length);
-        setIsTyping(true);
-      }
-    }
-  }, [charIndex, isTyping, wordIndex]);
+        const timeout = setTimeout(() => {
+          setText((prev) => prev + WORDS[wordIndex][charIndex]);
+          setCharIndex((prev) => prev + 1);
+        }, TYPING_SPEED);
 
-  useEffect(() => {
-    const timeout = setTimeout(
-      handleTyping,
-      isTyping ? TYPING_SPEED : ERASING_SPEED
-    );
+        return () => clearTimeout(timeout);
+      }
+
+      const timeout = setTimeout(() => setIsTyping(false), PAUSE_DURATION);
+      return () => clearTimeout(timeout);
+    }
+
+    if (charIndex > 0) {
+      const timeout = setTimeout(() => {
+        setText((prev) => prev.slice(0, -1));
+        setCharIndex((prev) => prev - 1);
+      }, ERASING_SPEED);
+
+      return () => clearTimeout(timeout);
+    }
+
+    const timeout = setTimeout(() => {
+      setWordIndex((prev) => (prev + 1) % WORDS.length);
+      setIsTyping(true);
+    }, ERASING_SPEED);
+
     return () => clearTimeout(timeout);
-  }, [handleTyping]);
+  }, [charIndex, isTyping, wordIndex]);
 
   return (
     <>

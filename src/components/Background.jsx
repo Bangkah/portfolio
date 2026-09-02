@@ -1,52 +1,48 @@
 import React, { useEffect, useRef } from "react"
 
+const INITIAL_POSITIONS = [
+  { x: -4, y: 0 },
+  { x: -4, y: 0 },
+  { x: 20, y: -8 },
+  { x: 20, y: -8 },
+]
+
 const AnimatedBackground = () => {
-	const blobRefs = useRef([])
-	const initialPositions = [
-		{ x: -4, y: 0 },
-		{ x: -4, y: 0 },
-		{ x: 20, y: -8 },
-		{ x: 20, y: -8 },
-	]
+  const blobRefs = useRef([])
 
-	useEffect(() => {
-		let currentScroll = 0
-		let requestId
+  useEffect(() => {
+    let currentScroll = 0
+    let requestId = 0
 
-		const handleScroll = () => {
-			const newScroll = window.pageYOffset
-			const scrollDelta = newScroll - currentScroll
-			currentScroll = newScroll
+    const handleScroll = () => {
+      const newScroll = window.pageYOffset
+      currentScroll = newScroll
 
-			blobRefs.current.forEach((blob, index) => {
-				if (!blob || !blob.style) return;
-				const initialPos = initialPositions[index]
+      blobRefs.current.forEach((blob, index) => {
+        if (!blob || !blob.style) return
+        const initialPos = INITIAL_POSITIONS[index]
+        if (!initialPos) return
 
-				// Calculating movement in both X and Y direction
-				const xOffset = Math.sin(newScroll / 100 + index * 0.5) * 340 // Horizontal movement
-				const yOffset = Math.cos(newScroll / 100 + index * 0.5) * 40 // Vertical movement
+        const xOffset = Math.sin(newScroll / 100 + index * 0.5) * 340
+        const yOffset = Math.cos(newScroll / 100 + index * 0.5) * 40
+        const x = initialPos.x + xOffset
+        const y = initialPos.y + yOffset
 
-				const x = initialPos.x + xOffset
-				const y = initialPos.y + yOffset
+        blob.style.transform = `translate(${x}px, ${y}px)`
+        blob.style.transition = "transform 1.4s ease-out"
+      })
 
-								// Apply transformation with smooth transition
-								try {
-									blob.style.transform = `translate(${x}px, ${y}px)`
-									blob.style.transition = "transform 1.4s ease-out"
-								} catch (e) {
-									// ignore if style cannot be set
-								}
-			})
+      requestId = requestAnimationFrame(handleScroll)
+    }
 
-			requestId = requestAnimationFrame(handleScroll)
-		}
+    handleScroll()
+    window.addEventListener("scroll", handleScroll, { passive: true })
 
-		window.addEventListener("scroll", handleScroll)
-		return () => {
-			window.removeEventListener("scroll", handleScroll)
-			cancelAnimationFrame(requestId)
-		}
-	}, [])
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      cancelAnimationFrame(requestId)
+    }
+  }, [])
 
 	return (
 		<div className="fixed inset-0 ">

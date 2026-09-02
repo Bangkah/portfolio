@@ -137,6 +137,12 @@ export default function FullWidthTabs() {
 
 
   const fetchData = useCallback(async () => {
+    if (!supabase) {
+      setProjects([]);
+      setCertificates([]);
+      return;
+    }
+
     try {
       // Mengambil data dari Supabase secara paralel
       const [projectsResponse, certificatesResponse] = await Promise.all([
