@@ -1,13 +1,28 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Access environment variables using import.meta.env for Vite
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL; 
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-if (!supabaseUrl || !supabaseKey) {
-  console.error("Supabase URL:", supabaseUrl);
-  console.error("Supabase Anon Key:", supabaseKey);
-  throw new Error("Supabase URL and Anon Key are required. Check your .env file and ensure they are prefixed with VITE_ and the dev server was restarted.");
-}
+const isValidSupabaseUrl = typeof supabaseUrl === 'string' && /^https:\/\/[^\s]+\.supabase\.co(?:\/.*)?$/.test(supabaseUrl.trim());
+const isBrowserSafeKey = typeof supabaseKey === 'string' && !supabaseKey.startsWith('sb_secret_');
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+export const isSupabaseConfigured = Boolean(isValidSupabaseUrl && isBrowserSafeKey);
+
+export const supabase = isSupabaseConfigured
+  ? createClient(supabaseUrl, supabaseKey, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+      },
+    })
+  : null;
+
+export const requireSupabase = () => {
+  if (!supabase) {
+    throw new Error(
+      'Supabase is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to your .env file and restart the app.'
+    );
+  }
+
+  return supabase;
+};

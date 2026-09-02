@@ -340,16 +340,25 @@ export default function Projects() {
 
   const fetchProjects = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from("projects")
-      .select("*")
-      .order("created_at", { ascending: false });
-    if (error) {
-      console.error('Error fetching projects:', error);
+
+    if (!supabase) {
       setProjects([]);
       setLoading(false);
       return;
     }
+
+    try {
+      const { data, error } = await supabase
+        .from("projects")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error('Error fetching projects:', error);
+        setProjects([]);
+        setLoading(false);
+        return;
+      }
 
     // Normalize DB row fields (lowercase) to the component's expected keys (PascalCase)
     const normalized = (data || []).map((r) => ({
@@ -364,8 +373,13 @@ export default function Projects() {
       created_at: r.created_at,
     }));
 
-    setProjects(normalized);
-    setLoading(false);
+      setProjects(normalized);
+      setLoading(false);
+    } catch (error) {
+      console.error('Unexpected error fetching projects:', error);
+      setProjects([]);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -373,8 +387,16 @@ export default function Projects() {
   }, []);
 
   const uploadImage = async (f) => {
+    if (!supabase) {
+      throw new Error('Supabase is not configured.')
+    }
+
     const fileName = `${Date.now()}-${f.name}`;
-    await supabase.storage.from("project-images").upload(fileName, f);
+    const { error: uploadError } = await supabase.storage.from("project-images").upload(fileName, f);
+    if (uploadError) {
+      throw uploadError;
+    }
+
     const { data } = supabase.storage
       .from("project-images")
       .getPublicUrl(fileName);
@@ -382,10 +404,17 @@ export default function Projects() {
   };
 
   const handleCreate = async (form, file) => {
+    if (!supabase) {
+      alert('Supabase belum dikonfigurasi. Dashboard admin tidak dapat menyimpan data.')
+      return
+    }
+
     setUploading(true);
     let imgUrl = "";
-    if (file) imgUrl = await uploadImage(file);
+
     try {
+      if (file) imgUrl = await uploadImage(file);
+
       const payload = {
         title: form.Title,
         description: form.Description,
@@ -395,25 +424,34 @@ export default function Projects() {
         link: form.Link,
         github: form.Github,
       };
-      const { data: insertData, error: insertError } = await supabase.from("projects").insert(payload).select();
+
+      const { error: insertError } = await supabase.from("projects").insert(payload);
       if (insertError) {
         console.error('Error inserting project:', insertError);
-      } else {
-        console.debug('Inserted project:', insertData);
+        alert(insertError.message || 'Gagal menyimpan project.');
       }
     } catch (err) {
       console.error('Unexpected error inserting project:', err);
+      alert(err.message || 'Gagal upload atau menyimpan project.');
     }
+
     setShowCreate(false);
     setUploading(false);
     fetchProjects();
   };
 
   const handleEdit = async (form, file) => {
+    if (!supabase) {
+      alert('Supabase belum dikonfigurasi. Dashboard admin tidak dapat memperbarui data.')
+      return
+    }
+
     setUploading(true);
-    let imgUrl = editProject.Img || "";
-    if (file) imgUrl = await uploadImage(file);
+    let imgUrl = editProject?.Img || "";
+
     try {
+      if (file) imgUrl = await uploadImage(file);
+
       const payload = {
         title: form.Title,
         description: form.Description,
@@ -423,20 +461,35 @@ export default function Projects() {
         link: form.Link,
         github: form.Github,
       };
-      const { data: updateData, error: updateError } = await supabase.from('projects').update(payload).eq('id', editProject.id).select();
-      if (updateError) console.error('Error updating project:', updateError);
-      else console.debug('Updated project:', updateData);
+
+      const { error: updateError } = await supabase.from('projects').update(payload).eq('id', editProject.id);
+      if (updateError) {
+        console.error('Error updating project:', updateError);
+        alert(updateError.message || 'Gagal memperbarui project.');
+      }
     } catch (err) {
       console.error('Unexpected error updating project:', err);
+      alert(err.message || 'Gagal update project.');
     }
+
     setEditProject(null);
     setUploading(false);
     fetchProjects();
   };
 
   const deleteProject = async (id) => {
+    if (!supabase) {
+      alert('Supabase belum dikonfigurasi. Dashboard admin tidak dapat menghapus data.')
+      return
+    }
+
     if (!confirm("Delete this project?")) return;
-    await supabase.from("projects").delete().eq("id", id);
+    const { error } = await supabase.from("projects").delete().eq("id", id);
+    if (error) {
+      console.error('Delete project error:', error);
+      alert(error.message || 'Gagal menghapus project.');
+      return;
+    }
     fetchProjects();
   };
 
