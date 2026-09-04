@@ -24,7 +24,7 @@ const Navbar = () => {
                 if (section) {
                     return {
                         id: item.href.replace("#", ""),
-                        offset: section.offsetTop - 550,
+                        offset: section.offsetTop - 300,
                         height: section.offsetHeight
                     };
                 }
@@ -59,7 +59,7 @@ const Navbar = () => {
         e.preventDefault();
         const section = document.querySelector(href);
         if (section) {
-            const top = section.offsetTop - 100;
+            const top = section.offsetTop - 80;
             window.scrollTo({
                 top: top,
                 behavior: "smooth"
@@ -70,104 +70,91 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed w-full top-0 z-50 transition-all duration-500 ${
-                isOpen
-                    ? "bg-[#030014]"
-                    : scrolled
-                    ? "bg-[#030014]/50 backdrop-blur-xl"
-                    : "bg-transparent"
+            className={`fixed w-full top-0 z-50 transition-all duration-200 border-b-3 border-[#111111] ${
+                scrolled
+                    ? "bg-[#f4f0e6] shadow-[0_4px_0_#111111]"
+                    : "bg-[#f4f0e6]"
             }`}
         >
             <div className="mx-auto px-[5%] sm:px-[5%] lg:px-[10%]">
                 <div className="flex items-center justify-between h-16">
-                    {/* Logo */}
+                    {/* Logo Neo-Brutalist Badge */}
                     <div className="flex-shrink-0">
                         <a
                             href="#Home"
                             onClick={(e) => scrollToSection(e, "#Home")}
-                            className="text-xl font-bold bg-gradient-to-r from-[#a855f7] to-[#6366f1] bg-clip-text text-transparent"
+                            className="text-lg font-black tracking-tight text-[#111111] bg-[#ffcf33] px-3 py-1 border-2 border-[#111111] shadow-[3px_3px_0px_#111111] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all inline-block"
                         >
                             mdhiyaulatha
                         </a>
                     </div>
-        
+
                     {/* Desktop Navigation */}
                     <div className="hidden md:block">
-                        <div className="ml-8 flex items-center space-x-8">
-                            {navItems.map((item) => (
-                                <a
-                                    key={item.label}
-                                    href={item.href}
-                                    onClick={(e) => scrollToSection(e, item.href)}
-                                    className="group relative px-1 py-2 text-sm font-medium"
-                                >
-                                    <span
-                                        className={`relative z-10 transition-colors duration-300 ${
-                                            activeSection === item.href.substring(1)
-                                                ? "bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent font-semibold"
-                                                : "text-[#e2d3fd] group-hover:text-white"
+                        <div className="ml-8 flex items-center space-x-3">
+                            {navItems.map((item) => {
+                                const isActive = activeSection === item.href.substring(1);
+                                return (
+                                    <a
+                                        key={item.label}
+                                        href={item.href}
+                                        onClick={(e) => scrollToSection(e, item.href)}
+                                        className={`px-3 py-1.5 text-xs font-black uppercase tracking-wider border-2 border-[#111111] rounded-sm transition-all ${
+                                            isActive
+                                                ? "bg-[#ff5c58] text-white shadow-[3px_3px_0px_#111111] translate-x-[-1px] translate-y-[-1px]"
+                                                : "bg-white text-[#111111] shadow-[2px_2px_0px_#111111] hover:bg-[#ffcf33] hover:shadow-[3px_3px_0px_#111111] hover:-translate-y-0.5"
                                         }`}
                                     >
                                         {item.label}
-                                    </span>
-                                    <span
-                                        className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] transform origin-left transition-transform duration-300 ${
-                                            activeSection === item.href.substring(1)
-                                                ? "scale-x-100"
-                                                : "scale-x-0 group-hover:scale-x-100"
-                                        }`}
-                                    />
-                                </a>
-                            ))}
+                                    </a>
+                                );
+                            })}
                         </div>
                     </div>
-        
-                    {/* Mobile Menu Button */}
+
+                    {/* Mobile Menu Toggle Button */}
                     <div className="md:hidden">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className={`relative p-2 text-[#e2d3fd] hover:text-white transition-transform duration-300 ease-in-out transform ${
-                                isOpen ? "rotate-90 scale-125" : "rotate-0 scale-100"
-                            }`}
+                            aria-label="Toggle Navigation Menu"
+                            className="p-2 bg-[#ffcf33] text-[#111111] border-2 border-[#111111] shadow-[3px_3px_0px_#111111] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
                         >
                             {isOpen ? (
-                                <X className="w-6 h-6" />
+                                <X className="w-6 h-6 stroke-[3]" />
                             ) : (
-                                <Menu className="w-6 h-6" />
+                                <Menu className="w-6 h-6 stroke-[3]" />
                             )}
                         </button>
                     </div>
                 </div>
             </div>
-        
-            {/* Mobile Menu */}
+
+            {/* Mobile Menu Dropdown */}
             <div
-                className={`md:hidden transition-all duration-300 ease-in-out ${
+                className={`md:hidden bg-[#f4f0e6] border-t-3 border-[#111111] transition-all duration-200 ease-in-out ${
                     isOpen
-                        ? "max-h-screen opacity-100"
-                        : "max-h-0 opacity-0 overflow-hidden"
+                        ? "max-h-screen opacity-100 py-4 shadow-[0_6px_0_#111111]"
+                        : "max-h-0 opacity-0 overflow-hidden py-0"
                 }`}
             >
-                <div className="px-4 py-6 space-y-4">
-                    {navItems.map((item, index) => (
-                        <a
-                            key={item.label}
-                            href={item.href}
-                            onClick={(e) => scrollToSection(e, item.href)}
-                            className={`block px-4 py-3 text-lg font-medium transition-all duration-300 ease ${
-                                activeSection === item.href.substring(1)
-                                    ? "bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent font-semibold"
-                                    : "text-[#e2d3fd] hover:text-white"
-                            }`}
-                            style={{
-                                transitionDelay: `${index * 100}ms`,
-                                transform: isOpen ? "translateX(0)" : "translateX(50px)",
-                                opacity: isOpen ? 1 : 0,
-                            }}
-                        >
-                            {item.label}
-                        </a>
-                    ))}
+                <div className="px-6 space-y-3">
+                    {navItems.map((item) => {
+                        const isActive = activeSection === item.href.substring(1);
+                        return (
+                            <a
+                                key={item.label}
+                                href={item.href}
+                                onClick={(e) => scrollToSection(e, item.href)}
+                                className={`block px-4 py-2.5 text-sm font-black uppercase tracking-wider border-2 border-[#111111] shadow-[3px_3px_0px_#111111] rounded-sm transition-all ${
+                                    isActive
+                                        ? "bg-[#ffcf33] text-[#111111]"
+                                        : "bg-white text-[#111111] hover:bg-[#ff5c58] hover:text-white"
+                                }`}
+                            >
+                                {item.label}
+                            </a>
+                        );
+                    })}
                 </div>
             </div>
         </nav>

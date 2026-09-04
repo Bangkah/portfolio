@@ -9,61 +9,78 @@ const INITIAL_POSITIONS = [
 
 const AnimatedBackground = () => {
   const blobRefs = useRef([])
+  const requestRef = useRef(null)
 
   useEffect(() => {
-    let currentScroll = 0
-    let requestId = 0
-
-    const handleScroll = () => {
-      const newScroll = window.pageYOffset
-      currentScroll = newScroll
+    const updatePosition = () => {
+      const scrollY = window.scrollY || window.pageYOffset
 
       blobRefs.current.forEach((blob, index) => {
-        if (!blob || !blob.style) return
+        if (!blob) return
         const initialPos = INITIAL_POSITIONS[index]
         if (!initialPos) return
 
-        const xOffset = Math.sin(newScroll / 100 + index * 0.5) * 340
-        const yOffset = Math.cos(newScroll / 100 + index * 0.5) * 40
+        // Hitung posisi berdasarkan scroll
+        const xOffset = Math.sin(scrollY / 120 + index * 0.8) * 180
+        const yOffset = Math.cos(scrollY / 120 + index * 0.8) * 35
         const x = initialPos.x + xOffset
         const y = initialPos.y + yOffset
 
-        blob.style.transform = `translate(${x}px, ${y}px)`
-        blob.style.transition = "transform 1.4s ease-out"
+        blob.style.transform = `translate3d(${x}px, ${y}px, 0)`
       })
 
-      requestId = requestAnimationFrame(handleScroll)
+      requestRef.current = null
     }
 
-    handleScroll()
-    window.addEventListener("scroll", handleScroll, { passive: true })
+    const onScroll = () => {
+      // Jalankan animasi hanya saat terjadi peristiwa scroll
+      if (requestRef.current === null) {
+        requestRef.current = requestAnimationFrame(updatePosition)
+      }
+    }
+
+    // Panggil sekali untuk inisialisasi posisi awal
+    updatePosition()
+
+    window.addEventListener("scroll", onScroll, { passive: true })
 
     return () => {
-      window.removeEventListener("scroll", handleScroll)
-      cancelAnimationFrame(requestId)
+      window.removeEventListener("scroll", onScroll)
+      if (requestRef.current !== null) {
+        cancelAnimationFrame(requestRef.current)
+      }
     }
   }, [])
 
-	return (
-		<div className="fixed inset-0 ">
-			<div className="absolute inset-0">
-				<div
-					ref={(ref) => (blobRefs.current[0] = ref)}
-					className="absolute top-0 -left-4 md:w-96 md:h-96 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-40 md:opacity-20 "></div>
-				<div
-					ref={(ref) => (blobRefs.current[1] = ref)}
-					className="absolute top-0 -right-4 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-40 md:opacity-20 hidden sm:block"></div>
-				<div
-					ref={(ref) => (blobRefs.current[2] = ref)}
-					className="absolute -bottom-8 left-[-40%] md:left-20 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-40 md:opacity-20 "></div>
-					<div
-					ref={(ref) => (blobRefs.current[3] = ref)}
-					className="absolute -bottom-10 right-20 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 md:opacity-10 hidden sm:block"></div>
-			</div>
-			<div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f10_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f10_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-		</div>
-	)
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <div className="absolute inset-0">
+        {/* Shape 1: Yellow Box */}
+        <div
+          ref={(el) => (blobRefs.current[0] = el)}
+          className="absolute top-20 left-[8%] w-20 h-20 bg-[#ffcf33] border-3 border-[#111111] shadow-[4px_4px_0px_#111111] rotate-6 transition-transform duration-300 ease-out"
+        />
+
+        {/* Shape 2: Blue Box */}
+        <div
+          ref={(el) => (blobRefs.current[1] = el)}
+          className="absolute top-[42%] right-[8%] w-16 h-16 bg-[#4fc3f7] border-3 border-[#111111] shadow-[4px_4px_0px_#111111] -rotate-12 hidden sm:block transition-transform duration-300 ease-out"
+        />
+
+        {/* Shape 3: Red Box */}
+        <div
+          ref={(el) => (blobRefs.current[2] = el)}
+          className="absolute bottom-[12%] left-[15%] w-24 h-24 bg-[#ff5c58] border-3 border-[#111111] shadow-[5px_5px_0px_#111111] rotate-12 transition-transform duration-300 ease-out"
+        />
+
+        {/* Shape 4: Green Box */}
+        <div
+          ref={(el) => (blobRefs.current[3] = el)}
+          className="absolute bottom-[18%] right-[22%] w-12 h-12 bg-[#7bd88f] border-3 border-[#111111] shadow-[3px_3px_0px_#111111] -rotate-6 hidden sm:block transition-transform duration-300 ease-out"
+        />
+      </div>
+    </div>
+  )
 }
 
 export default AnimatedBackground
-

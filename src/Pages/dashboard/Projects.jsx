@@ -13,11 +13,8 @@ import {
 } from "lucide-react";
 
 const Card = ({ children, className = "" }) => (
-  <div className={`relative group ${className}`}>
-    <div className="absolute -inset-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-2xl blur opacity-10 group-hover:opacity-25 transition duration-500" />
-    <div className="relative bg-white/5 backdrop-blur-xl border border-white/12 rounded-2xl h-full">
-      {children}
-    </div>
+  <div className={`relative bg-white border-3 border-[#111111] shadow-[6px_6px_0px_#111111] rounded-sm p-4 h-full ${className}`}>
+    {children}
   </div>
 );
 
@@ -30,7 +27,7 @@ const InputField = ({
   required = false,
 }) => (
   <div className="space-y-1.5">
-    <label className="text-xs text-indigo-300/70 uppercase tracking-wider font-medium">
+    <label className="text-xs font-black uppercase text-[#111111] tracking-wider">
       {label}
     </label>
     <input
@@ -39,33 +36,29 @@ const InputField = ({
       onChange={onChange}
       placeholder={placeholder}
       required={required}
-      className="w-full bg-[#0d0d22] border border-white/10 rounded-xl px-4 py-2.5 text-gray-200 placeholder-gray-600 text-sm outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/20 transition-all"
+      className="w-full bg-white border-3 border-[#111111] shadow-[3px_3px_0px_#111111] px-4 py-2.5 text-[#111111] placeholder-[#111111]/40 font-semibold text-sm outline-none focus:bg-[#fffde7] transition-all rounded-xs"
     />
   </div>
 );
 
 const SkeletonCard = () => (
-  <div className="relative">
-    <div className="absolute -inset-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-2xl blur opacity-10" />
-    <div className="relative bg-white/5 border border-white/12 rounded-2xl p-4 flex flex-col gap-3">
-      <div className="w-full aspect-[16/8] bg-white/5 animate-pulse rounded-xl" />
-      <div className="h-4 bg-white/5 animate-pulse rounded-lg w-2/3" />
-      <div className="h-3 bg-white/5 animate-pulse rounded-lg w-full" />
-      <div className="h-3 bg-white/5 animate-pulse rounded-lg w-4/5" />
-      <div className="flex gap-1.5 mt-1">
-        <div className="h-5 w-16 bg-white/5 animate-pulse rounded-full" />
-        <div className="h-5 w-12 bg-white/5 animate-pulse rounded-full" />
-        <div className="h-5 w-20 bg-white/5 animate-pulse rounded-full" />
+  <div className="bg-white border-3 border-[#111111] shadow-[4px_4px_0px_#111111] p-4 flex flex-col gap-3 rounded-sm">
+    <div className="w-full aspect-[16/8] bg-[#f4f0e6] animate-pulse border-2 border-[#111111]" />
+    <div className="h-4 bg-[#f4f0e6] animate-pulse rounded-xs w-2/3" />
+    <div className="h-3 bg-[#f4f0e6] animate-pulse rounded-xs w-full" />
+    <div className="h-3 bg-[#f4f0e6] animate-pulse rounded-xs w-4/5" />
+    <div className="flex gap-1.5 mt-1">
+      <div className="h-5 w-16 bg-[#f4f0e6] animate-pulse border border-[#111111]" />
+      <div className="h-5 w-12 bg-[#f4f0e6] animate-pulse border border-[#111111]" />
+    </div>
+    <div className="flex justify-between items-center pt-2 border-t-2 border-[#111111] mt-auto">
+      <div className="flex gap-2">
+        <div className="w-7 h-7 bg-[#f4f0e6] animate-pulse border border-[#111111]" />
+        <div className="w-7 h-7 bg-[#f4f0e6] animate-pulse border border-[#111111]" />
       </div>
-      <div className="flex justify-between items-center pt-2 border-t border-white/8 mt-auto">
-        <div className="flex gap-2">
-          <div className="w-7 h-7 bg-white/5 animate-pulse rounded-lg" />
-          <div className="w-7 h-7 bg-white/5 animate-pulse rounded-lg" />
-        </div>
-        <div className="flex gap-2">
-          <div className="w-14 h-7 bg-white/5 animate-pulse rounded-lg" />
-          <div className="w-16 h-7 bg-white/5 animate-pulse rounded-lg" />
-        </div>
+      <div className="flex gap-2">
+        <div className="w-14 h-7 bg-[#f4f0e6] animate-pulse border border-[#111111]" />
+        <div className="w-16 h-7 bg-[#f4f0e6] animate-pulse border border-[#111111]" />
       </div>
     </div>
   </div>
@@ -76,11 +69,11 @@ const ProjectCard = ({ project, onDelete, onEdit }) => {
 
   return (
     <Card>
-      <div className="p-4 flex flex-col h-full">
+      <div className="flex flex-col h-full">
         {project.Img && (
-          <div className="w-full aspect-[16/8] rounded-xl mb-4 border border-white/8 overflow-hidden bg-white/5">
+          <div className="w-full aspect-[16/8] rounded-xs mb-4 border-2 border-[#111111] overflow-hidden bg-[#f4f0e6]">
             {!imgLoaded && (
-              <div className="w-full h-full animate-pulse bg-white/5" />
+              <div className="w-full h-full animate-pulse bg-[#f4f0e6]" />
             )}
             <img
               src={project.Img}
@@ -90,11 +83,11 @@ const ProjectCard = ({ project, onDelete, onEdit }) => {
             />
           </div>
         )}
-        <h3 className="font-semibold text-white text-sm mb-1">
+        <h3 className="font-black uppercase text-[#111111] text-sm mb-1">
           {project.Title}
         </h3>
         {project.Description && (
-          <p className="text-gray-400 text-xs mb-3 line-clamp-2 leading-relaxed">
+          <p className="text-[#111111]/80 font-semibold text-xs mb-3 line-clamp-2 leading-relaxed">
             {project.Description}
           </p>
         )}
@@ -103,23 +96,24 @@ const ProjectCard = ({ project, onDelete, onEdit }) => {
             {project.TechStack.map((t) => (
               <span
                 key={t}
-                className="px-2 py-0.5 rounded-full bg-indigo-500/15 border border-indigo-500/25 text-indigo-300 text-xs"
+                className="px-2 py-0.5 bg-[#ffcf33] border border-[#111111] text-[#111111] text-[10px] font-black uppercase"
               >
                 {t}
               </span>
             ))}
           </div>
         )}
-        <div className="mt-auto flex items-center justify-between gap-2 pt-2 border-t border-white/8">
+        <div className="mt-auto flex items-center justify-between gap-2 pt-2 border-t-2 border-[#111111]">
           <div className="flex gap-2">
             {project.Link && (
               <a
                 href={project.Link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 rounded-lg border border-white/10 text-gray-500 hover:text-white hover:border-white/20 transition-colors"
+                title="Live URL"
+                className="p-1.5 bg-white border-2 border-[#111111] shadow-[2px_2px_0px_#111111] text-[#111111] hover:bg-[#ffcf33] transition-all"
               >
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLink className="w-3.5 h-3.5 stroke-[2.5]" />
               </a>
             )}
             {project.Github && (
@@ -127,24 +121,25 @@ const ProjectCard = ({ project, onDelete, onEdit }) => {
                 href={project.Github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 rounded-lg border border-white/10 text-gray-500 hover:text-white hover:border-white/20 transition-colors"
+                title="GitHub"
+                className="p-1.5 bg-white border-2 border-[#111111] shadow-[2px_2px_0px_#111111] text-[#111111] hover:bg-[#ffcf33] transition-all"
               >
-                <Github className="w-3.5 h-3.5" />
+                <Github className="w-3.5 h-3.5 stroke-[2.5]" />
               </a>
             )}
           </div>
           <div className="flex gap-2">
             <button
               onClick={() => onEdit(project)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-indigo-500/25 text-indigo-400 hover:bg-indigo-500/10 text-xs transition-colors"
+              className="flex items-center gap-1 px-3 py-1.5 bg-[#4fc3f7] text-[#111111] border-2 border-[#111111] shadow-[2px_2px_0px_#111111] font-black uppercase text-xs hover:translate-x-0.5 hover:translate-y-0.5 transition-all cursor-pointer"
             >
-              <Pencil className="w-3 h-3" /> Edit
+              <Pencil className="w-3 h-3 stroke-[2.5]" /> Edit
             </button>
             <button
               onClick={() => onDelete(project.id)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-red-500/20 text-red-400 hover:bg-red-500/10 text-xs transition-colors"
+              className="flex items-center gap-1 px-3 py-1.5 bg-[#ff5c58] text-white border-2 border-[#111111] shadow-[2px_2px_0px_#111111] font-black uppercase text-xs hover:translate-x-0.5 hover:translate-y-0.5 transition-all cursor-pointer"
             >
-              <Trash2 className="w-3 h-3" /> Delete
+              <Trash2 className="w-3 h-3 stroke-[2.5]" /> Delete
             </button>
           </div>
         </div>
@@ -156,24 +151,23 @@ const ProjectCard = ({ project, onDelete, onEdit }) => {
 const Modal = ({ title, onClose, children }) => (
   <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6">
     <div
-      className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+      className="absolute inset-0 bg-[#111111]/70 backdrop-blur-xs"
       onClick={onClose}
     />
     <div
       className="relative z-10 w-full max-w-2xl flex flex-col"
       style={{ maxHeight: "calc(100vh - 24px)" }}
     >
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-2xl blur opacity-20 pointer-events-none" />
-      <div className="relative bg-[#0a0a1a] border border-white/12 rounded-2xl flex flex-col overflow-hidden">
+      <div className="relative bg-[#f4f0e6] border-4 border-[#111111] shadow-[8px_8px_0px_#111111] flex flex-col overflow-hidden rounded-sm">
         {/* Fixed header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-white/8 shrink-0">
-          <h2 className="text-base font-semibold text-white">{title}</h2>
+        <div className="flex items-center justify-between px-5 py-4 border-b-3 border-[#111111] bg-white shrink-0">
+          <h2 className="text-base font-black uppercase text-[#111111]">{title}</h2>
           <button
             type="button"
             onClick={onClose}
-            className="p-1 text-gray-500 hover:text-white transition-colors"
+            className="p-1 bg-[#ff5c58] border-2 border-[#111111] shadow-[2px_2px_0px_#111111] text-white cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5 stroke-[3]" />
           </button>
         </div>
         {/* Scrollable content */}
@@ -234,7 +228,7 @@ const ProjectForm = ({
         </div>
 
         <div className="sm:col-span-2 space-y-1.5">
-          <label className="text-xs text-indigo-300/70 uppercase tracking-wider font-medium">
+          <label className="text-xs font-black uppercase text-[#111111] tracking-wider">
             Description
           </label>
           <textarea
@@ -242,7 +236,7 @@ const ProjectForm = ({
             onChange={set("Description")}
             placeholder="Describe what this project does, its purpose, and impact..."
             rows={3}
-            className="w-full bg-[#0d0d22] border border-white/10 rounded-xl px-4 py-2.5 text-gray-200 placeholder-gray-600 text-sm outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/20 transition-all resize-none"
+            className="w-full bg-white border-3 border-[#111111] shadow-[3px_3px_0px_#111111] px-4 py-2.5 text-[#111111] placeholder-[#111111]/40 font-semibold text-sm outline-none focus:bg-[#fffde7] transition-all resize-none rounded-xs"
           />
         </div>
 
@@ -272,26 +266,26 @@ const ProjectForm = ({
         />
 
         <div className="sm:col-span-2 space-y-1.5">
-          <label className="text-xs text-indigo-300/70 uppercase tracking-wider font-medium">
+          <label className="text-xs font-black uppercase text-[#111111] tracking-wider">
             Project Image
           </label>
-          <label className="flex items-center gap-4 w-full bg-[#0d0d22] border border-dashed border-white/15 rounded-xl px-4 py-4 cursor-pointer hover:border-indigo-500/40 hover:bg-white/4 transition-all">
+          <label className="flex items-center gap-4 w-full bg-white border-3 border-dashed border-[#111111] px-4 py-4 cursor-pointer hover:bg-[#ffcf33]/10 transition-all rounded-xs">
             {preview ? (
               <img
                 src={preview}
-                className="h-16 w-24 object-cover rounded-lg border border-white/10"
+                className="h-16 w-24 object-cover border-2 border-[#111111]"
                 alt="preview"
               />
             ) : (
-              <div className="w-24 h-16 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">
-                <ImageIcon className="w-5 h-5 text-gray-600" />
+              <div className="w-24 h-16 rounded-xs bg-[#ffcf33] flex items-center justify-center border-2 border-[#111111] shadow-[2px_2px_0px_#111111]">
+                <ImageIcon className="w-5 h-5 text-[#111111] stroke-[2.5]" />
               </div>
             )}
             <div>
-              <p className="text-sm text-gray-300">
+              <p className="text-xs font-black uppercase text-[#111111]">
                 {preview ? "Change image" : "Click to upload image"}
               </p>
-              <p className="text-xs text-gray-600 mt-0.5">
+              <p className="text-[10px] font-bold uppercase text-[#111111]/60 mt-0.5">
                 PNG, JPG, WEBP supported
               </p>
             </div>
@@ -305,26 +299,25 @@ const ProjectForm = ({
         </div>
       </div>
 
-      <div className="flex justify-end gap-2 pt-1">
+      <div className="flex justify-end gap-2 pt-2">
         <button
           type="button"
           onClick={onCancel}
-          className="px-4 py-2 rounded-xl border border-white/10 text-gray-400 hover:text-white text-sm transition-colors"
+          className="px-4 py-2 bg-white text-[#111111] border-2 border-[#111111] shadow-[2px_2px_0px_#111111] font-black uppercase text-xs cursor-pointer"
         >
           Cancel
         </button>
-        <button type="submit" disabled={uploading} className="relative group/s">
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-60 blur group-hover/s:opacity-100 transition duration-300" />
-          <div className="relative flex items-center gap-2 px-5 py-2 bg-[#030014] rounded-xl border border-white/10">
-            {uploading ? (
-              <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-            ) : (
-              <Upload className="w-4 h-4 text-indigo-400" />
-            )}
-            <span className="text-sm text-gray-200">
-              {uploading ? "Saving..." : submitLabel}
-            </span>
-          </div>
+        <button
+          type="submit"
+          disabled={uploading}
+          className="px-5 py-2 bg-[#ffcf33] text-[#111111] border-2 border-[#111111] shadow-[2px_2px_0px_#111111] font-black uppercase text-xs flex items-center gap-2 hover:translate-x-0.5 hover:translate-y-0.5 transition-all cursor-pointer"
+        >
+          {uploading ? (
+            <div className="w-4 h-4 border-2 border-[#111111] border-t-transparent rounded-full animate-spin" />
+          ) : (
+            <Upload className="w-4 h-4 stroke-[2.5]" />
+          )}
+          <span>{uploading ? "Saving..." : submitLabel}</span>
         </button>
       </div>
     </form>
@@ -360,18 +353,17 @@ export default function Projects() {
         return;
       }
 
-    // Normalize DB row fields (lowercase) to the component's expected keys (PascalCase)
-    const normalized = (data || []).map((r) => ({
-      id: r.id,
-      Title: r.title || r.Title,
-      Description: r.description || r.Description,
-      Img: r.img || r.Img || null,
-      TechStack: r.tech_stack || r.TechStack || [],
-      Features: r.features || r.Features || [],
-      Link: r.link || r.Link || "",
-      Github: r.github || r.Github || "",
-      created_at: r.created_at,
-    }));
+      const normalized = (data || []).map((r) => ({
+        id: r.id,
+        Title: r.title || r.Title,
+        Description: r.description || r.Description,
+        Img: r.img || r.Img || null,
+        TechStack: r.tech_stack || r.TechStack || [],
+        Features: r.features || r.Features || [],
+        Link: r.link || r.Link || "",
+        Github: r.github || r.Github || "",
+        created_at: r.created_at,
+      }));
 
       setProjects(normalized);
       setLoading(false);
@@ -494,21 +486,18 @@ export default function Projects() {
   };
 
   return (
-    <div className="space-y-6z ">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between gap-4 mb-6 flex-wrap">
+      <div className="flex items-center justify-between gap-4 mb-6 flex-wrap bg-white border-3 border-[#111111] shadow-[4px_4px_0px_#111111] p-4 rounded-sm">
         <div className="flex items-center gap-3">
-          <div className="relative">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-xl blur opacity-50" />
-            <div className="relative w-9 h-9 bg-[#030014] rounded-xl border border-white/15 flex items-center justify-center">
-              <FolderGit2 className="w-4 h-4 text-indigo-400" />
-            </div>
+          <div className="w-10 h-10 bg-[#ffcf33] border-2 border-[#111111] shadow-[2px_2px_0px_#111111] flex items-center justify-center shrink-0">
+            <FolderGit2 className="w-5 h-5 text-[#111111] stroke-[2.5]" />
           </div>
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-white">
+            <h1 className="text-lg sm:text-xl font-black uppercase text-[#111111]">
               Projects
             </h1>
-            <p className="text-gray-500 text-xs">
+            <p className="text-[#111111]/70 font-bold text-xs uppercase">
               {loading ? "Loading..." : `${projects.length} projects total`}
             </p>
           </div>
@@ -516,13 +505,10 @@ export default function Projects() {
 
         <button
           onClick={() => setShowCreate(true)}
-          className="relative group shrink-0"
+          className="flex items-center gap-2 px-4 py-2.5 bg-[#ffcf33] text-[#111111] border-2 border-[#111111] shadow-[3px_3px_0px_#111111] font-black uppercase text-xs hover:translate-x-0.5 hover:translate-y-0.5 transition-all cursor-pointer"
         >
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-50 blur group-hover:opacity-80 transition duration-300" />
-          <div className="relative flex items-center gap-2 px-4 py-2.5 bg-[#030014] rounded-xl border border-white/10">
-            <Plus className="w-4 h-4 text-indigo-400" />
-            <span className="text-sm text-gray-200">New Project</span>
-          </div>
+          <Plus className="w-4 h-4 stroke-[3]" />
+          <span>New Project</span>
         </button>
       </div>
 
@@ -560,9 +546,9 @@ export default function Projects() {
         </div>
       ) : projects.length === 0 ? (
         <Card>
-          <div className="p-16 text-center">
-            <FolderGit2 className="w-10 h-10 text-gray-700 mx-auto mb-3" />
-            <p className="text-gray-500 text-sm">
+          <div className="p-12 text-center">
+            <FolderGit2 className="w-10 h-10 text-[#111111] stroke-[2] mx-auto mb-3" />
+            <p className="text-[#111111] font-black uppercase text-xs">
               No projects yet. Create your first one!
             </p>
           </div>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Share2, User, Mail, MessageSquare, Send } from "lucide-react";
-import { Link } from "react-router-dom";
 import SocialLinks from "../components/SocialLinks";
 import Komentar from "../components/Commentar";
 import Swal from "sweetalert2";
@@ -38,6 +37,11 @@ const ContactPage = () => {
       title: 'Mengirim Pesan...',
       html: 'Harap tunggu selagi kami mengirim pesan Anda',
       allowOutsideClick: false,
+      background: "#ffffff",
+      color: "#111111",
+      customClass: {
+        popup: "border-4 border-[#111111] shadow-[8px_8px_0px_#111111] rounded-none",
+      },
       didOpen: () => {
         Swal.showLoading();
       }
@@ -46,7 +50,6 @@ const ContactPage = () => {
     try {
       const formSubmitUrl = 'https://formsubmit.co/mdhyaulatha@gmail.com';
       
-      // Siapkan data form untuk FormSubmit
       const submitData = new FormData();
       submitData.append('name', formData.name);
       submitData.append('email', formData.email);
@@ -61,12 +64,17 @@ const ContactPage = () => {
         },
       });
 
-     
       Swal.fire({
         title: 'Berhasil!',
         text: 'Pesan Anda telah berhasil terkirim!',
         icon: 'success',
-        confirmButtonColor: '#6366f1',
+        confirmButtonColor: '#ffcf33',
+        background: "#ffffff",
+        color: "#111111",
+        customClass: {
+          popup: "border-4 border-[#111111] shadow-[8px_8px_0px_#111111] rounded-none",
+          confirmButton: "border-2 border-[#111111] text-[#111111] font-bold shadow-[2px_2px_0px_#111111]",
+        },
         timer: 2000,
         timerProgressBar: true
       });
@@ -83,7 +91,13 @@ const ContactPage = () => {
           title: 'Berhasil!',
           text: 'Pesan Anda telah berhasil terkirim!',
           icon: 'success',
-          confirmButtonColor: '#6366f1',
+          confirmButtonColor: '#ffcf33',
+          background: "#ffffff",
+          color: "#111111",
+          customClass: {
+            popup: "border-4 border-[#111111] shadow-[8px_8px_0px_#111111] rounded-none",
+            confirmButton: "border-2 border-[#111111] text-[#111111] font-bold shadow-[2px_2px_0px_#111111]",
+          },
           timer: 2000,
           timerProgressBar: true
         });
@@ -98,7 +112,13 @@ const ContactPage = () => {
           title: 'Gagal!',
           text: 'Terjadi kesalahan. Silakan coba lagi nanti.',
           icon: 'error',
-          confirmButtonColor: '#6366f1'
+          confirmButtonColor: '#ff5c58',
+          background: "#ffffff",
+          color: "#111111",
+          customClass: {
+            popup: "border-4 border-[#111111] shadow-[8px_8px_0px_#111111] rounded-none",
+            confirmButton: "border-2 border-[#111111] text-[#111111] font-bold shadow-[2px_2px_0px_#111111]",
+          },
         });
       }
     } finally {
@@ -107,130 +127,135 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="px-[5%] sm:px-[5%] lg:px-[10%] " >
-      <div className="text-center lg:mt-[5%] mt-10 mb-2 sm:px-0 px-[5%]">
-        <h2
-          data-aos="fade-down"
-          data-aos-duration="1000"
-          className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
-        >
-          <span
-            style={{
-              color: "#6366f1",
-              backgroundImage:
-                "linear-gradient(45deg, #6366f1 10%, #a855f7 93%)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
+    <div className="bg-[#f4f0e6] min-h-screen text-[#111111] pt-16 px-[5%] sm:px-[5%] lg:px-[10%]">
+      {/* Header Section */}
+      <div className="text-center mt-8 mb-12">
+        <div className="inline-block relative group">
+          <h2
+            data-aos="fade-down"
+            className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#111111] relative z-10"
           >
             Hubungi Saya
-          </span>
-        </h2>
+          </h2>
+          {/* Accent block under text */}
+          <div className="absolute -bottom-2 -right-4 w-full h-1/2 bg-[#ff5c58] -z-10 border-3 border-[#111111]" />
+        </div>
+        
         <p
           data-aos="fade-up"
-          data-aos-duration="1100"
-          className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base mt-2"
+          className="text-[#111111] font-bold uppercase tracking-widest text-sm sm:text-base mt-6 max-w-2xl mx-auto"
         >
           Punya pertanyaan? Kirimi saya pesan, dan saya akan segera membalasnya.
         </p>
       </div>
 
-      <div
-        className="h-auto py-10 flex items-center justify-center 2xl:pr-[3.1%] lg:pr-[3.8%]  md:px-0"
-        id="Contact"
-      >
-        <div className="container px-[1%] grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-[45%_55%] 2xl:grid-cols-[35%_65%] gap-12" >
-          <div
-        
-            className="bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl p-5 py-10 sm:p-10 transform transition-all duration-500 hover:shadow-[#6366f1]/10"
-          >
-            <div className="flex justify-between items-start mb-8">
-              <div>
-                <h2 className="text-4xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
-                  Hubungi
-                </h2>
-                <p className="text-gray-400">
-                  Ada yang ingin didiskusikan? Kirim saya pesan dan mari kita bicara.
-                </p>
+      <div className="py-8" id="Contact">
+        <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] 2xl:grid-cols-[40%_60%] gap-8 md:gap-12">
+          
+          {/* Left Column: Form & Social */}
+          <div className="flex flex-col gap-8">
+            
+            {/* Contact Form Card */}
+            <div 
+              className="bg-white border-4 border-[#111111] shadow-[8px_8px_0px_#111111] p-6 sm:p-10 rounded-sm"
+              data-aos="fade-right"
+            >
+              <div className="flex justify-between items-start mb-8 pb-6 border-b-4 border-[#111111]">
+                <div>
+                  <h2 className="text-3xl font-black uppercase text-[#111111] mb-2">
+                    Kirim Pesan
+                  </h2>
+                  <p className="text-[#111111]/70 font-bold text-sm uppercase">
+                    Mari bicarakan proyek Anda.
+                  </p>
+                </div>
+                <div className="bg-[#ffcf33] p-3 border-3 border-[#111111] shadow-[3px_3px_0px_#111111] rotate-6">
+                  <Share2 className="w-6 h-6 stroke-[3] text-[#111111]" />
+                </div>
               </div>
-              <Share2 className="w-10 h-10 text-[#6366f1] opacity-50" />
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                
+                {/* Input Name */}
+                <div className="relative group">
+                  <label className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-[#111111] bg-[#ffcf33] px-2 py-0.5 border-2 border-[#111111] shadow-[2px_2px_0px_#111111] rounded-sm mb-1">
+                    <User className="w-3.5 h-3.5 stroke-[2.5]" />
+                    Nama
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Masukkan nama Anda..."
+                    value={formData.name}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    className="w-full p-3 bg-white text-[#111111] font-semibold border-3 border-[#111111] shadow-[4px_4px_0px_#111111] focus:shadow-[6px_6px_0px_#111111] focus:bg-[#fffde7] focus:-translate-x-0.5 focus:-translate-y-0.5 transition-all outline-none rounded-sm placeholder-[#111111]/40 disabled:opacity-50"
+                    required
+                  />
+                </div>
+
+                {/* Input Email */}
+                <div className="relative group">
+                  <label className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-[#111111] bg-[#4fc3f7] px-2 py-0.5 border-2 border-[#111111] shadow-[2px_2px_0px_#111111] rounded-sm mb-1">
+                    <Mail className="w-3.5 h-3.5 stroke-[2.5]" />
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Masukkan email Anda..."
+                    value={formData.email}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    className="w-full p-3 bg-white text-[#111111] font-semibold border-3 border-[#111111] shadow-[4px_4px_0px_#111111] focus:shadow-[6px_6px_0px_#111111] focus:bg-[#fffde7] focus:-translate-x-0.5 focus:-translate-y-0.5 transition-all outline-none rounded-sm placeholder-[#111111]/40 disabled:opacity-50"
+                    required
+                  />
+                </div>
+
+                {/* Input Message */}
+                <div className="relative group">
+                  <label className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wider text-[#111111] bg-[#7bd88f] px-2 py-0.5 border-2 border-[#111111] shadow-[2px_2px_0px_#111111] rounded-sm mb-1">
+                    <MessageSquare className="w-3.5 h-3.5 stroke-[2.5]" />
+                    Pesan
+                  </label>
+                  <textarea
+                    name="message"
+                    placeholder="Masukkan pesan Anda..."
+                    value={formData.message}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    className="w-full resize-none h-[120px] p-3 bg-white text-[#111111] font-semibold border-3 border-[#111111] shadow-[4px_4px_0px_#111111] focus:shadow-[6px_6px_0px_#111111] focus:bg-[#fffde7] focus:-translate-x-0.5 focus:-translate-y-0.5 transition-all outline-none rounded-sm placeholder-[#111111]/40 disabled:opacity-50"
+                    required
+                  />
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-[#111111] text-white py-4 font-black uppercase tracking-wider border-3 border-[#111111] shadow-[6px_6px_0px_#ff5c58] hover:bg-[#ff5c58] hover:text-[#111111] hover:shadow-[6px_6px_0px_#111111] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-[2px_2px_0px_#111111] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed rounded-sm"
+                >
+                  <Send className="w-5 h-5 stroke-[3]" />
+                  {isSubmitting ? 'Mengirim...' : 'Kirim Pesan'}
+                </button>
+              </form>
             </div>
 
-            <form 
-              onSubmit={handleSubmit}
-              className="space-y-6"
-            >
-              <div
-                data-aos="fade-up"
-                data-aos-delay="100"
-                className="relative group"
-              >
-                <User className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Nama Anda"
-                  value={formData.name}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
-                  required
-                />
-              </div>
-              <div
-                data-aos="fade-up"
-                data-aos-delay="200"
-                className="relative group"
-              >
-                <Mail className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email Anda"
-                  value={formData.email}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 disabled:opacity-50"
-                  required
-                />
-              </div>
-              <div
-                data-aos="fade-up"
-                data-aos-delay="300"
-                className="relative group"
-              >
-                <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400 group-focus-within:text-[#6366f1] transition-colors" />
-                <textarea
-                  name="message"
-                  placeholder="Pesan Anda"
-                  value={formData.message}
-                  onChange={handleChange}
-                  disabled={isSubmitting}
-                  className="w-full resize-none p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-[#6366f1]/30 transition-all duration-300 hover:border-[#6366f1]/30 h-[9.9rem] disabled:opacity-50"
-                  required
-                />
-              </div>
-              <button
-                data-aos="fade-up"
-                data-aos-delay="400"
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#6366f1]/20 active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-              >
-                <Send className="w-5 h-5" />
-                {isSubmitting ? 'Mengirim...' : 'Kirim Pesan'}
-              </button>
-            </form>
-
-            <div className="mt-10 pt-6 border-t border-white/10 flex justify-center space-x-6">
+            {/* Social Links Section */}
+            <div data-aos="fade-up">
               <SocialLinks />
             </div>
+
           </div>
 
-          <div className="  bg-white/5 backdrop-blur-xl rounded-3xl p-3 py-3 md:p-10 md:py-8 shadow-2xl transform transition-all duration-500 hover:shadow-[#6366f1]/10">
+          {/* Right Column: Comments */}
+          <div 
+            className="bg-white border-4 border-[#111111] shadow-[8px_8px_0px_#111111] p-4 md:p-8 rounded-sm h-fit"
+            data-aos="fade-left"
+          >
             <Komentar />
           </div>
+
         </div>
       </div>
     </div>

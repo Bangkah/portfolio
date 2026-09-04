@@ -30,17 +30,16 @@ const TypewriterEffect = ({ text }) => {
 };
 
 const BackgroundEffect = () => (
-  <div className="absolute inset-0 overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 blur-3xl animate-pulse" />
-    <div className="absolute inset-0 bg-gradient-to-tr from-indigo-600/10 via-transparent to-purple-600/10 blur-2xl animate-float" />
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    {/* Dekorasi Grid Neo-Brutalist */}
+    <div className="absolute inset-0 bg-[linear-gradient(to_right,#11111115_1px,transparent_1px),linear-gradient(to_bottom,#11111115_1px,transparent_1px)] bg-[size:3rem_3rem]" />
   </div>
 );
 
 const IconButton = ({ Icon }) => (
-  <div className="relative group hover:scale-110 transition-transform duration-300">
-    <div className="absolute -inset-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full blur opacity-30 group-hover:opacity-75 transition duration-300" />
-    <div className="relative p-2 sm:p-3 bg-black/50 backdrop-blur-sm rounded-full border border-white/10">
-      <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
+  <div className="relative group">
+    <div className="relative p-3 sm:p-4 bg-white text-[#111111] border-3 border-[#111111] shadow-[4px_4px_0px_#111111] group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-[2px_2px_0px_#111111] transition-all">
+      <Icon className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-[#111111] stroke-[2.5]" />
     </div>
   </div>
 );
@@ -50,7 +49,7 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
 
   useEffect(() => {
     AOS.init({
-      duration: 1000,
+      duration: 800,
       once: false,
       mirror: false,
     });
@@ -59,7 +58,7 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
       setIsLoading(false);
       setTimeout(() => {
         onLoadingComplete?.();
-      }, 1000);
+      }, 800);
     }, 3400);
     
     return () => clearTimeout(timer);
@@ -68,10 +67,9 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
   const containerVariants = {
     exit: {
       opacity: 0,
-      scale: 1.1,
-      filter: "blur(10px)",
+      scale: 1.05,
       transition: {
-        duration: 0.8,
+        duration: 0.6,
         ease: "easeInOut",
         when: "beforeChildren",
         staggerChildren: 0.1
@@ -84,7 +82,7 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
       y: -20,
       opacity: 0,
       transition: {
-        duration: 0.4,
+        duration: 0.3,
         ease: "easeInOut"
       }
     }
@@ -94,7 +92,7 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed inset-0 bg-[#030014]"
+          className="fixed inset-0 bg-[#f4f0e6] z-50 overflow-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit="exit"
@@ -104,13 +102,14 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
           
           <div className="relative min-h-screen flex items-center justify-center px-4">
             <div className="w-full max-w-4xl mx-auto">
-              {/* Icons */}
+              
+              {/* Icons Box */}
               <motion.div 
-                className="flex justify-center gap-3 sm:gap-4 md:gap-8 mb-6 sm:mb-8 md:mb-12"
+                className="flex justify-center gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-10 md:mb-12"
                 variants={childVariants}
               >
                 {[Code2, User, Github].map((Icon, index) => (
-                  <div key={index} data-aos="fade-down" data-aos-delay={index * 200}>
+                  <div key={index} data-aos="fade-down" data-aos-delay={index * 150}>
                     <IconButton Icon={Icon} />
                   </div>
                 ))}
@@ -118,54 +117,54 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
 
               {/* Welcome Text */}
               <motion.div 
-                className="text-center mb-6 sm:mb-8 md:mb-12"
+                className="text-center mb-8 sm:mb-10 md:mb-12"
                 variants={childVariants}
               >
-                <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold space-y-2 sm:space-y-4">
-                  <div className="mb-2 sm:mb-4">
-                    <span data-aos="fade-right" data-aos-delay="200" className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                <h1 className="text-3xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter space-y-2 sm:space-y-4 text-[#111111]">
+                  <div className="flex flex-wrap justify-center gap-2 mb-2 sm:mb-4">
+                    <span data-aos="fade-right" data-aos-delay="100" className="inline-block bg-white px-3 py-1 border-3 border-[#111111] shadow-[4px_4px_0px_#111111]">
                       Welcome
-                    </span>{' '}
-                    <span data-aos="fade-right" data-aos-delay="400" className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                    </span>
+                    <span data-aos="fade-right" data-aos-delay="200" className="inline-block bg-[#ffcf33] px-3 py-1 border-3 border-[#111111] shadow-[4px_4px_0px_#111111]">
                       To
-                    </span>{' '}
-                    <span data-aos="fade-right" data-aos-delay="600" className="inline-block px-2 bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                    </span>
+                    <span data-aos="fade-right" data-aos-delay="300" className="inline-block bg-white px-3 py-1 border-3 border-[#111111] shadow-[4px_4px_0px_#111111]">
                       My
                     </span>
                   </div>
-                  <div>
-                    <span data-aos="fade-up" data-aos-delay="800" className="inline-block px-2 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                  <div className="flex flex-wrap justify-center gap-2">
+                    <span data-aos="fade-up" data-aos-delay="400" className="inline-block bg-[#ff5c58] text-white px-3 py-1 border-3 border-[#111111] shadow-[4px_4px_0px_#111111]">
                       Portfolio
-                    </span>{' '}
-                    <span data-aos="fade-up" data-aos-delay="1000" className="inline-block px-2 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                    </span>
+                    <span data-aos="fade-up" data-aos-delay="500" className="inline-block bg-[#4fc3f7] px-3 py-1 border-3 border-[#111111] shadow-[4px_4px_0px_#111111]">
                       Website
                     </span>
                   </div>
                 </h1>
               </motion.div>
 
-              {/* Website Link */}
+              {/* Website Link Badge */}
               <motion.div 
                 className="text-center"
                 variants={childVariants}
                 data-aos="fade-up"
-                data-aos-delay="1200"
+                data-aos-delay="600"
               >
                 <a
                   href="https://mdhiyaulatha.me"
-                  className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full relative group hover:scale-105 transition-transform duration-380"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#111111] border-3 border-[#111111] shadow-[6px_6px_0px_#111111] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[4px_4px_0px_#111111] transition-all"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 rounded-full blur-md group-hover:blur-lg transition-all duration-300" />
-                  <div className="relative flex items-center gap-2 text-lg sm:text-xl md:text-2xl">
-                    <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600" />
-                    <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                  <div className="flex items-center gap-2 text-base sm:text-xl md:text-2xl font-black uppercase">
+                    <Globe className="w-5 h-5 sm:w-6 sm:h-6 text-[#111111] stroke-[3]" />
+                    <span className="text-[#111111]">
                       <TypewriterEffect text="mdhiyaulatha.me" />
                     </span>
                   </div>
                 </a>
               </motion.div>
+
             </div>
           </div>
         </motion.div>

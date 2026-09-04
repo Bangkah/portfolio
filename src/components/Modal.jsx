@@ -1,47 +1,68 @@
 import React, { useState } from 'react';
-import { Eye, ArrowRight, ExternalLink } from 'lucide-react';
+import { X, ArrowRight, ExternalLink } from 'lucide-react';
 
 const ProjectCardModal = ({ title, description, link }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
+      {/* Trigger Button Neo-Brutalist */}
       <button
-        className="inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/90 transition-colors duration-200"
+        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm bg-[#111111] text-white border-2 border-[#111111] shadow-[2px_2px_0px_#ff5c58] hover:bg-[#ff5c58] hover:text-[#111111] hover:shadow-[2px_2px_0px_#111111] font-bold text-xs uppercase transition-all"
         onClick={() => setIsOpen(true)}
       >
-        <span className="text-sm">Details</span>
-        <ArrowRight className="w-4 h-4" />
+        <span>Details</span>
+        <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
       </button>
 
+      {/* Modal Backdrop & Content */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 animate-fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#111111]/75 backdrop-blur-sm p-4"
           onClick={() => setIsOpen(false)}
         >
+          {/* Modal Container Neo-Brutalist */}
           <div
-            className="relative w-full max-w-md rounded-lg bg-gray-900 p-6 text-white shadow-lg animate-slide-up sm:p-8"
+            className="relative w-full max-w-md rounded-sm bg-white border-4 border-[#111111] p-6 shadow-[10px_10px_0px_#111111] text-[#111111] sm:p-8"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Close Button Neo-Brutalist (Ikon X menggantikan Eye agar lebih intuitif) */}
             <button
-              className="absolute top-4 right-4 rounded-md p-2 hover:bg-gray-800 transition-colors duration-200"
+              className="absolute -top-4 -right-4 rounded-sm bg-[#ff5c58] p-2 text-[#111111] border-3 border-[#111111] shadow-[3px_3px_0px_#111111] hover:bg-[#ff3b30] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all"
               onClick={() => setIsOpen(false)}
+              aria-label="Close modal"
             >
-              <Eye className="h-5 w-5" />
+              <X className="h-5 w-5 stroke-[3]" />
             </button>
-            <h2 className="mb-4 text-2xl font-bold">{title}</h2>
-            <p className="mb-6 text-gray-400">{description}</p>
-            <div className="flex justify-end space-x-4">
-              <a
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-md bg-blue-600 px-4 py-2 font-medium hover:bg-blue-700 transition-colors duration-200"
-              >
-                Live Demo <ExternalLink className="ml-2 inline-block h-5 w-5" />
-              </a>
+
+            {/* Modal Title */}
+            <h2 className="mb-3 text-2xl font-black uppercase tracking-tight text-[#111111]">
+              {title}
+            </h2>
+
+            {/* Separator Line */}
+            <div className="border-b-3 border-[#111111] mb-4" />
+
+            {/* Modal Description */}
+            <p className="mb-6 text-sm font-semibold leading-relaxed text-[#111111]/90">
+              {description}
+            </p>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center justify-end gap-3 pt-2">
+              {link && (
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-sm bg-[#ffcf33] px-4 py-2 font-black uppercase text-xs text-[#111111] border-2 border-[#111111] shadow-[3px_3px_0px_#111111] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all"
+                >
+                  <span>Live Demo</span>
+                  <ExternalLink className="h-4 w-4 stroke-[2.5]" />
+                </a>
+              )}
               <button
-                className="rounded-md bg-gray-800 px-4 py-2 font-medium hover:bg-gray-700 transition-colors duration-200"
+                className="rounded-sm bg-[#f4f0e6] px-4 py-2 font-black uppercase text-xs text-[#111111] border-2 border-[#111111] shadow-[3px_3px_0px_#111111] hover:bg-white hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all"
                 onClick={() => setIsOpen(false)}
               >
                 Close

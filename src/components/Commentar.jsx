@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, memo } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import { MessageCircle, UserCircle2, Loader2, AlertCircle, Send, ImagePlus, X, Pin } from 'lucide-react';
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { supabase } from '../supabase';
 
 
 const Comment = memo(({ comment, formatDate, index, isPinned = false }) => (
@@ -23,7 +21,7 @@ const Comment = memo(({ comment, formatDate, index, isPinned = false }) => (
         <div className="flex items-start gap-3">
             {comment.profile_image ? (
                 <img
-                    src={comment.profile_image}
+                      src={comment.profile_image}
                     alt={`${comment.user_name}'s profile`}
                     className={`w-10 h-10 rounded-full object-cover border-2 flex-shrink-0  ${
                         isPinned ? 'border-indigo-500/50' : 'border-indigo-500/30'
@@ -239,135 +237,53 @@ const Komentar = () => {
         });
     }, []);
 
-    // Fetch pinned comment
+    // Comments are intentionally local so the portfolio can run as a static site.
     useEffect(() => {
-        const fetchPinnedComment = async () => {
-            try {
-                        try {
-                            const { data, error, status } = await supabase
-                                .from('portfolio_comments')
-                                .select('id,content,user_name,profile_image,is_pinned,created_at')
-                                .eq('is_pinned', true)
-                                .limit(1);
-
-                            if (error) {
-                                console.error('Error fetching pinned comment (status:', status, '):', error);
-                            }
-
-                            if (Array.isArray(data) && data.length > 0) {
-                                setPinnedComment(data[0]);
-                            }
-                        } catch (err) {
-                            console.error('Exception fetching pinned comment:', err);
-                        }
-            } catch (err) {
-                console.error('Exception fetching pinned comment:', err);
-            }
-        };
-
-        fetchPinnedComment();
-    }, []);
-
-    // Fetch regular comments (excluding pinned) and set up real-time subscription
-    useEffect(() => {
-        const fetchComments = async () => {
-            try {
-                const { data, error } = await supabase
-                    .from('portfolio_comments')
-                    .select('id,content,user_name,profile_image,is_pinned,created_at')
-                    .eq('is_pinned', false)
-                    .order('created_at', { ascending: false });
-
-                if (error) {
-                    console.error('Error fetching comments:', {
-                        message: error.message,
-                        details: error.details,
-                        hint: error.hint,
-                        code: error.code,
-                    });
-                    return;
-                }
-
-                setComments(data || []);
-            } catch (err) {
-                console.error('Exception fetching comments:', err);
-            }
-        };
-
-        fetchComments();
-
-        // Set up real-time subscription
-        const subscription = supabase
-            .channel('portfolio_comments')
-            .on('postgres_changes', 
-                { 
-                    event: '*', 
-                    schema: 'public', 
-                    table: 'portfolio_comments',
-                    filter: 'is_pinned=eq.false'
-                }, 
-                () => {
-                    fetchComments(); // Refresh comments when changes occur
-                }
-            )
-            .subscribe();
-
-        return () => {
-            subscription.unsubscribe();
-        };
-    }, []);
-
-    const uploadImage = useCallback(async (imageFile) => {
-        if (!imageFile) return null;
-        
-        const fileExt = imageFile.name.split('.').pop();
-        const fileName = `${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
-        const filePath = `profile-images/${fileName}`;
-
-        const { error: uploadError } = await supabase.storage
-            .from('profile-images')
-            .upload(filePath, imageFile);
-
-        if (uploadError) {
-            throw uploadError;
+        let storedComments = [];
+        try {
+            storedComments = JSON.parse(localStorage.getItem('comments') || '[]');
+        } catch {
+            storedComments = [];
         }
-
-        const { data } = supabase.storage
-            .from('profile-images')
-            .getPublicUrl(filePath);
-
-        return data.publicUrl;
+        setPinnedComment(storedComments.find((comment) => comment.is_pinned) || null);
+        setComments(storedComments.filter((comment) => !comment.is_pinned));
     }, []);
+
+    const readImage = useCallback((imageFile) => new Promise((resolve, reject) => {
+        if (!imageFile) {
+            resolve(null);
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(imageFile);
+    }), []);
 
     const handleCommentSubmit = useCallback(async ({ newComment, userName, imageFile }) => {
         setError('');
         setIsSubmitting(true);
         
         try {
-            const profileImageUrl = await uploadImage(imageFile);
-            
-            const { error } = await supabase
-                .from('portfolio_comments')
-                .insert([
-                    {
-                        content: newComment,
-                        user_name: userName,
-                        profile_image: profileImageUrl,
-                        is_pinned: false,
-                        created_at: new Date().toISOString()
-                    }
-                ]);
-
-            if (error) {
-                throw error;
-            }
+            const profileImageUrl = await readImage(imageFile);
+            const newEntry = {
+                id: Date.now(),
+                content: newComment.trim(),
+                user_name: userName.trim(),
+                profile_image: profileImageUrl,
+                is_pinned: false,
+                created_at: new Date().toISOString(),
+            };
+            const nextComments = [newEntry, ...comments];
+            localStorage.setItem('comments', JSON.stringify(nextComments));
+            setComments(nextComments);
         } catch (error) {
-            setError('Failed to post comment. Please try again.');
+            setError('Komentar tidak dapat disimpan di browser ini.');
             console.error('Error adding comment: ', error);
         } finally {
             setIsSubmitting(false);
         }
-    }, [uploadImage]);
+    }, [comments, readImage]);
 
     const formatDate = useCallback((timestamp) => {
         if (!timestamp) return '';

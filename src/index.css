@@ -2,186 +2,185 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --color-paper: #f4f0e6;
+    --color-ink: #111111;
+    --color-yellow: #ffcf33;
+    --color-red: #ff5c58;
+    --color-blue: #3b82f6;
+}
+
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	  font-family: "Poppins", system-ui, sans-serif;
-	scroll-behavior: smooth;
-	scrollbar-width: thin;
-	scrollbar-color: rgba(99, 102, 241, 0.3) rgba(12, 5, 53, 0.356);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Trebuchet MS", "Arial Black", sans-serif;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-ink) var(--color-paper);
 }
 
 html,
 body {
-	overflow-x: hidden;
-	background: #030014;
-	scroll-behavior: smooth !important;
+    overflow-x: hidden;
+    background-color: var(--color-paper);
+    color: var(--color-ink);
 }
 
+/* Background Grid Pattern khas Neo-Brutalism */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background-image: 
+        linear-gradient(rgba(17, 17, 17, 0.08) 1px, transparent 1px), 
+        linear-gradient(90deg, rgba(17, 17, 17, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-paper);
+    border-left: 2px solid var(--color-ink);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-ink);
+    border: 2px solid var(--color-ink);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-yellow);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: var(--color-red);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--color-paper);
+}
+
+/* Focus State untuk Aksesibilitas */
+:focus-visible {
+    outline: 3px solid var(--color-red) !important;
+    outline-offset: 3px !important;
+}
+
+/* Animations */
 @keyframes blob {
-	0%,
-	100% {
-		transform: translateY(0);
-	}
-	50% {
-		transform: translateY(-20px);
-	}
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-12px) scale(1.02);
+    }
 }
 
 .animate-blob {
-	animation: blob 8s infinite;
+    animation: blob 6s ease-in-out infinite;
 }
 
 .animation-delay-2000 {
-	animation-delay: 2s;
+    animation-delay: 2s;
 }
 
 .animation-delay-4000 {
-	animation-delay: 4s;
+    animation-delay: 4s;
 }
 
-/* Enhanced Custom Scrollbar Styles */
-::-webkit-scrollbar {
-	width: 8px;
-	height: 8px;
-	background-color: transparent;
-  }
-  
-  ::-webkit-scrollbar-track {
-	background: rgba(3, 0, 20, 0.4);
-	backdrop-filter: blur(8px);
-	-webkit-backdrop-filter: blur(8px);
-	border: 1px solid rgba(99, 102, 241, 0.1);
-  }
-  
-  ::-webkit-scrollbar-thumb {
-	background: rgba(99, 102, 241, 0.3);
-	backdrop-filter: blur(4px);
-	-webkit-backdrop-filter: blur(4px);
-	border-radius: 20px;
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	box-shadow: 
-	  inset 0 0 20px rgba(168, 85, 247, 0.2),
-	  0 0 10px rgba(99, 102, 241, 0.2);
-	transition: all 0.3s ease;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-	background: rgba(99, 102, 241, 0.5);
-	border: 1px solid rgba(168, 85, 247, 0.3);
-	box-shadow: 
-	  inset 0 0 30px rgba(168, 85, 247, 0.3),
-	  0 0 15px rgba(99, 102, 241, 0.3);
-  }
-  
-  /* When scrollbar is in active/clicked state */
-  ::-webkit-scrollbar-thumb:active {
-	background: rgba(99, 102, 241, 0.6);
-	border: 1px solid rgba(168, 85, 247, 0.4);
-	box-shadow: 
-	  inset 0 0 40px rgba(168, 85, 247, 0.4),
-	  0 0 20px rgba(99, 102, 241, 0.4);
-  }
-  
-  ::-webkit-scrollbar-corner {
-	background: transparent;
-  }
+@keyframes shine {
+    from {
+        left: -100%;
+    }
+    to {
+        left: 200%;
+    }
+}
 
-  [data-aos] {
-	will-change: transform, opacity !important;
-  }
+.animate-shine {
+    animation: shine 1.5s ease-in-out infinite;
+}
 
+[data-aos] {
+    will-change: transform, opacity !important;
+}
 
+/* Neo-Brutalist Component Utilities */
+@layer components {
+    /* Hard Shadow & Border Base */
+    .neo-box {
+        background-color: #ffffff;
+        border: 3px solid var(--color-ink);
+        box-shadow: 5px 5px 0px var(--color-ink);
+        border-radius: 4px;
+        transition: all 0.15s ease-in-out;
+    }
 
- @keyframes shine {
-  from {
-	     left: -100%;
-  }
-	  to {
-	    left: 200%;
-	   }
-	 }
-	 .animate-shine {
-   animation: shine 1.5s ease-in-out infinite;
- }
+    /* Interactive Buttons */
+    .neo-btn {
+        background-color: var(--color-yellow);
+        color: var(--color-ink);
+        border: 3px solid var(--color-ink);
+        box-shadow: 4px 4px 0px var(--color-ink);
+        font-weight: 800;
+        text-transform: uppercase;
+        padding: 0.6rem 1.25rem;
+        border-radius: 4px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: all 0.1s ease-in-out;
+    }
 
-  
-/*   @media (prefers-color-scheme: dark) {
-	::-webkit-scrollbar-track {
-	  background: rgba(3, 0, 20, 0.6);
-	}
-  } */
+    .neo-btn:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0px var(--color-ink);
+        background-color: #ffe066;
+    }
 
+    .neo-btn:active {
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0px var(--color-ink);
+    }
 
-/* 
-  .container {
-	width: 100%;
-	height: 100%;
-  }
-  
-  .main > div {
-	position: absolute;
-	will-change: transform;
-	border-radius: 50%;
-	background: lightcoral;
-	box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-	opacity: 0.6;
-  }
-  
-  .main > div:nth-child(1) {
-	width: 60px;
-	height: 60px;
-  }
-  
-  .main > div:nth-child(2) {
-	width: 125px;
-	height: 125px;
-  }
-  
-  .main > div:nth-child(3) {
-	width: 75px;
-	height: 75px;
-  }
-  
-  .main > div::after {
-	content: '';
-	position: absolute;
-	top: 20px;
-	left: 20px;
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	background: rgba(255, 0, 0, 0.8);
-  }
-  
-  .main > div:nth-child(2)::after {
-	top: 35px;
-	left: 35px;
-	width: 35px;
-	height: 35px;
-  }
-  
-  .main > div:nth-child(3)::after {
-	top: 25px;
-	left: 25px;
-	width: 25px;
-	height: 25px;
-  }
-  
-  .main {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	filter: url('#blob');
-	overflow: hidden;
-	background: transparent;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	cursor: default;
-  } */
+    /* Input Fields */
+    .neo-input {
+        background-color: #ffffff;
+        border: 3px solid var(--color-ink);
+        box-shadow: 3px 3px 0px var(--color-ink);
+        padding: 0.6rem 1rem;
+        border-radius: 4px;
+        color: var(--color-ink);
+        font-weight: 600;
+        outline: none;
+    }
+
+    .neo-input:focus {
+        background-color: #fffde7;
+        box-shadow: 5px 5px 0px var(--color-ink);
+    }
+
+    /* Badge & Tag */
+    .neo-badge {
+        display: inline-block;
+        padding: 0.25rem 0.6rem;
+        font-size: 0.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        border: 2px solid var(--color-ink);
+        box-shadow: 2px 2px 0px var(--color-ink);
+        background-color: var(--color-red);
+        color: #ffffff;
+        border-radius: 2px;
+    }
+}
