@@ -1,7 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
-
-import { supabase } from "../supabase"; 
-
+import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useSwipeable } from "react-swipeable";
 import { useTheme } from "@mui/material/styles";
@@ -18,35 +15,34 @@ import Certificate from "../components/Certificate";
 import { Code, Award, Boxes, Github } from "lucide-react";
 import { GitHubCalendar } from "react-github-calendar";
 
-
 const ToggleButton = ({ onClick, isShowingMore }) => (
   <button
     onClick={onClick}
     className="
-      px-3 py-1.5
-      text-slate-300 
-      hover:text-white 
-      text-sm 
-      font-medium 
+      px-4 py-2
+      bg-[#ffcf33] 
+      text-[#111111] 
+      text-xs 
+      font-black 
+      uppercase 
+      tracking-wider
+      border-3 
+      border-[#111111] 
+      shadow-[4px_4px_0px_#111111] 
+      hover:translate-x-0.5 
+      hover:translate-y-0.5 
+      hover:shadow-none 
+      active:translate-x-1 
+      active:translate-y-1 
       transition-all 
-      duration-300 
-      ease-in-out
       flex 
       items-center 
-      gap-2
-      bg-white/5 
-      hover:bg-white/10
-      rounded-md
-      border 
-      border-white/10
-      hover:border-white/20
-      backdrop-blur-sm
-      group
-      relative
-      overflow-hidden
+      gap-2 
+      rounded-sm
+      cursor-pointer
     "
   >
-    <span className="relative z-10 flex items-center gap-2">
+    <span className="flex items-center gap-2">
       {isShowingMore ? "See Less" : "See More"}
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -55,22 +51,16 @@ const ToggleButton = ({ onClick, isShowingMore }) => (
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth="3"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className={`
-          transition-transform 
-          duration-300 
-          ${isShowingMore ? "group-hover:-translate-y-0.5" : "group-hover:translate-y-0.5"}
-        `}
+        className={`transition-transform duration-200 ${isShowingMore ? "-rotate-180" : "rotate-0"}`}
       >
-        <polyline points={isShowingMore ? "18 15 12 9 6 15" : "6 9 12 15 18 9"}></polyline>
+        <polyline points="6 9 12 15 18 9"></polyline>
       </svg>
     </span>
-    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500/50 transition-all duration-300 group-hover:w-full"></span>
   </button>
 );
-
 
 function TabPanel({ children, value, index, ...other }) {
   return (
@@ -103,7 +93,6 @@ function a11yProps(index) {
   };
 }
 
-// techStacks tetap sama
 const techStacks = [
   { icon: "html.svg", language: "HTML" },
   { icon: "css.svg", language: "CSS" },
@@ -135,89 +124,14 @@ export default function FullWidthTabs() {
     });
   }, []);
 
-
-  const fetchData = useCallback(async () => {
-    if (!supabase) {
-      setProjects([]);
-      setCertificates([]);
-      return;
-    }
-
+  useEffect(() => {
     try {
-      // Mengambil data dari Supabase secara paralel
-      const [projectsResponse, certificatesResponse] = await Promise.all([
-        supabase.from("projects").select("*").order('id', { ascending: false }),
-        supabase.from("certificates").select("*").order('id', { ascending: false }), 
-      ]);
-
-      // Error handling untuk setiap request
-      if (projectsResponse.error) throw projectsResponse.error;
-      if (certificatesResponse.error) throw certificatesResponse.error;
-
-      // Supabase mengembalikan data dalam properti 'data'
-      let projectData = projectsResponse.data || [];
-      let certificateData = certificatesResponse.data || [];
-
-      // Normalize Img fields: if the stored Img is a storage path (not a full URL),
-      // try to resolve a public URL using the expected buckets.
-      const resolveImg = async (item, bucketName) => {
-        // Support both `img` (DB column) and `Img` (legacy front-end prop)
-        const rawImg = item?.img ?? item?.Img;
-        if (!rawImg) return item;
-        if (typeof rawImg === 'string' && rawImg.startsWith('http')) return { ...item, Img: rawImg };
-
-        try {
-          const { data } = supabase.storage.from(bucketName).getPublicUrl(rawImg);
-          if (data?.publicUrl) return { ...item, Img: data.publicUrl };
-        } catch (e) {
-          // ignore and return original
-        }
-        return item;
-      };
-
-      // Map and resolve images where necessary
-      projectData = await Promise.all(projectData.map((p) => resolveImg(p, 'project-images')));
-      certificateData = await Promise.all(certificateData.map((c) => resolveImg(c, 'certificate-images')));
-
-      console.debug('Fetched projects:', projectData.length, 'certificates:', certificateData.length);
-
-      setProjects(projectData);
-      setCertificates(certificateData);
-
-      // Store in localStorage (fungsionalitas ini tetap dipertahankan)
-      try {
-        localStorage.setItem("projects", JSON.stringify(projectData));
-        localStorage.setItem("certificates", JSON.stringify(certificateData));
-      } catch (err) {
-        console.warn('Failed to write localStorage:', err);
-      }
+      setProjects(JSON.parse(localStorage.getItem('projects') || '[]'));
+      setCertificates(JSON.parse(localStorage.getItem('certificates') || '[]'));
     } catch (error) {
-      console.error("Error fetching data from Supabase:", error);
+      console.warn('Failed to read local portfolio data:', error);
     }
   }, []);
-
-
-
-  useEffect(() => {
-    // Coba ambil dari localStorage dulu untuk load lebih cepat (UI snappy),
-    // lalu segera panggil fetchData() untuk sinkronisasi mutakhir.
-    const cachedProjects = localStorage.getItem('projects');
-    const cachedCertificates = localStorage.getItem('certificates');
-
-    if (cachedProjects) setProjects(JSON.parse(cachedProjects));
-    if (cachedCertificates) setCertificates(JSON.parse(cachedCertificates));
-
-    // Ambil data terbaru dari Supabase sekarang
-    fetchData();
-
-    // Re-fetch saat window kembali fokus (bila admin melakukan perubahan di tab lain)
-    const handleFocus = () => {
-      console.debug('Window focused — re-fetching projects & certificates');
-      fetchData();
-    };
-    window.addEventListener('focus', handleFocus);
-    return () => window.removeEventListener('focus', handleFocus);
-  }, [fetchData]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -234,110 +148,88 @@ export default function FullWidthTabs() {
   const displayedProjects = showAllProjects ? projects : projects.slice(0, initialItems);
   const displayedCertificates = showAllCertificates ? certificates : certificates.slice(0, initialItems);
 
-  // Sisa dari komponen (return statement) tidak ada perubahan
   return (
-    <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#030014] overflow-hidden" id="Portofolio">
-      {/* Header section - unchanged */}
-      <div className="text-center pb-10" data-aos="fade-up" data-aos-duration="1000">
-
-        <h2 className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
-          <span style={{
-            color: '#6366f1',
-            backgroundImage: 'linear-gradient(45deg, #6366f1 10%, #a855f7 93%)',
-            WebkitBackgroundClip: 'text',
-            backgroundClip: 'text',
-            WebkitTextFillColor: 'transparent'
-          }}>
+    <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#f4f0e6] text-[#111111] overflow-hidden py-12" id="Portofolio">
+      {/* Header Section */}
+      <div className="text-center pb-12" data-aos="fade-up">
+        <div className="inline-block relative group mb-3">
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#111111] relative z-10">
             Portfolio Showcase
-          </span>
-        </h2>
-        <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base mt-2">
+          </h2>
+          <div className="absolute -bottom-1 -right-3 w-full h-1/2 bg-[#ffcf33] -z-10 border-2 border-[#111111]" />
+        </div>
+        <p className="text-[#111111] font-bold uppercase tracking-wider text-sm md:text-base max-w-2xl mx-auto">
           Explore my journey through projects, certifications, and technical expertise. 
           Each section represents a milestone in my continuous learning path.
         </p>
       </div>
 
       <Box sx={{ width: "100%" }}>
-        {/* AppBar and Tabs section - unchanged */}
+        {/* AppBar & Tabs Styling */}
         <AppBar
           position="static"
           elevation={0}
           sx={{
-            bgcolor: "transparent",
-            border: "1px solid rgba(255, 255, 255, 0.1)",
-            borderRadius: "20px",
+            bgcolor: "#ffffff",
+            border: "3px solid #111111",
+            borderRadius: "4px",
+            boxShadow: "5px 5px 0px #111111",
             position: "relative",
             overflow: "hidden",
-            "&::before": {
-              content: '""',
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: "linear-gradient(180deg, rgba(139, 92, 246, 0.03) 0%, rgba(59, 130, 246, 0.03) 100%)",
-              backdropFilter: "blur(10px)",
-              zIndex: 0,
-            },
           }}
-          className="md:px-4"
+          className="md:px-2"
         >
-          {/* Tabs remain unchanged */}
           <Tabs
             value={value}
             onChange={handleChange}
-            textColor="secondary"
-            indicatorColor="secondary"
+            textColor="inherit"
+            indicatorColor="primary"
             variant="fullWidth"
             sx={{
-              minHeight: "70px",
+              minHeight: "65px",
               "& .MuiTab-root": {
-                fontSize: { xs: "0.9rem", md: "1rem" },
-                fontWeight: "600",
-                color: "#94a3b8",
-                textTransform: "none",
-                transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                padding: "20px 0",
+                fontSize: { xs: "0.85rem", md: "1rem" },
+                fontWeight: "900",
+                color: "#111111",
+                textTransform: "uppercase",
+                fontFamily: "inherit",
+                transition: "all 0.2s ease",
+                padding: "16px 0",
                 zIndex: 1,
-                margin: "8px",
-                borderRadius: "12px",
+                margin: "6px",
+                borderRadius: "2px",
+                border: "2px solid transparent",
                 "&:hover": {
-                  color: "#ffffff",
-                  backgroundColor: "rgba(139, 92, 246, 0.1)",
-                  transform: "translateY(-2px)",
-                  "& .lucide": {
-                    transform: "scale(1.1) rotate(5deg)",
-                  },
+                  backgroundColor: "#ffcf33",
+                  borderColor: "#111111",
                 },
                 "&.Mui-selected": {
-                  color: "#fff",
-                  background: "linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.2))",
-                  boxShadow: "0 4px 15px -3px rgba(139, 92, 246, 0.2)",
-                  "& .lucide": {
-                    color: "#a78bfa",
-                  },
+                  color: "#111111",
+                  backgroundColor: "#ff5c58",
+                  borderColor: "#111111",
+                  boxShadow: "2px 2px 0px #111111",
                 },
               },
               "& .MuiTabs-indicator": {
-                height: 0,
+                display: "none",
               },
               "& .MuiTabs-flexContainer": {
-                gap: "8px",
+                gap: "4px",
               },
             }}
           >
             <Tab
-              icon={<Code className="mb-2 w-5 h-5 transition-all duration-300" />}
+              icon={<Code className="mb-1 w-5 h-5 stroke-[2.5]" />}
               label="Projects"
               {...a11yProps(0)}
             />
             <Tab
-              icon={<Award className="mb-2 w-5 h-5 transition-all duration-300" />}
+              icon={<Award className="mb-1 w-5 h-5 stroke-[2.5]" />}
               label="Certificates"
               {...a11yProps(1)}
             />
             <Tab
-              icon={<Boxes className="mb-2 w-5 h-5 transition-all duration-300" />}
+              icon={<Boxes className="mb-1 w-5 h-5 stroke-[2.5]" />}
               label="Tech Stack"
               {...a11yProps(2)}
             />
@@ -349,14 +241,14 @@ export default function FullWidthTabs() {
           onSwipedRight: () => setValue((v) => Math.max(0, v - 1)),
           trackMouse: true,
         })}>
+          {/* Projects Panel */}
           <TabPanel value={value} index={0} dir={theme.direction}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-6 w-full">
                 {displayedProjects.map((project, index) => (
                   <div
                     key={project.id || index}
-                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
+                    data-aos="fade-up"
                   >
                     <CardProject
                       Img={project.Img}
@@ -370,7 +262,7 @@ export default function FullWidthTabs() {
               </div>
             </div>
             {projects.length > initialItems && (
-              <div className="mt-6 w-full flex justify-start">
+              <div className="mt-8 w-full flex justify-start">
                 <ToggleButton
                   onClick={() => toggleShowMore('projects')}
                   isShowingMore={showAllProjects}
@@ -379,14 +271,14 @@ export default function FullWidthTabs() {
             )}
           </TabPanel>
 
+          {/* Certificates Panel */}
           <TabPanel value={value} index={1} dir={theme.direction}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
                 {displayedCertificates.map((certificate, index) => (
                   <div
                     key={certificate.id || index}
-                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
+                    data-aos="fade-up"
                   >
                     <Certificate ImgSertif={certificate.Img} />
                   </div>
@@ -394,7 +286,7 @@ export default function FullWidthTabs() {
               </div>
             </div>
             {certificates.length > initialItems && (
-              <div className="mt-6 w-full flex justify-start">
+              <div className="mt-8 w-full flex justify-start">
                 <ToggleButton
                   onClick={() => toggleShowMore('certificates')}
                   isShowingMore={showAllCertificates}
@@ -403,14 +295,14 @@ export default function FullWidthTabs() {
             )}
           </TabPanel>
 
+          {/* Tech Stack & GitHub Contributions Panel */}
           <TabPanel value={value} index={2} dir={theme.direction}>
-            <div className="container mx-auto flex justify-center items-center overflow-hidden pb-[5%]">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-8 gap-5">
+            <div className="container mx-auto flex justify-center items-center overflow-hidden pb-8">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-6 gap-4 w-full">
                 {techStacks.map((stack, index) => (
                   <div
                     key={index}
-                    data-aos={index % 3 === 0 ? "fade-up-right" : index % 3 === 1 ? "fade-up" : "fade-up-left"}
-                    data-aos-duration={index % 3 === 0 ? "1000" : index % 3 === 1 ? "1200" : "1000"}
+                    data-aos="fade-up"
                   >
                     <TechStackIcon TechStackIcon={stack.icon} Language={stack.language} />
                   </div>
@@ -419,17 +311,17 @@ export default function FullWidthTabs() {
             </div>
             
             {/* GitHub Activity Section */}
-            <div className="container mx-auto flex justify-center items-center overflow-hidden pb-[5%]" data-aos="fade-up" data-aos-duration="1000">
-              <div className="w-full flex justify-center mt-8">
-                <div className="p-6 md:p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm shadow-xl w-full max-w-4xl flex flex-col items-center">
-                  <h3 className="text-xl md:text-2xl font-semibold text-white mb-6 flex items-center gap-2">
-                    <Github className="w-6 h-6 text-[#a855f7]" />
+            <div className="container mx-auto flex justify-center items-center overflow-hidden pb-4" data-aos="fade-up">
+              <div className="w-full flex justify-center mt-6">
+                <div className="p-6 md:p-8 bg-white border-4 border-[#111111] shadow-[8px_8px_0px_#111111] rounded-sm w-full max-w-4xl flex flex-col items-center">
+                  <h3 className="text-xl md:text-2xl font-black uppercase text-[#111111] mb-6 flex items-center gap-3">
+                    <Github className="w-6 h-6 text-[#111111] stroke-[2.5]" />
                     GitHub Contributions
                   </h3>
-                  <div className="overflow-x-auto w-full flex justify-center">
+                  <div className="overflow-x-auto w-full flex justify-center p-2 bg-[#f4f0e6] border-2 border-[#111111]">
                     <GitHubCalendar 
                       username="Bangkah" 
-                      colorScheme="dark" 
+                      colorScheme="light" 
                       blockSize={14}
                       blockMargin={5}
                       fontSize={14}

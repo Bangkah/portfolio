@@ -59,9 +59,9 @@ export default function PresenceWidget() {
 
   if (!activities.length) return null;
 
-  const getIcon = (iconType, className = "w-5 h-5 ") => {
+  const getIcon = (iconType, className = "w-5 h-5") => {
     const icons = {
-      spotify: <Music2 className={className}/>,
+      spotify: <Music2 className={className} />,
       vscode: <Code2 className={className} />,
       gaming: <Gamepad2 className={className} />,
       default: <Headphones className={className} />
@@ -69,38 +69,34 @@ export default function PresenceWidget() {
     return icons[iconType] || icons.default;
   };
 
-  const getColors = (type) => {
-    const colors = {
+  const getTheme = (type) => {
+    const themes = {
       spotify: {
-        bg: "from-green-500/15 to-emerald-500/10",
-        border: "border-green-500/30",
-        text: "text-green-400",
-        badge: "bg-green-500/20 border-green-400/40",
-        glow: "shadow-green-500/20"
+        badgeBg: "bg-[#7bd88f]",
+        badgeText: "text-[#111111]",
+        accentBg: "bg-[#7bd88f]",
+        text: "text-[#111111]"
       },
       coding: {
-        bg: "from-blue-500/15 to-indigo-500/10",
-        border: "border-blue-500/30",
-        text: "text-blue-400",
-        badge: "bg-blue-500/20 border-blue-400/40",
-        glow: "shadow-blue-500/20"
+        badgeBg: "bg-[#4fc3f7]",
+        badgeText: "text-[#111111]",
+        accentBg: "bg-[#4fc3f7]",
+        text: "text-[#111111]"
       },
       gaming: {
-        bg: "from-red-500/15 to-pink-500/10",
-        border: "border-red-500/30",
-        text: "text-red-400",
-        badge: "bg-red-500/20 border-red-400/40",
-        glow: "shadow-red-500/20"
+        badgeBg: "bg-[#ff5c58]",
+        badgeText: "text-white",
+        accentBg: "bg-[#ff5c58]",
+        text: "text-[#111111]"
       },
       default: {
-        bg: "from-purple-500/15 to-violet-500/10",
-        border: "border-purple-500/30",
-        text: "text-purple-400",
-        badge: "bg-purple-500/20 border-purple-400/40",
-        glow: "shadow-purple-500/20"
+        badgeBg: "bg-[#ffcf33]",
+        badgeText: "text-[#111111]",
+        accentBg: "bg-[#ffcf33]",
+        text: "text-[#111111]"
       }
     };
-    return colors[type] || colors.default;
+    return themes[type] || themes.default;
   };
 
   const getActivityLabel = (type) => {
@@ -114,50 +110,48 @@ export default function PresenceWidget() {
   };
 
   return (
-    <div className="">
-      <div className="w-full space-y-2">
+    <div className="w-full">
+      <div className="w-full space-y-3">
         {activities.map((act) => {
-          const colors = getColors(act.type);
-          
+          const theme = getTheme(act.type);
+
           return (
-            <div key={act.key} className="group relative ">
-              {/* Glass Card */}
-              <div className={`relative backdrop-blur-md bg-gradient-to-br ${colors.bg} rounded-xl border ${colors.border} ${colors.glow} shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300`}>
-                <div className="p-3 flex items-center gap-2.5">
-                  
-                  {/* Icon/Image */}
+            <div key={act.key} className="group relative">
+              {/* Card Neo-Brutalist */}
+              <div className="relative bg-white border-3 border-[#111111] shadow-[4px_4px_0px_#111111] hover:shadow-[6px_6px_0px_#111111] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200 rounded-sm overflow-hidden p-3">
+                <div className="flex items-center gap-3">
+
+                  {/* Icon/Image Box Neo-Brutalist */}
                   <div className="relative flex-shrink-0">
-                    <div className="w-14 h-14 rounded-lg overflow-hidden bg-black/20 backdrop-blur-sm ring-2 ring-white/10 group-hover:ring-white/20 transition-all duration-300">
+                    <div className="w-14 h-14 bg-[#f4f0e6] border-2 border-[#111111] shadow-[2px_2px_0px_#111111] overflow-hidden flex items-center justify-center">
                       {act.image ? (
-                        <img 
-                          src={act.image} 
+                        <img
+                          src={act.image}
                           alt={act.title}
                           className="w-full h-full object-cover"
                         />
                       ) : act.iconImage ? (
-                        <div className="w-full h-full flex items-center justify-center p-2">
-                          <img 
-                            src={act.iconImage} 
+                        <div className="w-full h-full p-2 flex items-center justify-center">
+                          <img
+                            src={act.iconImage}
                             alt={act.title}
                             className="w-full h-full object-contain"
                           />
                         </div>
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <div className={colors.text}>
-                            {getIcon(act.icon, "w-7 h-7")}
-                          </div>
+                        <div className={theme.text}>
+                          {getIcon(act.icon, "w-7 h-7 stroke-[2.5]")}
                         </div>
                       )}
                     </div>
-                    
-                    {/* Music bars - hanya Spotify */}
+
+                    {/* Equalizer Indicator untuk Spotify */}
                     {act.type === "spotify" && (
-                      <div className="absolute -bottom-0.5 -right-0.5 bg-green-500 rounded p-0.5 shadow-lg">
-                        <div className="flex items-end gap-0.5 h-2">
-                          <div className="w-0.5 bg-white rounded-full animate-music-1"></div>
-                          <div className="w-0.5 bg-white rounded-full animate-music-2"></div>
-                          <div className="w-0.5 bg-white rounded-full animate-music-3"></div>
+                      <div className="absolute -bottom-1 -right-1 bg-[#111111] border border-[#111111] p-1 shadow-[1px_1px_0px_#ffcf33]">
+                        <div className="flex items-end gap-0.5 h-2.5">
+                          <div className="w-1 bg-[#ffcf33] animate-music-1"></div>
+                          <div className="w-1 bg-[#7bd88f] animate-music-2"></div>
+                          <div className="w-1 bg-[#ff5c58] animate-music-3"></div>
                         </div>
                       </div>
                     )}
@@ -165,25 +159,24 @@ export default function PresenceWidget() {
 
                   {/* Text Info */}
                   <div className="flex-1 min-w-0">
-                    <div className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded ${colors.badge} border backdrop-blur-sm mb-1`}>
-                      <div className={`w-1 h-1 rounded-full ${colors.text.replace('text-', 'bg-')} animate-pulse`}></div>
-                      <span className={`text-[9px] pt-[0.5px] font-bold ${colors.text} uppercase tracking-wider`}>
+                    <div className="inline-flex items-center gap-1.5 mb-1">
+                      <span className={`px-2 py-0.5 text-[9px] font-black uppercase tracking-wider border-2 border-[#111111] shadow-[1.5px_1.5px_0px_#111111] ${theme.badgeBg} ${theme.badgeText}`}>
                         {getActivityLabel(act.type)}
                       </span>
                     </div>
-                    
-                    <h3 className="text-white font-bold text-sm truncate mb-0.5">
+
+                    <h3 className="text-[#111111] font-black text-sm truncate leading-snug">
                       {act.title}
                     </h3>
-                    <p className="text-white/60 text-xs truncate">
+                    <p className="text-[#111111]/80 font-bold text-xs truncate">
                       {act.subtitle}
                     </p>
                   </div>
 
-                  {/* Spotify Icon - pojok kanan */}
+                  {/* Spotify Badge Kanan */}
                   {act.type === "spotify" && (
-                    <div className="">
-                      <img src="Spotify.png" className="w-auto h-6 opacity-80 group-hover:opacity-100 transition-opacity duration-300" alt="" />
+                    <div className="flex-shrink-0 bg-[#111111] p-1.5 border-2 border-[#111111] shadow-[2px_2px_0px_#7bd88f]">
+                      <img src="Spotify.png" className="w-auto h-5 invert" alt="Spotify" />
                     </div>
                   )}
 
@@ -197,20 +190,20 @@ export default function PresenceWidget() {
       <style>{`
         @keyframes music-1 {
           0%, 100% { height: 30%; }
-          50% { height: 90%; }
+          50% { height: 100%; }
         }
         @keyframes music-2 {
-          0%, 100% { height: 60%; }
-          50% { height: 100%; }
+          0%, 100% { height: 70%; }
+          50% { height: 30%; }
         }
         @keyframes music-3 {
           0%, 100% { height: 40%; }
-          50% { height: 85%; }
+          50% { height: 90%; }
         }
         
-        .animate-music-1 { animation: music-1 0.6s ease-in-out infinite; }
-        .animate-music-2 { animation: music-2 0.6s ease-in-out 0.15s infinite; }
-        .animate-music-3 { animation: music-3 0.6s ease-in-out 0.3s infinite; }
+        .animate-music-1 { animation: music-1 0.5s ease-in-out infinite; }
+        .animate-music-2 { animation: music-2 0.5s ease-in-out 0.15s infinite; }
+        .animate-music-3 { animation: music-3 0.5s ease-in-out 0.3s infinite; }
       `}</style>
     </div>
   );

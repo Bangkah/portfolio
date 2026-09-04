@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { supabase } from "../supabase"; 
+import LoadingScreen from "./LoadingScreen";
 
 export default function ProtectedRoute({ children }) {
   const [allowed, setAllowed] = useState(null)
@@ -41,8 +42,15 @@ export default function ProtectedRoute({ children }) {
     check()
   }, [])
 
-  if (allowed === null) return null
-  if (!allowed) return <Navigate to="/login" />
+  // Menggunakan LoadingScreen saat pengecekan role sedang berlangsung
+  if (allowed === null) {
+    return <LoadingScreen />
+  }
+
+  // Redirect jika bukan admin atau belum terautentikasi
+  if (!allowed) {
+    return <Navigate to="/login" replace />
+  }
 
   return children
 }
