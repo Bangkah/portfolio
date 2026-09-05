@@ -25,6 +25,7 @@ body {
     overflow-x: hidden;
     background-color: var(--color-paper);
     color: var(--color-ink);
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 /* Background Grid Pattern khas Neo-Brutalism */
@@ -38,6 +39,14 @@ body::before {
         linear-gradient(rgba(17, 17, 17, 0.08) 1px, transparent 1px), 
         linear-gradient(90deg, rgba(17, 17, 17, 0.08) 1px, transparent 1px);
     background-size: 24px 24px;
+}
+
+h1, h2, h3, .font-heading {
+  font-family: 'Archivo Black', sans-serif;
+}
+
+code, .font-mono {
+  font-family: 'JetBrains Mono', monospace;
 }
 
 /* Custom Scrollbar */
