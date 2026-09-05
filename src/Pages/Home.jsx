@@ -19,7 +19,7 @@ const MainTitle = memo(() => (
       <span className="block bg-white px-3 py-1.5 border-4 border-[#111111] shadow-[6px_6px_0px_#111111] inline-block mb-3 rotate-1">
         DevOps &
       </span>
-      <span className="block bg-[#ff5c58] text-white px-3 py-1.5 border-4 border-[#111111] shadow-[6px_6px_0px_#111111] inline-block -rotate-1">
+      <span className="inline-block bg-[#ff5c58] text-[#111111] font-black px-3 py-1.5 border-4 border-[#111111] shadow-[3px_3px_0px_#111111]">
         Linux Engineer
       </span>
     </h1>

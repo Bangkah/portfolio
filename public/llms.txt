@@ -1,0 +1,7 @@
+# Muhammad Dhiyaul Atha - Portofolio
+
+- [Situs Utama](https://mdhiyaulatha.me)
+- [Curriculum Vitae](https://mdhiyaulatha.me/cv)
+- [Proyek GitHub](https://github.com/Bangkah)
+
+Muhammad Dhiyaul Atha - mahasiswa Teknik Informatika dan pengembang perangkat lunak yang berfokus pada ekosistem Linux, DevOps, dan arsitektur backend menggunakan Python, Docker, Nginx, serta Laravel.
