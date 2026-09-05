@@ -24,7 +24,7 @@ const Footer = () => {
           </span>
 
           <span className="text-xs font-black uppercase tracking-widest bg-[#111111] text-[#f4f0e6] px-3 py-1 rounded-sm border-2 border-[#111111]">
-            Neo-Brutalist Edition
+            Muhammad Dhiyaul Atha
           </span>
         </div>
       </div>
