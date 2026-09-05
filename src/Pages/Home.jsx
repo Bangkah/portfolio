@@ -190,8 +190,8 @@ const Home = () => {
                   {/* Main Image Container */}
                   <div className="relative bg-white border-4 border-[#111111] p-4 z-10">
                     <img
-                      src="Animation1.gif"
-                      alt="Developer Animation"
+                      src="photo2.jpg"
+                      alt="Developer photo"
                       className="w-full h-full object-contain filter contrast-125"
                     />
                   </div>
