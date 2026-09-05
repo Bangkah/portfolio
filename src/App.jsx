@@ -8,7 +8,7 @@ import About from "./Pages/About";
 import AnimatedBackground from "./components/Background";
 import { AnimatePresence } from "framer-motion";
 import Footer from "./components/Footer";
-
+import ThankYouPage from "./Pages/ThankYou";
 import Login from "./Pages/Login";
 import Dashboard from "./Pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -61,15 +61,10 @@ function App() {
   const [showWelcome, setShowWelcome] = useState(true);
 
   return (
-    
     <HelmetProvider>
       <div className="pointer-events-none">
-  <AnimatedBackground />
-</div>
-      {
-        // createBrowserRouter is created inside the component so we can pass
-        // runtime state values (like `showWelcome`) into route elements.
-      }
+        <AnimatedBackground />
+      </div>
       <RouterProvider
         router={createBrowserRouter(
           [
@@ -82,6 +77,7 @@ function App() {
                 />
               ),
             },
+            { path: "/thank-you", element: <ThankYouPage /> },
             { path: "/project/:slug", element: <ProjectPageLayout /> },
             { path: "/cv", element: <Suspense fallback={<div className="h-screen bg-[#030014]"/>}><CVPage /></Suspense> },
             { path: "/login", element: <Login /> },
@@ -97,7 +93,6 @@ function App() {
           ],
           {
             future: {
-              // Opt-in to upcoming v7 behaviors to silence warnings in v6
               v7_startTransition: true,
               v7_fetcherPersist: true,
               v7_normalizeFormMethod: true,

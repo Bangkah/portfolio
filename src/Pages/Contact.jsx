@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Share2, User, Mail, MessageSquare, Send } from "lucide-react";
 import SocialLinks from "../components/SocialLinks";
 import Komentar from "../components/Commentar";
-import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom"; 
 import AOS from "aos";
 import "aos/dist/aos.css";
 import axios from "axios";
 
 const ContactPage = () => {
+  const navigate = useNavigate(); 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,9 +17,7 @@ const ContactPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    AOS.init({
-      once: false,
-    });
+    AOS.init({ once: false });
   }, []);
 
   const handleChange = (e) => {
@@ -33,24 +32,9 @@ const ContactPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    Swal.fire({
-      title: 'Mengirim Pesan...',
-      html: 'Harap tunggu selagi kami mengirim pesan Anda',
-      allowOutsideClick: false,
-      background: "#ffffff",
-      color: "#111111",
-      customClass: {
-        popup: "border-4 border-[#111111] shadow-[8px_8px_0px_#111111] rounded-none",
-      },
-      didOpen: () => {
-        Swal.showLoading();
-      }
-    });
-
     try {
-      const formspreeUrl = 'https://formspree.io/f/xqpklqkb'; 
-
-      await axios.post(formspreeUrl, {
+      // Mengirim data via AJAX ke Formspree
+      await axios.post('https://formspree.io/f/xqpklqkb', {
         name: formData.name,
         email: formData.email,
         message: formData.message,
@@ -60,40 +44,11 @@ const ContactPage = () => {
         }
       });
 
-      Swal.fire({
-        title: 'Berhasil!',
-        text: 'Pesan Anda telah berhasil terkirim!',
-        icon: 'success',
-        confirmButtonColor: '#ffcf33',
-        background: "#ffffff",
-        color: "#111111",
-        customClass: {
-          popup: "border-4 border-[#111111] shadow-[8px_8px_0px_#111111] rounded-none",
-          confirmButton: "border-2 border-[#111111] text-[#111111] font-bold shadow-[2px_2px_0px_#111111]",
-        },
-        timer: 2000,
-        timerProgressBar: true
-      });
-
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-      });
+      // Jika berhasil, langsung arahkan ke halaman thank you kustom 
+      navigate('/thank-you');
 
     } catch (error) {
-      Swal.fire({
-        title: 'Gagal!',
-        text: error.response?.data?.error || 'Terjadi kesalahan. Silakan coba lagi nanti.',
-        icon: 'error',
-        confirmButtonColor: '#ff5c58',
-        background: "#ffffff",
-        color: "#111111",
-        customClass: {
-          popup: "border-4 border-[#111111] shadow-[8px_8px_0px_#111111] rounded-none",
-          confirmButton: "border-2 border-[#111111] text-[#111111] font-bold shadow-[2px_2px_0px_#111111]",
-        },
-      });
+      alert('Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.');
     } finally {
       setIsSubmitting(false);
     }
@@ -104,19 +59,12 @@ const ContactPage = () => {
       {/* Header Section */}
       <div className="text-center mt-8 mb-12">
         <div className="inline-block relative group">
-          <h2
-            data-aos="fade-down"
-            className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#111111] relative z-10"
-          >
+          <h2 data-aos="fade-down" className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-[#111111] relative z-10">
             Hubungi Saya
           </h2>
           <div className="absolute -bottom-2 -right-4 w-full h-1/2 bg-[#ff5c58] -z-10 border-3 border-[#111111]" />
         </div>
-        
-        <p
-          data-aos="fade-up"
-          className="text-[#111111] font-bold uppercase tracking-widest text-sm sm:text-base mt-6 max-w-2xl mx-auto"
-        >
+        <p data-aos="fade-up" className="text-[#111111] font-bold uppercase tracking-widest text-sm sm:text-base mt-6 max-w-2xl mx-auto">
           Punya pertanyaan? Kirimi saya pesan, dan saya akan segera membalasnya.
         </p>
       </div>
@@ -126,10 +74,7 @@ const ContactPage = () => {
           
           {/* Left Column: Form & Social */}
           <div className="flex flex-col gap-8">
-            <div 
-              className="bg-white border-4 border-[#111111] shadow-[8px_8px_0px_#111111] p-6 sm:p-10 rounded-sm"
-              data-aos="fade-right"
-            >
+            <div className="bg-white border-4 border-[#111111] shadow-[8px_8px_0px_#111111] p-6 sm:p-10 rounded-sm" data-aos="fade-right">
               <div className="flex justify-between items-start mb-8 pb-6 border-b-4 border-[#111111]">
                 <div>
                   <h2 className="text-3xl font-black uppercase text-[#111111] mb-2">
@@ -144,6 +89,7 @@ const ContactPage = () => {
                 </div>
               </div>
 
+              {/* Form menggunakan onSubmit JavaScript */}
               <form onSubmit={handleSubmit} className="space-y-6">
                 
                 {/* Input Name */}
@@ -203,7 +149,7 @@ const ContactPage = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#111111] text-white py-4 font-black uppercase tracking-wider border-3 border-[#111111] shadow-[6px_6px_0px_#ff5c58] hover:bg-[#ff5c58] hover:text-[#111111] hover:shadow-[6px_6px_0px_#111111] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-[2px_2px_0px_#111111] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed rounded-sm cursor-pointer"
+                  className="w-full bg-[#111111] text-white py-4 font-black uppercase tracking-wider border-3 border-[#111111] shadow-[6px_6px_0px_#ff5c58] hover:bg-[#ff5c58] hover:text-[#111111] hover:shadow-[6px_6px_0px_#111111] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-[2px_2px_0px_#111111] transition-all flex items-center justify-center gap-2 rounded-sm cursor-pointer disabled:opacity-50"
                 >
                   <Send className="w-5 h-5 stroke-[3]" />
                   {isSubmitting ? 'Mengirim...' : 'Kirim Pesan'}
@@ -217,10 +163,7 @@ const ContactPage = () => {
           </div>
 
           {/* Right Column: Comments */}
-          <div 
-            className="bg-white border-4 border-[#111111] shadow-[8px_8px_0px_#111111] p-4 md:p-8 rounded-sm h-fit"
-            data-aos="fade-left"
-          >
+          <div className="bg-white border-4 border-[#111111] shadow-[8px_8px_0px_#111111] p-4 md:p-8 rounded-sm h-fit" data-aos="fade-left">
             <Komentar />
           </div>
 
