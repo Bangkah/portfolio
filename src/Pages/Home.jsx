@@ -8,7 +8,7 @@ const StatusBadge = memo(() => (
   <div className="inline-block" data-aos="zoom-in" data-aos-delay="200">
     <div className="relative inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#ffcf33] text-[#111111] font-black uppercase text-xs tracking-wider border-3 border-[#111111] shadow-[3px_3px_0px_#111111] -rotate-1">
       <Sparkles className="w-4 h-4 fill-[#111111] stroke-[#111111]" />
-      <span>Ready to Innovate</span>
+      <span>Linux & Cloud Native</span>
     </div>
   </div>
 ));
@@ -17,10 +17,10 @@ const MainTitle = memo(() => (
   <div className="space-y-2" data-aos="fade-up" data-aos-delay="400">
     <h1 className="text-4xl sm:text-6xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#111111] leading-none">
       <span className="block bg-white px-3 py-1.5 border-4 border-[#111111] shadow-[6px_6px_0px_#111111] inline-block mb-3 rotate-1">
-        Fullstack
+        DevOps &
       </span>
       <span className="block bg-[#ff5c58] text-white px-3 py-1.5 border-4 border-[#111111] shadow-[6px_6px_0px_#111111] inline-block -rotate-1">
-        Web Developer
+        Linux Engineer
       </span>
     </h1>
   </div>
@@ -52,8 +52,8 @@ const SocialLink = memo(({ icon: Icon, link, label }) => (
 const TYPING_SPEED = 100;
 const ERASING_SPEED = 50;
 const PAUSE_DURATION = 2000;
-const WORDS = ["Fullstack Web Developer", "Mahasiswa Teknik Informatika", "Tech Enthusiast"];
-const TECH_STACK = ["React.js", "Laravel", "JavaScript", "PHP", "Python", "Java", "PostgreSQL", "MySQL", "Git", "Linux"];
+const WORDS = ["DevOps & Cloud Native", "Linux Systems Enthusiast", "Open Source Maintainer", "Mahasiswa Teknik Informatika"];
+const TECH_STACK = ["Arch Linux", "Docker", "Nginx", "Bash Scripting", "Python", "Laravel", "Git", "MySQL", "CI/CD", "REST API"];
 const SOCIAL_LINKS = [
   { icon: Github, link: "https://github.com/Bangkah", label: "GitHub Profile" },
   { icon: Linkedin, link: "https://www.linkedin.com/in/muhammad-dhyaul-atha/", label: "LinkedIn Profile" },
@@ -121,12 +121,12 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Muhammad Dhiyaul Atha — Fullstack Web Developer</title>
-        <meta name="description" content="Website resmi Muhammad Dhiyaul Atha, Fullstack Web Developer & Mahasiswa Teknik Informatika. Saya berfokus pada penciptaan pengalaman digital yang menarik dan selalu berupaya memberikan solusi terbaik dalam setiap proyek yang saya kerjakan." />
+        <title>Muhammad Dhiyaul Atha — DevOps & Linux Engineer</title>
+        <meta name="description" content="Website resmi Muhammad Dhiyaul Atha, DevOps & Linux Enthusiast serta Mahasiswa Teknik Informatika dari Aceh, Indonesia. Fokus pada pengelolaan sistem Linux, Docker, otomasi, dan pengembangan proyek open-source." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://mdhiyaulatha.me" />
-        <meta property="og:title" content="Muhammad Dhiyaul Atha — Fullstack Web Developer" />
-        <meta property="og:description" content="Website resmi dan portofolio Muhammad Dhiyaul Atha, Fullstack Web Developer." />
+        <meta property="og:title" content="Muhammad Dhiyaul Atha — DevOps & Linux Engineer" />
+        <meta property="og:description" content="Website resmi dan portofolio Muhammad Dhiyaul Atha, DevOps & Linux Engineer." />
         <meta property="og:url" content="https://mdhiyaulatha.me" />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -155,7 +155,7 @@ const Home = () => {
                   {/* Description Box */}
                   <div className="bg-white border-3 border-[#111111] shadow-[5px_5px_0px_#111111] p-5 rounded-sm" data-aos="fade-up" data-aos-delay="800">
                     <p className="text-sm md:text-base font-semibold leading-relaxed text-[#111111]">
-                      Hai! Saya Atha. Seorang mahasiswa yang suka ngulik teknologi, ngoding, dan membangun hal-hal baru di dunia digital. Yuk, saling terhubung dan bertumbuh bersama!
+                      Hai! Saya Atha. Mahasiswa Teknik Informatika yang antusias dengan sistem Linux, kontainerisasi, dan otomatisasi infrastruktur. Suka ngulik environment Arch Linux, membangun CLI tools open-source, dan merancang sistem backend yang andal.
                     </p>
                   </div>
 
