@@ -22,7 +22,7 @@ const Header = memo(() => (
       data-aos="fade-up"
     >
       <Sparkles className="w-5 h-5 fill-[#ffcf33] stroke-[#111111] stroke-2" />
-      Transforming ideas into digital experiences
+      Building Linux Tools & Cloud-Native Systems
       <Sparkles className="w-5 h-5 fill-[#ffcf33] stroke-[#111111] stroke-2" />
     </p>
   </div>
@@ -42,44 +42,15 @@ const ProfileImage = memo(() => (
         <img
           src="/Photo.jpg"
           alt="Muhammad Dhiyaul Atha"
-          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+          className="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-500"
           loading="lazy"
         />
       </div>
 
       {/* Decorative Badge */}
       <div className="absolute -bottom-4 -left-6 bg-[#ffcf33] border-3 border-[#111111] px-4 py-2 z-20 shadow-[4px_4px_0px_#111111] -rotate-6 group-hover:rotate-0 transition-transform duration-300">
-        <span className="font-black uppercase text-sm text-[#111111]">Web Developer</span>
+        <span className="font-black uppercase text-sm text-[#111111]">DevOps & Linux</span>
       </div>
-    </div>
-  </div>
-));
-
-const StatCard = memo(({ icon: Icon, color, value, label, description, animation }) => (
-  <div data-aos={animation} className="group h-full cursor-pointer">
-    <div className="h-full flex flex-col justify-between p-6 bg-white border-3 border-[#111111] shadow-[6px_6px_0px_#111111] hover:shadow-[8px_8px_0px_#111111] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-200">
-      
-      <div className="flex items-center justify-between mb-8">
-        <div className={`w-14 h-14 border-3 border-[#111111] shadow-[3px_3px_0px_#111111] flex items-center justify-center ${color}`}>
-          <Icon className="w-7 h-7 text-[#111111] stroke-[2.5]" />
-        </div>
-        <span className="text-4xl md:text-5xl font-black text-[#111111] tracking-tighter">
-          {value}
-        </span>
-      </div>
-
-      <div>
-        <p className="text-sm font-black uppercase tracking-wider text-[#111111] mb-1">
-          {label}
-        </p>
-        <div className="flex items-center justify-between">
-          <p className="text-xs font-bold text-[#111111]/70 uppercase">
-            {description}
-          </p>
-          <ArrowUpRight className="w-5 h-5 text-[#111111] stroke-[3] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-        </div>
-      </div>
-      
     </div>
   </div>
 ));
@@ -105,7 +76,7 @@ const AboutPage = () => {
     const initAOS = () => {
       AOS.init({
         once: true, 
-        duration: 800, // Durasi dipercepat agar terasa lebih punchy
+        duration: 800, 
       });
     };
 
@@ -123,33 +94,6 @@ const AboutPage = () => {
       clearTimeout(resizeTimer);
     };
   }, []);
-
-  const statsData = useMemo(() => [
-    {
-      icon: Code,
-      color: "bg-[#ffcf33]",
-      value: totalProjects,
-      label: "Total Projects",
-      description: "Innovative web solutions",
-      animation: "fade-up",
-    },
-    {
-      icon: Award,
-      color: "bg-[#4fc3f7]",
-      value: totalCertificates,
-      label: "Certificates",
-      description: "Professional skills",
-      animation: "fade-up",
-    },
-    {
-      icon: Globe,
-      color: "bg-[#ff5c58]",
-      value: YearExperience,
-      label: "Years of Experience",
-      description: "Continuous learning",
-      animation: "fade-up",
-    },
-  ], [totalProjects, totalCertificates, YearExperience]);
 
   return (
     <div
@@ -185,9 +129,9 @@ const AboutPage = () => {
               data-aos="fade-right"
               data-aos-delay="100"
             >
-              Halo! Saya Muhammad Dhiyaul Atha, seorang mahasiswa Teknik Informatika yang antusias dalam dunia pengembangan web dan teknologi. Saya berpengalaman menggunakan berbagai bahasa pemrograman seperti JavaScript, PHP, Python, dan Java, serta terbiasa membangun aplikasi dan website modern dengan React.js dan Laravel.
+              Halo! Saya Muhammad Dhiyaul Atha, mahasiswa Teknik Informatika di Politeknik Negeri Lhokseumawe sekaligus open-source enthusiast yang berfokus pada ekosistem Linux, DevOps, dan teknologi cloud-native. Saya gemar membangun utilitas sistem, perkakas CLI (seperti ATHA dan NetInfo), serta arsitektur backend yang andal menggunakan Python, Docker, Nginx, dan Laravel.
               <br/><br/>
-              Saya senang menciptakan solusi digital yang efisien, responsif, dan mudah dikembangkan. Dalam setiap proyek, saya selalu mengutamakan kerapian kode, kolaborasi tim, dan pemanfaatan tools profesional untuk menunjang produktivitas.
+              Melalui eksperimen mandiri di lingkungan Arch Linux dan pengembangan infrastruktur otomatisasi, saya terus memperdalam sistem jaringan modern, manajemen container, serta praktik rekayasa perangkat lunak yang aman dan terukur. Terbuka untuk kolaborasi, proyek open-source, maupun peluang di bidang DevOps dan sistem backend.
             </p>
 
             {/* Quote Section Neo-Brutalist */}
@@ -201,7 +145,7 @@ const AboutPage = () => {
                 </svg>
               </div>
               <blockquote className="text-[#111111] font-black italic text-sm md:text-base pt-2 uppercase tracking-wide">
-                "Leveraging AI as a professional tool, not a replacement."
+                "Automate everything, keep infrastructure transparent, and build reliable systems from the kernel up."
               </blockquote>
             </div>
 
@@ -230,16 +174,9 @@ const AboutPage = () => {
           {/* Profile Image Section */}
           <ProfileImage />
         </div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-16 md:mt-24">
-          {statsData.map((stat) => (
-            <StatCard key={stat.label} {...stat} />
-          ))}
-        </div>
       </div>
     </div>
   );
 };
 
-export default memo(AboutPage);
+export default memo(AboutPage);   
