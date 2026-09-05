@@ -48,20 +48,16 @@ const ContactPage = () => {
     });
 
     try {
-      const formSubmitUrl = 'https://formsubmit.co/mdhyaulatha@gmail.com';
-      
-      const submitData = new FormData();
-      submitData.append('name', formData.name);
-      submitData.append('email', formData.email);
-      submitData.append('message', formData.message);
-      submitData.append('_subject', 'Pesan Baru dari Website Portfolio');
-      submitData.append('_captcha', 'false'); 
-      submitData.append('_template', 'table'); 
+      const formspreeUrl = 'https://formspree.io/f/xqpklqkb'; 
 
-      await axios.post(formSubmitUrl, submitData, {
+      await axios.post(formspreeUrl, {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      }, {
         headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+          'Accept': 'application/json'
+        }
       });
 
       Swal.fire({
@@ -86,41 +82,18 @@ const ContactPage = () => {
       });
 
     } catch (error) {
-      if (error.request && error.request.status === 0) {
-        Swal.fire({
-          title: 'Berhasil!',
-          text: 'Pesan Anda telah berhasil terkirim!',
-          icon: 'success',
-          confirmButtonColor: '#ffcf33',
-          background: "#ffffff",
-          color: "#111111",
-          customClass: {
-            popup: "border-4 border-[#111111] shadow-[8px_8px_0px_#111111] rounded-none",
-            confirmButton: "border-2 border-[#111111] text-[#111111] font-bold shadow-[2px_2px_0px_#111111]",
-          },
-          timer: 2000,
-          timerProgressBar: true
-        });
-
-        setFormData({
-          name: "",
-          email: "",
-          message: "",
-        });
-      } else {
-        Swal.fire({
-          title: 'Gagal!',
-          text: 'Terjadi kesalahan. Silakan coba lagi nanti.',
-          icon: 'error',
-          confirmButtonColor: '#ff5c58',
-          background: "#ffffff",
-          color: "#111111",
-          customClass: {
-            popup: "border-4 border-[#111111] shadow-[8px_8px_0px_#111111] rounded-none",
-            confirmButton: "border-2 border-[#111111] text-[#111111] font-bold shadow-[2px_2px_0px_#111111]",
-          },
-        });
-      }
+      Swal.fire({
+        title: 'Gagal!',
+        text: error.response?.data?.error || 'Terjadi kesalahan. Silakan coba lagi nanti.',
+        icon: 'error',
+        confirmButtonColor: '#ff5c58',
+        background: "#ffffff",
+        color: "#111111",
+        customClass: {
+          popup: "border-4 border-[#111111] shadow-[8px_8px_0px_#111111] rounded-none",
+          confirmButton: "border-2 border-[#111111] text-[#111111] font-bold shadow-[2px_2px_0px_#111111]",
+        },
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -137,7 +110,6 @@ const ContactPage = () => {
           >
             Hubungi Saya
           </h2>
-          {/* Accent block under text */}
           <div className="absolute -bottom-2 -right-4 w-full h-1/2 bg-[#ff5c58] -z-10 border-3 border-[#111111]" />
         </div>
         
@@ -154,8 +126,6 @@ const ContactPage = () => {
           
           {/* Left Column: Form & Social */}
           <div className="flex flex-col gap-8">
-            
-            {/* Contact Form Card */}
             <div 
               className="bg-white border-4 border-[#111111] shadow-[8px_8px_0px_#111111] p-6 sm:p-10 rounded-sm"
               data-aos="fade-right"
@@ -233,7 +203,7 @@ const ContactPage = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#111111] text-white py-4 font-black uppercase tracking-wider border-3 border-[#111111] shadow-[6px_6px_0px_#ff5c58] hover:bg-[#ff5c58] hover:text-[#111111] hover:shadow-[6px_6px_0px_#111111] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-[2px_2px_0px_#111111] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed rounded-sm"
+                  className="w-full bg-[#111111] text-white py-4 font-black uppercase tracking-wider border-3 border-[#111111] shadow-[6px_6px_0px_#ff5c58] hover:bg-[#ff5c58] hover:text-[#111111] hover:shadow-[6px_6px_0px_#111111] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-[2px_2px_0px_#111111] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed rounded-sm cursor-pointer"
                 >
                   <Send className="w-5 h-5 stroke-[3]" />
                   {isSubmitting ? 'Mengirim...' : 'Kirim Pesan'}
@@ -241,11 +211,9 @@ const ContactPage = () => {
               </form>
             </div>
 
-            {/* Social Links Section */}
             <div data-aos="fade-up">
               <SocialLinks />
             </div>
-
           </div>
 
           {/* Right Column: Comments */}
