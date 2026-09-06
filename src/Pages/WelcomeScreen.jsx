@@ -16,7 +16,7 @@ const TypewriterEffect = ({ text }) => {
       } else {
         clearInterval(timer);
       }
-    }, 260);
+    }, 100);
     
     return () => clearInterval(timer);
   }, [text]);
@@ -159,7 +159,7 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
                   <div className="flex items-center gap-2 text-base sm:text-xl md:text-2xl font-black uppercase">
                     <Globe className="w-5 h-5 sm:w-6 sm:h-6 text-[#111111] stroke-[3]" />
                     <span className="text-[#111111]">
-                      <TypewriterEffect text="mdhiyaulatha.me" />
+                      <TypewriterEffect text="MUHAMMAD DHIYAUL ATHA" />
                     </span>
                   </div>
                 </a>
