@@ -3,7 +3,7 @@ import { Download, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import cvFile from "../assets/cv/Muhammad_Dhiyaul_Atha_Modern_Clean_CV.pdf";
+import cvFile from "../assets/cv/CV_Muhammad_Dhiyaul_Atha_ATS.pdf";
 
 const CVPage = () => {
   useEffect(() => {
@@ -55,7 +55,7 @@ const CVPage = () => {
             {/* Download Button */}
             <a 
               href={cvUrl}
-              download="CV_Muhammad_Dhiyaul_Atha.pdf"
+              download="CV_Muhammad_Dhiyaul_Atha_ATS.pdf"
               className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#111111] text-white border-2 border-[#111111] shadow-[3px_3px_0px_#ff5c58] font-black uppercase text-xs hover:bg-[#ff5c58] hover:text-[#111111] hover:shadow-[3px_3px_0px_#111111] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-none transition-all rounded-sm"
             >
               <Download className="w-4 h-4 stroke-[2.5]" />
