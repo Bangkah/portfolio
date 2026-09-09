@@ -49,6 +49,12 @@ export const projects = [
     href: "https://muslim-life.vercel.app/",
   },
   {
+    value: "Bangk Shield",
+    description:
+      "Bangk-Shield berjalan sepenuhnya di Cloudflare Workers, membalas request mencurigakan dengan respons palsu yang meyakinkan, dengan tiga tujuan: deception ke bot/scanner otomatis, deterrence ke attacker manual, dan visibility ke pemilik situs lewat log yang persisten (bukan console.log yang hilang begitu saja).",
+    href: "https://github.com/Bangkah/Bangk-Shield"
+  },
+  {
     value: "AegisCrypt Web",
     description:
       "AegisCrypt Web is a military-grade, browser-based encryption tool. It is designed to be Zero-Knowledge, meaning your files and passwords are processed entirely in your browser's RAM via WebAssembly / Web Crypto API and never transmitted to any server.",
