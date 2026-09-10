@@ -17,7 +17,7 @@ const socialLinks = [
     url: "https://www.linkedin.com/in/muhammad-dhyaul-atha/",
     bgColor: "bg-[#0A66C2]",
     textColor: "text-white",
-    isPrimary: true,
+    // isPrimary: true,
   },
   {
     name: "Instagram",
