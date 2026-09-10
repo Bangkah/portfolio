@@ -34,6 +34,11 @@ jobs:
       - name: Build app
         run: npm run build
 
+      - name: Wait for Vercel Deployment
+        run: |
+          echo "Waiting 30 seconds for Vercel deployment to propagate and warm up..."
+          sleep 30
+
       - name: Run mobile performance gate
         env:
           PSI_API_KEY: ${{ secrets.PSI_API_KEY }}
