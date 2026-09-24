@@ -7,7 +7,8 @@ export default function PresenceWidget() {
   useEffect(() => {
     const fetchPresence = async () => {
       try {
-        const res = await fetch("http://localhost:3001/api/presence");
+        const presenceApiUrl = import.meta.env.VITE_PRESENCE_API_URL || "http://localhost:3001/api/presence";
+        const res = await fetch(presenceApiUrl);
         const data = await res.json();
 
         const normalized = (data.activities || [])
