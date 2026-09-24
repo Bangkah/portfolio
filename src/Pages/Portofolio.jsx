@@ -328,7 +328,7 @@ export default function FullWidthTabs() {
         <div {...swipeHandlers}>
           {/* PROJECTS PANEL */}
           <TabPanel value={value} index={0} dir={theme.direction}>
-            <div className="container mx-auto">
+            <div className="container mx-auto" data-aos="fade-up">
               <SectionHeader
                 icon={Code}
                 title="Projects"
