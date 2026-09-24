@@ -66,6 +66,11 @@ export const projects = [
       "Aplikasi EnkripsiApp adalah program sederhana berbasis C# Windows Forms yang dibuat untuk mempelajari dan mengimplementasikan algoritma enkripsi teks. Aplikasi ini memiliki antarmuka grafis sederhana sehingga mudah digunakan untuk proses enkripsi maupun dekripsi.",
     href: "https://github.com/Bangkahdev/EnkripsiApp",
   },
+  {
+    value: "CRM-Automation-System",
+    description: "BEDA receives unstructured business inquiries from email, web forms, and messaging channels. These may represent sales opportunities, support requests, duplicate messages, spam, or incomplete submissions.",
+    href : "https://github.com/Bangkah/CRM-Automation-System"
+  }
 ];
 
 /* =========================================================
