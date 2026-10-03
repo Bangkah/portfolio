@@ -1,19 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.mdhiyaulatha.me/#Home</loc>
+    <loc>https://mdhiyaulatha.me/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mdhiyaulatha.me/#About</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.mdhiyaulatha.me/#Portofolio</loc>
+    <loc>https://mdhiyaulatha.me/cv</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mdhiyaulatha.me/#Contact</loc>
-    <priority>0.8</priority>
+    <loc>https://mdhiyaulatha.me/thank-you</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://mdhiyaulatha.me/project/atha</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mdhiyaulatha.me/project/netinfo</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mdhiyaulatha.me/project/bangkah-launcher</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mdhiyaulatha.me/project/sentinel-ai</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mdhiyaulatha.me/project/muslim-life</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mdhiyaulatha.me/project/bangk-shield</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mdhiyaulatha.me/project/aegiscrypt-web</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mdhiyaulatha.me/project/enkripsi-app</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mdhiyaulatha.me/project/crm-automation-system</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>
