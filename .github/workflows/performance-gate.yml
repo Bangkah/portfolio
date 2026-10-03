@@ -34,28 +34,12 @@ jobs:
       - name: Build app
         run: npm run build
 
-      - name: Start local preview server
-        env:
-          PSI_TARGET_URL: "http://127.0.0.1:4173"
-        run: |
-          npm run preview -- --host 127.0.0.1 --port 4173 > preview.log 2>&1 &
-
-          for i in {1..30}; do
-            if curl -fsS "$PSI_TARGET_URL" > /dev/null; then
-              echo "Preview server is ready at $PSI_TARGET_URL"
-              exit 0
-            fi
-            sleep 2
-          done
-
-          echo "Preview server did not start in time."
-          cat preview.log
-          exit 1
-
-      - name: Run mobile performance gate
+      - name: Deploy Vercel preview and run mobile performance gate
         env:
           PSI_API_KEY: ${{ secrets.PSI_API_KEY }}
-          PSI_TARGET_URL: "http://127.0.0.1:4173"
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           PSI_TARGET_LCP_SECONDS: "7"
           PSI_TARGET_CLS: "0.4"
         run: |
@@ -65,4 +49,18 @@ jobs:
             exit 1
           fi
 
+          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "::error::Vercel deployment secrets are missing."
+            echo "Set VERCEL_TOKEN, VERCEL_ORG_ID, and VERCEL_PROJECT_ID in GitHub repository settings."
+            exit 1
+          fi
+
+          export PSI_TARGET_URL="$(npx vercel deploy --yes --token="$VERCEL_TOKEN" --scope="$VERCEL_ORG_ID" --project="$VERCEL_PROJECT_ID" | tail -n 1)"
+
+          if [ -z "$PSI_TARGET_URL" ] || ! printf '%s' "$PSI_TARGET_URL" | grep -q '^https\?://'; then
+            echo "::error::Vercel deployment did not return a usable public URL."
+            exit 1
+          fi
+
+          echo "Auditing preview URL: $PSI_TARGET_URL"
           npm run audit:mobile:ci
