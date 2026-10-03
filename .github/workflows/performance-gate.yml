@@ -55,7 +55,18 @@ jobs:
             exit 1
           fi
 
-          export PSI_TARGET_URL="$(npx vercel deploy --yes --token="$VERCEL_TOKEN" --scope="$VERCEL_ORG_ID" --project="$VERCEL_PROJECT_ID" | tail -n 1)"
+          if ! npx vercel whoami --token="$VERCEL_TOKEN"; then
+            echo "::error::VERCEL_TOKEN is invalid, expired, or belongs to a deleted Vercel user."
+            echo "Create a new Vercel token and update the VERCEL_TOKEN repository secret."
+            exit 1
+          fi
+
+          mkdir -p .vercel
+          printf '{"orgId":"%s","projectId":"%s"}\n' "$VERCEL_ORG_ID" "$VERCEL_PROJECT_ID" > .vercel/project.json
+
+          npx vercel pull --yes --environment=preview --token="$VERCEL_TOKEN"
+          npx vercel build --token="$VERCEL_TOKEN"
+          export PSI_TARGET_URL="$(npx vercel deploy --prebuilt --token="$VERCEL_TOKEN" | tail -n 1)"
 
           if [ -z "$PSI_TARGET_URL" ] || ! printf '%s' "$PSI_TARGET_URL" | grep -q '^https\?://'; then
             echo "::error::Vercel deployment did not return a usable public URL."
