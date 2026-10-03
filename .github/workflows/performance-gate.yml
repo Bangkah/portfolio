@@ -68,6 +68,7 @@ jobs:
           npx vercel build --token="$VERCEL_TOKEN"
           export PSI_TARGET_URL="$(npx vercel deploy --prebuilt --token="$VERCEL_TOKEN" | tail -n 1)"
 
+
           if [ -z "$PSI_TARGET_URL" ] || ! printf '%s' "$PSI_TARGET_URL" | grep -q '^https\?://'; then
             echo "::error::Vercel deployment did not return a usable public URL."
             exit 1
