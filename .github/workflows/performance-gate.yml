@@ -34,14 +34,28 @@ jobs:
       - name: Build app
         run: npm run build
 
-      - name: Wait for Vercel Deployment
+      - name: Start local preview server
+        env:
+          PSI_TARGET_URL: "http://127.0.0.1:4173"
         run: |
-          echo "Waiting 30 seconds for Vercel deployment to propagate and warm up..."
-          sleep 30
+          npm run preview -- --host 127.0.0.1 --port 4173 > preview.log 2>&1 &
+
+          for i in {1..30}; do
+            if curl -fsS "$PSI_TARGET_URL" > /dev/null; then
+              echo "Preview server is ready at $PSI_TARGET_URL"
+              exit 0
+            fi
+            sleep 2
+          done
+
+          echo "Preview server did not start in time."
+          cat preview.log
+          exit 1
 
       - name: Run mobile performance gate
         env:
           PSI_API_KEY: ${{ secrets.PSI_API_KEY }}
+          PSI_TARGET_URL: "http://127.0.0.1:4173"
           PSI_TARGET_LCP_SECONDS: "7"
           PSI_TARGET_CLS: "0.4"
         run: |
