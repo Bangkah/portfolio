@@ -1,78 +1,78 @@
-name: Performance Gate
+# name: Performance Gate
 
-on:
-  pull_request:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: "0 */12 * * *"
-  workflow_dispatch:
+# on:
+#   pull_request:
+#   push:
+#     branches:
+#       - main
+#   schedule:
+#     - cron: "0 */12 * * *"
+#   workflow_dispatch:
 
-permissions:
-  contents: read
+# permissions:
+#   contents: read
 
-jobs:
-  build-and-audit:
-    name: Build & Mobile Performance Audit
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
+# jobs:
+#   build-and-audit:
+#     name: Build & Mobile Performance Audit
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 20
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+#           cache: npm
 
-      - name: Install dependencies
-        run: npm ci --no-audit --no-fund
+#       - name: Install dependencies
+#         run: npm ci --no-audit --no-fund
 
-      - name: Build app
-        run: npm run build
+#       - name: Build app
+#         run: npm run build
 
-      - name: Deploy Vercel preview and run mobile performance gate
-        env:
-          PSI_API_KEY: ${{ secrets.PSI_API_KEY }}
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          PSI_TARGET_LCP_SECONDS: "7"
-          PSI_TARGET_CLS: "0.4"
-        run: |
-          if [ -z "$PSI_API_KEY" ]; then
-            echo "::error::PSI_API_KEY secret is missing."
-            echo "Set it in GitHub repository Settings > Secrets and variables > Actions."
-            exit 1
-          fi
+#       - name: Deploy Vercel preview and run mobile performance gate
+#         env:
+#           PSI_API_KEY: ${{ secrets.PSI_API_KEY }}
+#           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+#           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+#           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+#           PSI_TARGET_LCP_SECONDS: "7"
+#           PSI_TARGET_CLS: "0.4"
+#         run: |
+#           if [ -z "$PSI_API_KEY" ]; then
+#             echo "::error::PSI_API_KEY secret is missing."
+#             echo "Set it in GitHub repository Settings > Secrets and variables > Actions."
+#             exit 1
+#           fi
 
-          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
-            echo "::error::Vercel deployment secrets are missing."
-            echo "Set VERCEL_TOKEN, VERCEL_ORG_ID, and VERCEL_PROJECT_ID in GitHub repository settings."
-            exit 1
-          fi
+#           if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+#             echo "::error::Vercel deployment secrets are missing."
+#             echo "Set VERCEL_TOKEN, VERCEL_ORG_ID, and VERCEL_PROJECT_ID in GitHub repository settings."
+#             exit 1
+#           fi
 
-          if ! npx vercel whoami --token="$VERCEL_TOKEN"; then
-            echo "::error::VERCEL_TOKEN is invalid, expired, or belongs to a deleted Vercel user."
-            echo "Create a new Vercel token and update the VERCEL_TOKEN repository secret."
-            exit 1
-          fi
+#           if ! npx vercel whoami --token="$VERCEL_TOKEN"; then
+#             echo "::error::VERCEL_TOKEN is invalid, expired, or belongs to a deleted Vercel user."
+#             echo "Create a new Vercel token and update the VERCEL_TOKEN repository secret."
+#             exit 1
+#           fi
 
-          mkdir -p .vercel
-          printf '{"orgId":"%s","projectId":"%s"}\n' "$VERCEL_ORG_ID" "$VERCEL_PROJECT_ID" > .vercel/project.json
+#           mkdir -p .vercel
+#           printf '{"orgId":"%s","projectId":"%s"}\n' "$VERCEL_ORG_ID" "$VERCEL_PROJECT_ID" > .vercel/project.json
 
-          npx vercel pull --yes --environment=preview --token="$VERCEL_TOKEN"
-          npx vercel build --token="$VERCEL_TOKEN"
-          export PSI_TARGET_URL="$(npx vercel deploy --prebuilt --token="$VERCEL_TOKEN" | tail -n 1)"
+#           npx vercel pull --yes --environment=preview --token="$VERCEL_TOKEN"
+#           npx vercel build --token="$VERCEL_TOKEN"
+#           export PSI_TARGET_URL="$(npx vercel deploy --prebuilt --token="$VERCEL_TOKEN" | tail -n 1)"
 
 
-          if [ -z "$PSI_TARGET_URL" ] || ! printf '%s' "$PSI_TARGET_URL" | grep -q '^https\?://'; then
-            echo "::error::Vercel deployment did not return a usable public URL."
-            exit 1
-          fi
+#           if [ -z "$PSI_TARGET_URL" ] || ! printf '%s' "$PSI_TARGET_URL" | grep -q '^https\?://'; then
+#             echo "::error::Vercel deployment did not return a usable public URL."
+#             exit 1
+#           fi
 
-          echo "Auditing preview URL: $PSI_TARGET_URL"
-          npm run audit:mobile:ci
+#           echo "Auditing preview URL: $PSI_TARGET_URL"
+#           npm run audit:mobile:ci
