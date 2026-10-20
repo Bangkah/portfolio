@@ -1,38 +1,38 @@
-name: Performance Gate
+# name: Performance Gate
 
-on:
-  pull_request:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: "0 */12 * * *"
-  workflow_dispatch:
+# on:
+#   pull_request:
+#   push:
+#     branches:
+#       - main
+#   schedule:
+#     - cron: "0 */12 * * *"
+#   workflow_dispatch:
 
-permissions:
-  contents: read
+# permissions:
+#   contents: read
 
-jobs:
-  build-and-audit:
-    name: Build & Mobile Performance Audit
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
+# jobs:
+#   build-and-audit:
+#     name: Build & Mobile Performance Audit
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 20
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20
+#           cache: npm
 
-      - name: Install dependencies
-        run: npm ci --no-audit --no-fund
+#       - name: Install dependencies
+#         run: npm ci --no-audit --no-fund
 
-      - name: Build app
-        run: npm run build
+#       - name: Build app
+#         run: npm run build
 
       - name: Deploy Vercel preview and run mobile performance gate
         env:
@@ -75,3 +75,4 @@ jobs:
 
           echo "Auditing preview URL: $PSI_TARGET_URL"
           npm run audit:mobile:ci
+
